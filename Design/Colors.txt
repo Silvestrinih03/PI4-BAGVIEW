@@ -1,0 +1,12 @@
+Cores Padrao BAG VIEW
+
+Usadas para a Logo:
+#f5ad00  //laranja padrao
+#006dac //azul padrao
+
+Usadas para o Site:
+#606c72 // cinza escuro
+#2d8bba // azul um pouco mais claro que da logo
+#fff7f0 // background da tela
+#040404 // preto
+#ffffff // branco
