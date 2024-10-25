@@ -32,7 +32,6 @@ export class LoginComponent {
 
   onSubmit() {
     console.log('Tentando fazer login com:', { email: this.email, senha: this.senha });
-
     };
   
 }

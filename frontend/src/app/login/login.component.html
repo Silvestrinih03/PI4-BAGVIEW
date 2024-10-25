@@ -3,7 +3,7 @@
   <mat-card>
     <mat-card-title>Login</mat-card-title>
     <mat-card-content>
-      <form>
+      <form (ngSubmit)="onSubmit()">
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
           <input
@@ -11,6 +11,8 @@
             placeholder="Digite seu email"
             type="email"
             required
+            [(ngModel)]="email"
+            name="email"
           />
         </mat-form-field>
 
@@ -21,6 +23,8 @@
             placeholder="Digite sua senha"
             type="password"
             required
+            [(ngModel)]="senha"
+            name="senha"
           />
         </mat-form-field>
 
