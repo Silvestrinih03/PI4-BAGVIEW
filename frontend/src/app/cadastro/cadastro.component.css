@@ -1,91 +1,100 @@
-/* Reset básico para margens e preenchimento */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
+/* Estilo geral do contêiner do formulário */
 .form-container {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 500px;
+  max-width: 600px; /* Largura máxima do formulário */
+  margin: 0 auto; /* Centraliza o formulário na página */
+  padding: 20px; /* Espaçamento interno */
+  border: 1px solid #ccc; /* Borda leve ao redor do formulário */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  background-color: #f9f9f9; /* Fundo claro */
 }
 
+/* Estilo para cabeçalhos */
 h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
+  text-align: center; /* Centraliza o texto */
+  color: #333; /* Cor do texto */
+  margin-bottom: 20px; /* Espaçamento abaixo do cabeçalho */
 }
 
+/* Estilo para rótulos */
 label {
-  margin-top: 10px;
-  display: block;
-  font-weight: bold;
-  color: #555;
+  display: block; /* Faz com que os rótulos ocupem toda a largura */
+  margin: 10px 0 5px; /* Margens para espaçamento */
+  font-weight: bold; /* Texto em negrito */
 }
 
+/* Estilo para campos de entrada */
 input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="number"],
+input[type="month"],
 select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  transition: border-color 0.3s;
+  width: 100%; /* Largura total */
+  padding: 10px; /* Espaçamento interno */
+  margin-bottom: 15px; /* Espaço abaixo dos campos */
+  border: 1px solid #ccc; /* Borda leve */
+  border-radius: 4px; /* Bordas arredondadas */
+  font-size: 16px; /* Tamanho da fonte */
+  box-sizing: border-box; /* Inclui a borda e o preenchimento no tamanho total */
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus,
-input[type="number"]:focus,
-select:focus {
-  border-color: #007bff;
-  outline: none;
+/* Estilo para o botão de submissão */
+button[type="submit"] {
+  width: 100%; /* Largura total */
+  padding: 10px; /* Espaçamento interno */
+  background-color: #007bff; /* Cor de fundo azul */
+  color: #fff; /* Cor do texto */
+  border: none; /* Remove borda */
+  border-radius: 4px; /* Bordas arredondadas */
+  font-size: 16px; /* Tamanho da fonte */
+  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+  transition: background-color 0.3s ease; /* Transição suave para cor de fundo */
 }
 
-button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  width: 100%;
-  cursor: pointer;
-  margin-top: 15px;
-  font-weight: bold;
-  transition: background-color 0.3s;
+/* Efeito ao passar o mouse no botão */
+button[type="submit"]:hover {
+  background-color: #0056b3; /* Escurece o azul ao passar o mouse */
 }
 
-button:hover {
-  background-color: #0056b3;
-}
-
-.checkbox-container {
-  margin-top: 15px;
-  display: flex;
-  align-items: center;
-}
-
-.checkbox-container input {
-  margin-right: 5px;
-}
-
+/* Estilo para mensagens de erro */
 #error-message {
-  color: red;
-  text-align: center;
-  margin-top: 15px;
+  color: red; /* Cor do texto de erro */
+  text-align: center; /* Centraliza o texto */
+}
+
+/* Estilo para o contêiner do checkbox */
+.checkbox-container {
+  display: flex; /* Usar flexbox para alinhar os itens */
+  align-items: center; /* Alinha verticalmente o conteúdo */
+  margin: 15px 0; /* Margens em torno da caixa de seleção */
+}
+
+/* Estilo para o checkbox */
+.checkbox-container input[type="checkbox"] {
+  margin-right: 10px; /* Espaço entre a caixa e o texto */
+  height: 10px;
+  width: 10px;
+  transform: scale(1.5); /* Aumenta o tamanho do checkbox */
+  cursor: pointer; /* Muda o cursor ao passar o mouse */
+}
+
+/* Estilo para o rótulo do checkbox */
+.checkbox-container label {
+  margin: 0; /* Remove margens do rótulo */
+  font-size: 14px; /* Ajuste o tamanho da fonte, se necessário */
+  color: #333; /* Cor do texto */
+}
+
+/* Estilo para a observação */
+p {
+  font-size: 16px; /* Tamanho da fonte */
+  color: #555; /* Cor do texto */
+  text-align: center; /* Centraliza o texto */
+  margin: 20px; /* Espaço acima da observação */
+}
+
+/* Estilo para esconder temporariamente as opções */
+#temporarioOptions {
+  display: none; /* Esconde as opções por padrão */
 }
