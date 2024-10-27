@@ -11,21 +11,13 @@ import { RouterModule } from '@angular/router';
 export class HomeComponent implements OnInit {
   title = 'socorroooooo';
 
+  services = [
+        { title: 'Serviço 1', description: 'Descrição do serviço 1' },
+        { title: 'Serviço 2', description: 'Descrição do serviço 2' },
+        { title: 'Serviço 3', description: 'Descrição do serviço 3' }
+      ];
+
   ngOnInit() {
     console.log('HomeComponent inicializado');
   }
 }
-
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-home',
-//   templateUrl: './home.component.html',
-//   styleUrls: ['./home.component.css']
-// })
-// export class HomeComponent {
-//   services = [
-//     { title: 'Serviço 1', description: 'Descrição do serviço 1' },
-//     { title: 'Serviço 2', description: 'Descrição do serviço 2' }
-//   ];
-// }
