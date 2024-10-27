@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "concurrently": "^9.0.1"
+  },
+  "name": "pi4-bagview",
+  "version": "1.0.0",
+  "description": "BagView é uma solução simples e acessível para o rastreamento de bagagens em tempo real. Este projeto permite que os usuários monitorem suas malas durante uma viagem usando tags, com atualizações de localização em tempo real e notificações.",
+  "main": "index.js",
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:backend": "cd backend && npm run start:dev",
+    "start:frontend": "cd frontend && ng serve",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
