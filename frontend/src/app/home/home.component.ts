@@ -15,3 +15,17 @@ export class HomeComponent implements OnInit {
     console.log('HomeComponent inicializado');
   }
 }
+
+// import { Component } from '@angular/core';
+
+// @Component({
+//   selector: 'app-home',
+//   templateUrl: './home.component.html',
+//   styleUrls: ['./home.component.css']
+// })
+// export class HomeComponent {
+//   services = [
+//     { title: 'Serviço 1', description: 'Descrição do serviço 1' },
+//     { title: 'Serviço 2', description: 'Descrição do serviço 2' }
+//   ];
+// }
