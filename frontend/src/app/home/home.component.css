@@ -1,64 +1,62 @@
 /* Estilo para o main */
 .main {
-  background-color: #ffffff; /* Fundo branco para o main */
-  padding: 20px; /* Espaçamento interno */
-  text-align: center; /* Centraliza o texto */
+  background-color: #ffffff;
+  padding: 20px;
+  text-align: center;
 }
 
 /* Estilo para o banner */
 .banner {
-  background-color: #f8f9fa; /* Fundo claro para o banner */
-  padding: 15px; /* Espaçamento interno */
-  border-radius: 8px; /* Bordas arredondadas */
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
 }
 
-/* Estilo para a seção de autenticação */
+/* Estilo para a div que contem cadastro e login */
 .auth-section {
-  display: flex; /* Exibe os itens em linha */
-  justify-content: space-around; /* Espaçamento igual entre os itens */
-  margin: 100px; /* Espaço acima da seção */
+  display: flex;
+  justify-content: space-around;
+  margin: 100px;
 }
 
-/* Estilo para cada item da seção de autenticação */
+/* Estilo para as divs de cadastro e login */
 .auth-item {
-  text-align: center; /* Centraliza o texto dentro de cada item */
+  text-align: center;
 }
 
 /* Estilo para os botões */
 .btn-acessar-cadastro,
 .btn-acessar-login {
-    background-color: #007bff; /* Azul padrão do Bootstrap */
-    color: white; /* Texto branco */
-    border: none; /* Remove bordas padrão */
-    border-radius: 5px; /* Bordas arredondadas */
-    padding: 10px 15px; /* Espaçamento interno */
-    margin: 10px; /* Espaçamento externo */
-    cursor: pointer; /* Muda o cursor ao passar o mouse */
-    font-size: 16px; /* Tamanho da fonte */
-    transition: background-color 0.3s; /* Transição suave para mudança de cor */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
-/* Estilo para os serviços */
+/* Estilo para div de serviços */
 .services {
-  display: flex; /* Exibe os serviços em linha */
-  justify-content: space-around; /* Espaçamento entre os cards */
-  margin-top: 20px; /* Espaço acima dos serviços */
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
 }
 
 /* Estilo para os cards de serviço */
 .service-card {
-  width: 300px; /* Largura fixa para os cards */
-  height: 150px; /* Altura fixa para os cards */
-  padding: 10px; /* Espaçamento interno */
-  background-color: #ffffff; /* Fundo branco para os cards */
-  border: 1px solid #ddd; /* Bordas suaves */
-  border-radius: 8px; /* Bordas arredondadas */
-  text-align: center; /* Centraliza o texto */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para dar destaque */
-  
-  /* Novas propriedades para centralização */
-  display: flex; /* Usa flexbox para o layout interno */
-  flex-direction: column; /* Organiza os itens em coluna */
-  justify-content: center; /* Centraliza verticalmente */
-  align-items: center; /* Centraliza horizontalmente */
+  width: 300px;
+  height: 150px;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
