@@ -63,6 +63,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "port": 4201,
+            "buildTarget": "frontend:build"
+          },
           "configurations": {
             "production": {
               "buildTarget": "frontend:build:production"
