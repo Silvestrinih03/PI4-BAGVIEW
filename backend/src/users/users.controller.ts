@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { CadastroDto } from 'src/cadastro/cadastroDto';
 
 @Controller('users')
 export class UsersController {
@@ -11,7 +12,7 @@ export class UsersController {
   }
 
   @Post()
-  async create(@Body() createUserDto: { email: string; password: string }) {
+  async create(@Body() createUserDto: CadastroDto) {
     return this.usersService.create(createUserDto);
   }
 }
