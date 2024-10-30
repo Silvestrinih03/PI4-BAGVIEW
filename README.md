@@ -32,16 +32,9 @@ Para configurar o frontend, siga os passos abaixo:
    ```bash
    npm install
    ```
-
-### Executando o Frontend
-
-Para iniciar o servidor de desenvolvimento, execute:
-
-```bash
-ng serve
-```
-
-Acesse `http://localhost:4200/` no seu navegador. A aplicação será recarregada automaticamente se você alterar qualquer um dos arquivos fonte.
+   ```bash
+   npm install -g @angular/cli
+   ```
 
 ### Testes
 
@@ -59,7 +52,7 @@ ng e2e
 
 ## Backend
 
-O backend é uma aplicação NestJS utilizando Prisma como ORM e MongoDB como banco de dados.
+O backend é uma aplicação NestJS e MongoDB como banco de dados.
 
 ### Configuração
 
@@ -73,24 +66,24 @@ Para configurar o backend, siga os passos abaixo:
    ```bash
    npm install
    ```
-3. Configure as variáveis de ambiente:
-
-   - Crie um arquivo `.env` na raiz da pasta `backend`.
-   - Adicione a URL de conexão do seu banco de dados MongoDB:
-
-   ```dotenv
-   DATABASE_URL="mongodb+srv://bagview:bagview2024@bagtrackingcluster.dcmh6.mongodb.net/?retryWrites=true&w=majority&appName=bagTrackingCluster"
+   ```bash
+   npm install -g @nestjs/cli
+   ```
+   ```bash
+   npm install @nestjs/passport passport
+   ```
+   ```bash
+   npm install @nestjs/common
    ```
 
-### Executando o Backend
+### Execução
 
-Para iniciar o servidor de desenvolvimento, execute:
-
+Após realizar as instalações necessárias, utilize:
 ```bash
-npm run start:dev
+npm start
 ```
 
-O servidor estará rodando em `http://localhost:3000`.
+Acesse http://localhost:4201/ no seu navegador. A aplicação será recarregada automaticamente se você alterar qualquer um dos arquivos fonte.
 
 ### Testes
 
