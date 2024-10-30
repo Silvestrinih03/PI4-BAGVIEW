@@ -40,7 +40,9 @@ export class LoginComponent {
       next: (response) => {
         console.log('Login bem-sucedido:', response);
         this.authService.setUserData(response.user);
-        this.router.navigate(['/']);
+        localStorage.setItem('userEmail', this.email);
+        console.log("Email do usuário logado:", localStorage.getItem('userEmail'));
+        this.router.navigate(['menu']);
       },
       error: (error) => {
         console.error('Erro no login:', error);

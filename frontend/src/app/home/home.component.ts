@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   title = 'socorroooooo';
+  
 
   services = [
         { title: 'Serviço 1', description: 'Descrição do serviço 1' },
