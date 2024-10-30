@@ -1,11 +1,13 @@
 import { Injectable, ConflictException } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
+import { CadastroDto } from './cadastroDto';
 
 @Injectable()
 export class CadastroService {
   constructor(private usersService: UsersService) {}
 
-  async cadastrar(cadastroDto: { email: string; password: string }) {
+  async cadastrar(cadastroDto: CadastroDto) {
+    
     console.log('Iniciando processo de registro');
     console.log('Dados recebidos:', JSON.stringify(cadastroDto));
 
