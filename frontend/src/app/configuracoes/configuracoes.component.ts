@@ -11,6 +11,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class ConfiguracoesComponent implements OnInit {
   userData: any = null;
+  planoName: string = '';
 
   constructor(private router: Router) {}
 
@@ -27,6 +28,15 @@ export class ConfiguracoesComponent implements OnInit {
         }
         this.userData = await response.json();
         console.log('Dados do usuário:', this.userData);
+        
+        // Define o nome do plano baseado no idPlan
+        if (this.userData.idPlan === '6716a54052a0be5933feebc5') {
+          this.planoName = 'Plano Temporário';
+        } else if (this.userData.idPlan === '6716a54052a0be5933feebc4') {
+          this.planoName = 'Plano Mensal';
+        }
+        
+        console.log('Nome do Plano:', this.planoName);
       } catch (error) {
         console.error('Erro ao buscar dados do usuário:', error);
       }
