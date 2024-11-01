@@ -4,6 +4,12 @@
         <h1>BagView</h1>
         <h1>CONFIGURAÇÕES DO USUÁRIO</h1>
       </div>
+
+      <div *ngIf="userData">
+        <p>Nome: {{ userData.fullName }}</p>
+        <p>Email: {{ userData.email }}</p>
+        <p>CPF: {{ userData.cpf }}</p>
+      </div>
     </div>
     <router-outlet> </router-outlet>
   </main>
