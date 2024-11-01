@@ -16,9 +16,10 @@ import { FormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
 import { PagamentoComponent } from './pagamento/pagamento.component';
 import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
+import { AlugarComponent } from './alugar/alugar.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, CadastroComponent, MenuComponent, PagamentoComponent, ConfiguracoesComponent],
+  declarations: [AppComponent, LoginComponent, CadastroComponent, MenuComponent, PagamentoComponent, ConfiguracoesComponent, AlugarComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

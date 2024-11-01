@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
 import { PagamentoComponent } from './pagamento/pagamento.component';
 import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
+import { AlugarComponent } from './alugar/alugar.component';
 
 
 
@@ -16,7 +17,8 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'menu', component: MenuComponent },
     { path: 'pagamento', component: PagamentoComponent },
-    { path: 'configuracoes', component: ConfiguracoesComponent }
+    { path: 'configuracoes', component: ConfiguracoesComponent },
+    { path: 'alugar', component: AlugarComponent}
   ];
 
   

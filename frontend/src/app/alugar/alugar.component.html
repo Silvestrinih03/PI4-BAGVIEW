@@ -1,0 +1,39 @@
+<div class="alugar-tag-container">
+    <mat-card>
+      <mat-card-title>Alugar Tag</mat-card-title>
+      <mat-card-content>
+        <form (ngSubmit)="onSubmit()">
+          
+          <mat-form-field appearance="fill">
+            <mat-label>Número do Voo</mat-label>
+            <input
+              matInput
+              placeholder="Digite o número do voo"
+              type="text"
+              required
+              [(ngModel)]="numeroVoo"
+              name="numeroVoo"
+            />
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>Quantidade de Tags</mat-label>
+            <input
+              matInput
+              type="number"
+              min="1"
+              max="10"
+              placeholder="Digite a quantidade de tags"
+              required
+              [(ngModel)]="quantidadeTags"
+              name="quantidadeTags"
+            />
+            <mat-hint>Máximo de 10 tags por voo</mat-hint>
+          </mat-form-field>
+            
+        <button [routerLink]="['/pagamento']" class="btn-acessar-pagamento">Prosseguir</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
