@@ -12,5 +12,8 @@ export class CadastroDto {
     idFlights: {
       objectId: string;
     }[];
+    userTags: {
+      objectId: string;
+    }[];
 }
   

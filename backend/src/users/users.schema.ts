@@ -46,6 +46,15 @@ idFlights: {
   objectId: string;
 }[];
 
+@Prop({
+  type: [{
+    objectId: { type: String }
+  }]
+})
+userTags: {
+  objectId: string;
+}[];
+
 }
 
 

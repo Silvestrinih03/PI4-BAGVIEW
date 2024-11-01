@@ -46,6 +46,11 @@ export class CadastroComponent {
     {
       objectId: ""
     }
+  ],
+  userTags: [
+    {
+      objectId: ""
+    }
   ]
   };
   
