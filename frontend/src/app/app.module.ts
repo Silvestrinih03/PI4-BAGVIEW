@@ -15,9 +15,10 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { FormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
 import { PagamentoComponent } from './pagamento/pagamento.component';
+import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, CadastroComponent, MenuComponent, PagamentoComponent],
+  declarations: [AppComponent, LoginComponent, CadastroComponent, MenuComponent, PagamentoComponent, ConfiguracoesComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

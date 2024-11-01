@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
 import { PagamentoComponent } from './pagamento/pagamento.component';
+import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
 
 
 
@@ -14,7 +15,8 @@ export const routes: Routes = [
     { path: 'cadastro', component: CadastroComponent },
     { path: 'login', component: LoginComponent },
     { path: 'menu', component: MenuComponent },
-    { path: 'pagamento', component: PagamentoComponent }
+    { path: 'pagamento', component: PagamentoComponent },
+    { path: 'configuracoes', component: ConfiguracoesComponent }
   ];
 
   
