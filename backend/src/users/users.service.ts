@@ -38,4 +38,31 @@ export class UsersService {
       throw error;
     }
   }
+
+  async updateByEmail(email: string, dadosAtualizacao: Partial<User>): Promise<User> {
+    console.log('Atualizando usuário com email:', email);
+    console.log('Dados para atualização:', dadosAtualizacao);
+    
+    try {
+      const usuarioAtualizado = await this.userModel.findOneAndUpdate(
+        { email: { $regex: new RegExp(`^${email}$`, 'i') } },
+        { $set: dadosAtualizacao },
+        { new: true } // Retorna o documento atualizado
+      ).exec();
+
+      if (!usuarioAtualizado) {
+        throw new Error('Usuário não encontrado');
+      }
+
+      console.log('Usuário atualizado:', JSON.stringify(usuarioAtualizado, null, 2));
+      return usuarioAtualizado;
+    } catch (error) {
+      console.error('Erro ao atualizar usuário:', error);
+      throw error;
+    }
+  }
+
+
+
+
 }

@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { CadastroModule } from './cadastro/cadastro.module';
-import { PagamentoService } from './pagamento/pagamento.service';
+import { PagamentoModule } from './pagamento/pagamento.module';
 
 @Module({
   imports: [
@@ -11,7 +11,8 @@ import { PagamentoService } from './pagamento/pagamento.service';
     UsersModule,
     AuthModule,
     CadastroModule,
+    PagamentoModule,
   ],
-  providers: [PagamentoService],
+  providers: [],
 })
 export class AppModule {}
