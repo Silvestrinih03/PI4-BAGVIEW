@@ -27,7 +27,7 @@
               type="text" 
               id="name" 
               name="name"
-              [(ngModel)]="usuario.nome"
+              [(ngModel)]="usuario.fullName"
               placeholder="Digite seu nome" 
               required>
 
@@ -45,7 +45,7 @@
               type="password" 
               id="password" 
               name="password"
-              [(ngModel)]="usuario.senha"
+              [(ngModel)]="usuario.password"
               placeholder="Digite sua senha" 
               required>
 
@@ -58,7 +58,7 @@
               placeholder="Confirme sua senha" 
               required>
             
-            <button type="submit" [disabled]="!cadastroForm.valid">Prosseguir para Pagamento</button>
+            <button type="submit" [disabled]="!cadastroForm.valid">Cadastrar</button>
             <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
         </form>
     </div>

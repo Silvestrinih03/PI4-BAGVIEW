@@ -4,7 +4,7 @@ import { Document } from 'mongoose';
 export type UserDocument = User & Document;
 
 @Schema()
-export class User {
+export class User extends Document {
   @Prop({ required: true })
   fullName: string;
 
@@ -17,24 +17,37 @@ export class User {
   @Prop({ required: true, unique: true })
   cpf: string;
 
-  @Prop({ required: true})
+  @Prop()
   idPlan: string;
 
   @Prop({
     type: [
       {
-        num: { type: String, required: true },
-        nome: { type: String, required: true },
-        val: { type: String, required: true },
+        num: { type: String},
+        nome: { type: String},
+        val: { type: String,},
       }
     ],
-    required: true
+    required: false
   })
   card: {
     num: string;
     nome: string;
     val: string;
   }[];
+
+
+@Prop({
+  type: [{
+    objectId: { type: String }
+  }]
+})
+idFlights: {
+  objectId: string;
+}[];
+
 }
+
+
 
 export const UserSchema = SchemaFactory.createForClass(User);
