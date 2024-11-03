@@ -25,7 +25,7 @@
 }
 
 /* Estilo para os botões */
-.btn-acessar-cadastro,
+/* .btn-acessar-cadastro,
 .btn-acessar-login {
     background-color: #007bff;
     color: white;
@@ -36,7 +36,7 @@
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
-}
+} */
 
 /* Estilo para div de serviços */
 .services {
@@ -47,8 +47,8 @@
 
 /* Estilo para os cards de serviço */
 .service-card {
-  width: 300px;
-  height: 150px;
+  width: 450px;
+  height: 300px;
   padding: 10px;
   background-color: #ffffff;
   border: 1px solid #ddd;

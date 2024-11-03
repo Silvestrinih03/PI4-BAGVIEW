@@ -3,8 +3,34 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding: 20px; /* Espaçamento para telas menores */
 }
 
 mat-card {
-  width: 300px;
+  width: 100%;
+  max-width: 400px; /* Largura máxima */
+  padding: 20px; /* Espaçamento interno */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border-radius: 8px; /* Bordas arredondadas */
+}
+
+mat-card-title {
+  text-align: center; /* Centraliza o título */
+  font-size: 24px; /* Aumenta o tamanho da fonte */
+  margin-bottom: 15px; /* Espaçamento inferior */
+}
+
+mat-form-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza os itens dentro do form-field */
+}
+
+mat-form-field input {
+  text-align: center; /* Centraliza o texto dentro do input */
+}
+
+button[mat-raised-button] {
+  width: 100%; /* Botão com largura total */
+  margin-top: 15px; /* Espaçamento acima do botão */
 }

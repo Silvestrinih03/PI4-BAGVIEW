@@ -1,7 +1,9 @@
 /* Estilo geral do contêiner do formulário */
+
 .form-container {
   max-width: 600px; /* Largura máxima do formulário */
   margin: 0 auto; /* Centraliza o formulário na página */
+  margin-top: 20px;
   padding: 20px; /* Espaçamento interno */
   border: 1px solid #ccc; /* Borda leve ao redor do formulário */
   border-radius: 8px; /* Bordas arredondadas */
