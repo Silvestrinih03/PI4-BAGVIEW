@@ -1,102 +1,180 @@
-/* Estilo geral do contêiner do formulário */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to bottom, #2d8bba 35%, #fff7f0 95%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5px 5px;
+}
+
+.navbar .logo a {
+  font-size: 1.8rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.navbar .buttons a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  padding: 15px 0;
+  transition: 0.2s ease;
+}
+
+.navbar .buttons a:not(:last-child) {
+  margin-right: 30px;
+}
+
+.navbar .buttons .btn-login:hover {
+  color: #47b2e4;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+#hamburger-btn {
+  font-size: 1.8rem;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  order: 1;
+}
+
+@media screen and (max-width: 1023px) {
+  .navbar .logo a {
+    font-size: 1.5rem;
+  }
+  .navbar #hamburger-btn {
+    display: block;
+  }
+
+  .header .buttons {
+    display: none;
+  }
+}
 
 .form-container {
-  max-width: 600px; /* Largura máxima do formulário */
-  margin: 0 auto; /* Centraliza o formulário na página */
+  max-width: 600px;
+  margin: 0 auto;
   margin-top: 20px;
-  padding: 20px; /* Espaçamento interno */
-  border: 1px solid #ccc; /* Borda leve ao redor do formulário */
-  border-radius: 8px; /* Bordas arredondadas */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  background-color: #f9f9f9; /* Fundo claro */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
 }
 
-/* Estilo para cabeçalhos */
-h2 {
-  text-align: center; /* Centraliza o texto */
-  color: #333; /* Cor do texto */
-  margin-bottom: 20px; /* Espaçamento abaixo do cabeçalho */
+.form-field {
+  margin: 20px;
 }
 
-/* Estilo para rótulos */
+h4 {
+  text-align: left;
+  color: #333;
+  margin-bottom: 30px;
+  margin-left: 20px;
+}
+
+h6 {
+  text-align: left;
+  color: #333;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
 label {
-  display: block; /* Faz com que os rótulos ocupem toda a largura */
-  margin: 10px 0 5px; /* Margens para espaçamento */
-  font-weight: bold; /* Texto em negrito */
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
 }
 
-/* Estilo para campos de entrada */
-input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="number"],
 input[type="month"],
 select {
-  width: 100%; /* Largura total */
-  padding: 10px; /* Espaçamento interno */
-  margin-bottom: 15px; /* Espaço abaixo dos campos */
-  border: 1px solid #ccc; /* Borda leve */
-  border-radius: 4px; /* Bordas arredondadas */
-  font-size: 16px; /* Tamanho da fonte */
-  box-sizing: border-box; /* Inclui a borda e o preenchimento no tamanho total */
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
-/* Estilo para o botão de submissão */
 button[type="submit"] {
-  width: 100%; /* Largura total */
-  padding: 10px; /* Espaçamento interno */
-  background-color: #007bff; /* Cor de fundo azul */
-  color: #fff; /* Cor do texto */
-  border: none; /* Remove borda */
-  border-radius: 4px; /* Bordas arredondadas */
-  font-size: 16px; /* Tamanho da fonte */
-  cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
-  transition: background-color 0.3s ease; /* Transição suave para cor de fundo */
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Efeito ao passar o mouse no botão */
 button[type="submit"]:hover {
-  background-color: #0056b3; /* Escurece o azul ao passar o mouse */
+  background-color: #0056b3;
 }
 
-/* Estilo para mensagens de erro */
 #error-message {
-  color: red; /* Cor do texto de erro */
-  text-align: center; /* Centraliza o texto */
+  color: red;
+  text-align: center;
 }
 
-/* Estilo para o contêiner do checkbox */
 .checkbox-container {
-  display: flex; /* Usar flexbox para alinhar os itens */
-  align-items: center; /* Alinha verticalmente o conteúdo */
-  margin: 15px 0; /* Margens em torno da caixa de seleção */
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
 }
 
-/* Estilo para o checkbox */
 .checkbox-container input[type="checkbox"] {
-  margin-right: 10px; /* Espaço entre a caixa e o texto */
+  margin-right: 10px;
   height: 10px;
   width: 10px;
-  transform: scale(1.5); /* Aumenta o tamanho do checkbox */
-  cursor: pointer; /* Muda o cursor ao passar o mouse */
+  transform: scale(1.5);
+  cursor: pointer;
 }
 
-/* Estilo para o rótulo do checkbox */
 .checkbox-container label {
-  margin: 0; /* Remove margens do rótulo */
-  font-size: 14px; /* Ajuste o tamanho da fonte, se necessário */
-  color: #333; /* Cor do texto */
+  margin: 0;
+  font-size: 14px;
+  color: #333;
 }
 
-/* Estilo para a observação */
 p {
-  font-size: 16px; /* Tamanho da fonte */
-  color: #555; /* Cor do texto */
-  text-align: center; /* Centraliza o texto */
-  margin: 20px; /* Espaço acima da observação */
+  font-size: 16px;
+  color: #555;
+  text-align: center;
+  margin: 20px;
 }
 
-/* Estilo para esconder temporariamente as opções */
 #temporarioOptions {
-  display: none; /* Esconde as opções por padrão */
+  display: none;
 }
