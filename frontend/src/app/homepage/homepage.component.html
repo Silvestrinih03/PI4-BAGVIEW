@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solução de Extravio | BagView</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="homepage.component.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar">
+        <h2 class="logo">
+          <a
+            routerLink="/homepage"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >BagView</a
+          >
+        </h2>
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" id="hamburger-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              d="M3 12h18M3 6h18M3 18h18"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </label>
+        <ul class="links">
+          <li>
+            <a
+              routerLink="/homepage"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+              >Home</a
+            >
+          </li>
+          <li><a routerLink="/errorpage">Sobre Nós</a></li>
+          <li><a routerLink="/errorpage">Serviços</a></li>
+          <li><a routerLink="/errorpage">Contato</a></li>
+        </ul>
+        <div class="buttons">
+          <a
+            routerLink="/login"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            class="btn-login"
+            >Login</a
+          >
+
+          <a
+            routerLink="/cadastro"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            class="btn-cadastro"
+            >Cadastre-se</a
+          >
+        </div>
+      </nav>
+    </header>
+    <section class="hero-section">
+      <div class="hero">
+        <p>SUA PROTEÇÃO PARA TODOS OS DESTINOS</p>
+
+        <div class="buttons">
+          <a routerLink="/errorpage" class="learn">Saiba Mais</a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

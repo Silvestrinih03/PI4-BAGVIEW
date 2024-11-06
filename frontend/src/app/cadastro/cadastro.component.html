@@ -1,66 +1,169 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Usuário</title>
-    <link rel="stylesheet" href="./cadastro.component.css">
-</head>
-<body>
-  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criar Conta</title>
+    <link rel="stylesheet" href="./cadastro.component.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <h2 class="logo">
+          <a
+            routerLink="/homepage"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >BagView</a
+          >
+        </h2>
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" id="hamburger-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              d="M3 12h18M3 6h18M3 18h18"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </label>
+        <div class="buttons">
+          <a
+            routerLink="/login"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            class="btn-login"
+            >Login</a
+          >
+        </div>
+      </nav>
+    </header>
     <div class="form-container">
-      <br>
-      <br>
-        <h2>Cadastro de Usuário</h2>
-        <form (ngSubmit)="onSubmit()" #cadastroForm="ngForm">
-            <label for="cpf">CPF *</label>
-            <input 
-              type="text" 
-              id="cpf" 
+      <br />
+      <br />
+      <h4>Criar conta</h4>
+      <p style="text-align: left">
+        Se você já possui uma conta com a gente, não precisa criar uma conta
+        nova. <a routerLink="/login">Entre</a> com seus dados habituais.
+      </p>
+      <h6>Dados pessoais</h6>
+      <p style="text-align: left">
+        Insira seus dados
+        <strong>exatamente como aparecem em seu CPF e RG.</strong>
+        Eles serão usados quando você alugar suas TAGs.
+      </p>
+      <form (ngSubmit)="onSubmit()" #cadastroForm="ngForm">
+        <div class="form-field">
+          <mat-form-field appearance="outline">
+            <mat-label>Número de CPF</mat-label>
+            <input
+              matInput
+              placeholder="Insira o número de CPF"
+              type="text"
+              id="cpf"
               name="cpf"
               [(ngModel)]="usuario.cpf"
-              placeholder="Digite seu CPF" 
-              required>
+            />
+            <mat-hint>Exemplo 111.222.333-45</mat-hint>
+          </mat-form-field>
+        </div>
 
-            <label for="name">Nome *</label>
-            <input 
-              type="text" 
-              id="name" 
+        <div class="form-field">
+          <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input
+              matInput
+              placeholder="Insira o nome completo"
+              type="text"
+              id="name"
               name="name"
               [(ngModel)]="usuario.fullName"
-              placeholder="Digite seu nome" 
-              required>
+            />
+            <mat-hint>Como aparecem no seu RG</mat-hint>
+          </mat-form-field>
+        </div>
 
-            <label for="email">E-mail *</label>
-            <input 
-              type="email" 
-              id="email" 
+        <h6>Dados de login para sua conta</h6>
+        <p style="text-align: left">
+          <strong>Dê preferência ao seu email pessoal</strong> para garantir que
+          vai receber nossas comunicações.
+        </p>
+
+        <div class="form-field">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="Digite seu email"
+              type="text"
+              id="email"
               name="email"
               [(ngModel)]="usuario.email"
-              placeholder="Digite seu e-mail" 
-              required>
+            />
+          </mat-form-field>
+        </div>
 
-            <label for="password">Senha *</label>
-            <input 
-              type="password" 
-              id="password" 
+        <div class="form-field">
+          <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              type="password"
+              id="password"
               name="password"
               [(ngModel)]="usuario.password"
-              placeholder="Digite sua senha" 
-              required>
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="clickEvent($event); $event.preventDefault()"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
 
-            <label for="passwordConfirmation">Confirmar Senha *</label>
-            <input 
-              type="password" 
-              id="passwordConfirmation" 
+        <div class="form-field">
+          <mat-form-field appearance="outline">
+            <mat-label>Confirmar senha</mat-label>
+            <input
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              type="password"
+              id="passwordConfirmation"
               name="passwordConfirmation"
               [(ngModel)]="confirmaSenha"
-              placeholder="Confirme sua senha" 
-              required>
-            
-            <button type="submit" [disabled]="!cadastroForm.valid">Cadastrar</button>
-            <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
-        </form>
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="clickEvent($event); $event.preventDefault()"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <button type="submit" [disabled]="!cadastroForm.valid">
+          Cadastrar
+        </button>
+        <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+      </form>
     </div>
-</body>
+  </body>
 </html>

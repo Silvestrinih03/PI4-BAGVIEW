@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,24 +9,28 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthClientService } from '../services/auth-client.service';
 import { CadastroClientService } from '../services/cadastro-client.service';
-import { provideHttpClient } from '@angular/common/http';  // Adicione este import
-
+import { provideHttpClient } from '@angular/common/http';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatIconModule } from '@angular/material/icon'; // Adicione esta linha
 
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css'],
   standalone: true,
-  imports: [FormsModule, 
+  imports: [
+    FormsModule,
     CommonModule,
-    HttpClientModule,  // Adicionando HttpClientModule
+    HttpClientModule, // Adicionando HttpClientModule
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule],
-    providers: [
-      CadastroClientService
-    ]
+    MatIconModule, // Adicione esta linha
+    MatButtonModule,
+    RouterModule,
+    MatSlideToggleModule,
+  ],
+  providers: [CadastroClientService],
 })
 export class CadastroComponent {
   usuario = {
@@ -37,25 +41,30 @@ export class CadastroComponent {
     idPlan: '',
     card: [
       {
-      num: "",
-      nome: "",
-      val: ""
-    }
-  ],
-  idFlights: [
-    {
-      objectId: ""
-    }
-  ],
-  userTags: [
-    {
-      objectId: ""
-    }
-  ]
+        num: '',
+        nome: '',
+        val: '',
+      },
+    ],
+    idFlights: [
+      {
+        objectId: '',
+      },
+    ],
+    userTags: [
+      {
+        objectId: '',
+      },
+    ],
   };
-  
+
   confirmaSenha: string = '';
   errorMessage: string = '';
+  hide: boolean = true;
+
+  clickEvent(event: MouseEvent) {
+    this.hide = !this.hide;
+  }
 
   constructor(
     private router: Router,
@@ -66,8 +75,7 @@ export class CadastroComponent {
     if (this.usuario.password !== this.confirmaSenha) {
       this.errorMessage = 'As senhas não coincidem';
       return;
-    }
-    else{
+    } else {
       this.cadastroService.cadastrarUsuario(this.usuario).subscribe({
         next: (response) => {
           console.log('Cadastro realizado com sucesso:', response);
@@ -77,13 +85,13 @@ export class CadastroComponent {
         error: (error) => {
           console.error('Erro no cadastro:', error);
           this.errorMessage = 'Erro ao realizar cadastro. Tente novamente.';
-        }
+        },
       });
 
       console.log('Usuário a ser cadastrado:', this.usuario);
-    
+
       localStorage.setItem('userEmail', this.usuario.email);
-    
+
       this.router.navigate(['/menu']);
     }
   }
