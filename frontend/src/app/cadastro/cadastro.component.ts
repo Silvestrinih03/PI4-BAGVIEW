@@ -39,60 +39,61 @@ export class CadastroComponent {
     password: '',
     cpf: '',
     idPlan: '',
-    card: [
-      {
-        num: '',
-        nome: '',
-        val: '',
-      },
-    ],
-    idFlights: [
-      {
-        objectId: '',
-      },
-    ],
-    userTags: [
-      {
-        objectId: '',
-      },
-    ],
+    card: [{
+      num: '',
+      nome: '',
+      val: '',
+    }],
+    idFlights: [{
+      objectId: '',
+    }],
+    userTags: [{
+      objectId: '',
+    }],
   };
 
   confirmaSenha: string = '';
   errorMessage: string = '';
   hide: boolean = true;
 
-  clickEvent(event: MouseEvent) {
-    this.hide = !this.hide;
-  }
-
   constructor(
     private router: Router,
     private cadastroService: CadastroClientService
   ) {}
 
-  onSubmit() {
-    if (this.usuario.password !== this.confirmaSenha) {
-      this.errorMessage = 'As senhas não coincidem';
-      return;
-    } else {
-      this.cadastroService.cadastrarUsuario(this.usuario).subscribe({
-        next: (response) => {
-          console.log('Cadastro realizado com sucesso:', response);
-          localStorage.setItem('userEmail', this.usuario.email);
-          this.router.navigate(['/menu']);
-        },
-        error: (error) => {
-          console.error('Erro no cadastro:', error);
-          this.errorMessage = 'Erro ao realizar cadastro. Tente novamente.';
-        },
-      });
+  clickEvent(event: MouseEvent) {
+    event.preventDefault();
+    this.hide = !this.hide;
+  }
 
-      console.log('Usuário a ser cadastrado:', this.usuario);
+  onPlanoChange(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    const temporarioOptions = document.getElementById('temporarioOptions');
+    if (temporarioOptions) {
+      temporarioOptions.style.display = 
+        selectElement.value === '6716a54052a0be5933feebc5' ? 'block' : 'none';
+    }
+  }
 
+  async onSubmit() {
+    try {
+      if (this.usuario.password !== this.confirmaSenha) {
+        this.errorMessage = 'As senhas não coincidem';
+        return;
+      }
+
+      console.log('=== Detalhes do Cadastro ===');
+      console.log(`Plano selecionado: ${this.usuario.idPlan === '6716a54052a0be5933feebc4' ? 'Plano Mensal' : 'Plano Temporário'}`);
+
+      const response = await this.cadastroService.cadastrarUsuario(this.usuario).toPromise();
+      console.log('Cadastro realizado com sucesso:', response);
+      
       localStorage.setItem('userEmail', this.usuario.email);
-
-      this.router.navigate(['/menu']);
+      await this.router.navigate(['/menu']);
+      
+    } catch (error) {
+      console.error('Erro no cadastro:', error);
+      this.errorMessage = 'Erro ao realizar cadastro. Tente novamente.';
     }
   }
 }

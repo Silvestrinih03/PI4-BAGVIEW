@@ -157,6 +157,17 @@
               <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
             </button>
           </mat-form-field>
+          <label for="plano">Selecione o Plano *</label>
+        <select 
+          id="plano" 
+          name="plano"
+          [(ngModel)]="usuario.idPlan"
+          (change)="onPlanoChange($event)"
+          required>
+          <option value="">Selecione um plano</option>
+          <option value="6716a54052a0be5933feebc4">Plano Mensal (R$85,90/mês)</option>
+          <option value="6716a54052a0be5933feebc5">Plano Temporário</option>
+        </select>
         </div>
 
         <button type="submit" [disabled]="!cadastroForm.valid">
