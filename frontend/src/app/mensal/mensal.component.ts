@@ -11,9 +11,8 @@ import { Router } from '@angular/router';
 import { AuthClientService } from '../services/auth-client.service';
 import { RouterModule } from '@angular/router';
 
-
 @Component({
-  selector: 'app-alugar-tag',
+  selector: 'app-mensal',
   standalone: true,
   imports: [
     CommonModule,
@@ -24,30 +23,21 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatSelectModule,
     FormsModule,
-    RouterModule
-  ],
-  templateUrl: './alugar.component.html',
-  styleUrls: ['./alugar.component.css'] 
+    RouterModule],
+  templateUrl: './mensal.component.html',
+  styleUrl: './mensal.component.css'
 })
-export class AlugarComponent implements OnInit {
-  numeroVoo: string = '';
-  quantidadeTags: number = 1;
+export class MensalComponent {
   userData: any = null;
+  planoName: string = '';
 
   constructor(private router: Router) {}
 
   async ngOnInit() {
-    console.log('AlugarComponent inicializado');
-    if (this.quantidadeTags === null) {
-      this.quantidadeTags = 1;
-    }
-
-    const planoDoUsuario = localStorage.getItem('plano');
-    console.log("Plano do usuário:", planoDoUsuario);
-
     const userEmail = localStorage.getItem('userEmail');
-    console.log("Email do usuário:", userEmail);
-    
+    console.log('ConfiguracoesComponent inicializado');
+    console.log("Email do usuário logado:", userEmail);
+
     if (userEmail) {
       try {
         const response = await fetch(`http://localhost:4200/users/${userEmail}`);
@@ -68,32 +58,5 @@ export class AlugarComponent implements OnInit {
         console.error('Erro ao buscar dados do usuário:', error);
       }
     }
-  }
-
-  onSubmit() {
-    console.log("Numero do Voo:", this.numeroVoo);
-    console.log("Quantidade de Tags:", this.quantidadeTags);
-    
-    localStorage.setItem('numeroVoo', this.numeroVoo);
-    localStorage.setItem('quantidadeTags', this.quantidadeTags.toString());
-    
-    const planoDoUsuario = localStorage.getItem('plano');
-    console.log("Plano do usuário:", planoDoUsuario);
-    
-    const userCard = localStorage.getItem('userCard');
-    console.log("Cartão do usuário:", userCard);
-    
-    // verificar se o cartao do usuário é vazio
-    // se sim, redirecionar para a pagina de cadastro de cartao
-    // se não, redirecionar para a pagina de 'mensal'
-    if (userCard === '') {
-      this.router.navigate(['/pagamento']);
-    } else {
-      this.router.navigate(['/mensal']);
-    }
-    
-
-    
-  }
 }
-
+}

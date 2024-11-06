@@ -21,6 +21,8 @@ import { ConfiguracoesComponent } from './configuracoes/configuracoes.component'
 import { AlugarComponent } from './alugar/alugar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
+import { ConcluidoComponent } from './concluido/concluido.component';
+import { MensalComponent } from './mensal/mensal.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { ErrorpageComponent } from './errorpage/errorpage.component';
     AlugarComponent,
     HomepageComponent,
     ErrorpageComponent,
+    ConcluidoComponent,
+    MensalComponent,
   ],
   imports: [
     BrowserModule,

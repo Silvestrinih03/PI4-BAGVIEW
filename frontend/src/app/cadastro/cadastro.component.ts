@@ -84,12 +84,18 @@ export class CadastroComponent {
 
       console.log('=== Detalhes do Cadastro ===');
       console.log(`Plano selecionado: ${this.usuario.idPlan === '6716a54052a0be5933feebc4' ? 'Plano Mensal' : 'Plano Temporário'}`);
+      localStorage.setItem('plano', this.usuario.idPlan);
+      console.log("Plano do usuário:", this.usuario.idPlan);
 
       const response = await this.cadastroService.cadastrarUsuario(this.usuario).toPromise();
       console.log('Cadastro realizado com sucesso:', response);
       
       localStorage.setItem('userEmail', this.usuario.email);
-      await this.router.navigate(['/menu']);
+      if (this.usuario.idPlan === '6716a54052a0be5933feebc4') {
+        await this.router.navigate(['/pagamento']);
+      } else {
+        await this.router.navigate(['/menu']);
+      }
       
     } catch (error) {
       console.error('Erro no cadastro:', error);

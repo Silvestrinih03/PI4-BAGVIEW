@@ -9,6 +9,8 @@ import { PagamentoComponent } from './pagamento/pagamento.component';
 import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
 import { AlugarComponent } from './alugar/alugar.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
+import { MensalComponent } from './mensal/mensal.component';
+import { ConcluidoComponent } from './concluido/concluido.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/homepage', pathMatch: 'full' },
@@ -19,7 +21,9 @@ export const routes: Routes = [
   { path: 'pagamento', component: PagamentoComponent },
   { path: 'configuracoes', component: ConfiguracoesComponent },
   { path: 'alugar', component: AlugarComponent },
+  { path: 'mensal', component: MensalComponent },
   { path: 'errorpage', component: ErrorpageComponent },
+  { path: 'concluido', component: ConcluidoComponent },
 ];
 
 @NgModule({
