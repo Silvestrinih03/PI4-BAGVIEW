@@ -19,7 +19,6 @@ import { RouterModule } from '@angular/router';
 })
 export class PagamentoComponent {
   pagamento = {
-    planoId: '',
     horasVoo: 1,
     cardNumber: '',
     cardName: '',
@@ -32,14 +31,14 @@ export class PagamentoComponent {
 
   private apiUrl = 'http://localhost:4200'; // URL do servidor NestJS
 
-  onPlanoChange(event: any) {
+  //onPlanoChange(event: any) {
     // Mostra/esconde opções do plano temporário
-    const temporarioOptions = document.getElementById('temporarioOptions');
-    if (temporarioOptions) {
-      temporarioOptions.style.display = 
-        event.target.value === '6716a54052a0be5933feebc5' ? 'block' : 'none';
-    }
-  }
+  //  const temporarioOptions = document.getElementById('temporarioOptions');
+ //   if (temporarioOptions) {
+ //     temporarioOptions.style.display = 
+ //       event.target.value === '6716a54052a0be5933feebc5' ? 'block' : 'none';
+  //  }
+  //}
 
   constructor(
     private router: Router,
@@ -60,10 +59,10 @@ export class PagamentoComponent {
 
     // Log detalhado das informações do pagamento
     console.log('=== Detalhes do Pagamento ===');
-    console.log(`Plano selecionado: ${this.pagamento.planoId === '6716a54052a0be5933feebc4' ? 'Plano Mensal' : 'Plano Temporário'}`);
-    if (this.pagamento.planoId === '6716a54052a0be5933feebc5') {
-      console.log(`Horas de voo: ${this.pagamento.horasVoo}`);
-    }
+    //console.log(`Plano selecionado: ${this.pagamento.planoId === '6716a54052a0be5933feebc4' ? 'Plano Mensal' : 'Plano Temporário'}`);
+    //if (this.pagamento.planoId === '6716a54052a0be5933feebc5') {
+    //  console.log(`Horas de voo: ${this.pagamento.horasVoo}`);
+    //}
       console.log(`Número do Cartão: ${this.pagamento.cardNumber}`);
       console.log(`Nome no Cartão: ${this.pagamento.cardName}`);
       console.log(`CVV: ${this.pagamento.cvv}`);
@@ -79,7 +78,6 @@ export class PagamentoComponent {
 
     const dadosPagamento = {
       email: userEmail,
-      idPlan: this.pagamento.planoId,
       card: [{
         num: this.pagamento.cardNumber,
         nome: this.pagamento.cardName,
