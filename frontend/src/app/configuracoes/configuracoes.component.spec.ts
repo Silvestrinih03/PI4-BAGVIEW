@@ -21,3 +21,5 @@ describe('ConfiguracoesComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
