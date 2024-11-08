@@ -14,10 +14,7 @@ export class ConfiguracoesComponent implements OnInit {
   planoName: string = '';
 
   constructor(private router: Router) {}
-
-  // Declara constantes para os IDs dos planos
-  // private readonly PLANO_TEMPORARIO_ID = '6716a54052a0be5933feebc5';
-  // private readonly PLANO_MENSAL_ID = '6716a54052a0be5933feebc4';
+  
 //Adiciona um log de erro se userEmail estiver ausente, prevenindo erros no fetch.
   async ngOnInit() {
     const userEmail = localStorage.getItem('userEmail');

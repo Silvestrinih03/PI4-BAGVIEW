@@ -19,7 +19,7 @@
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  max-width: 500px;
+  max-width: 600px;
   width: 90%;
   animation: fadeIn 1s ease-in-out;
 }
@@ -33,6 +33,7 @@
 .banner h1:first-of-type {
   font-size: 2rem;
   font-weight: bold;
+  color: #2c3e50;
 }
 
 .banner h1:last-of-type {
@@ -42,9 +43,14 @@
   margin-top: 0.5rem;
 }
 
+h1 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
 p {
   font-size: 1rem;
-  margin: 0.5rem 0;
   color: #34495e;
   font-weight: 500;
 }
@@ -59,6 +65,7 @@ p::before {
 .table {
   width: 100%;
   border-spacing: 0;
+  margin-top: 1rem;
 }
 
 .table td {
@@ -70,6 +77,31 @@ p::before {
 .table td:first-child {
   font-weight: bold;
   color: #2ecc71;
+}
+
+/* Estilo para os dados do cartão */
+.card-container {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border: 1px solid #2ecc71;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+}
+
+.card-container h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #2ecc71;
+  font-weight: bold;
+  border-bottom: 1px solid #2ecc71;
+  padding-bottom: 0.5rem;
+}
+
+.card-details p {
+  font-size: 0.9rem;
+  margin: 0.3rem 0;
+  color: #34495e;
+  font-weight: 500;
 }
 
 /* Animações */
