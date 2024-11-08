@@ -5,28 +5,11 @@
         <h1>CONFIGURAÇÕES DO USUÁRIO</h1>
       </div>
 
-      <div *ngIf="userData"><
-        <div *ngIf="userData">
-          <h2>Dados do Usuário</h2>
-          <table class="table">
-            <tr>
-              <td>Nome:</td>
-              <td>userData.fullName </td>
-            </tr>
-            <tr>
-              <td>E-mail:</td>
-              <td> userData.email </td>
-            </tr>
-            <tr>
-              <td>CPF:</td>
-              <td> userData.cpf </td>
-            </tr>
-            <tr>
-              <td>Plano Escolhido:</td>
-              <td> planoName </td>
-            </tr>
-          </table>
-        </div>
+      <div *ngIf="userData">
+        <p>Nome: {{ userData.fullName }}</p>
+        <p>Email: {{ userData.email }}</p>
+        <p>CPF: {{ userData.cpf }}</p>
+        <p>Plano Escolhido: {{ planoName }}</p>
       </div>
     </div>
   </main>
