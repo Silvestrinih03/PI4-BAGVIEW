@@ -12,7 +12,7 @@
         <p>CPF: {{ userData.cpf }}</p>
         <p>Plano Escolhido: {{ planoName }}</p>
         
-        <h1>Dados de pagamento</h1>
+        <h1>Dados do Cartão</h1>
         <div *ngIf="userData.card && userData.card.length > 0" class="card-container">
           <h2>Dados do Cartão</h2>
           <!-- Criar uma coluna com apenas os últimos  4 digitos do cartao para exibi-lo com mascara-->
@@ -21,6 +21,7 @@
             <p>Nome no Cartão: {{ userData.card[0].nome || 'N/A' }}</p>
             <p>Validade: {{ userData.card[0].val || 'N/A' }}</p>
           </div>
+          <button [routerLink]="['/pagamento']" class="btn-acessar-pagamento">✏️ Alterar cartão</button>
         </div>
         <div *ngIf="!userData.card || userData.card.length == 0">
           <p>Dados do cartão não disponíveis.</p>

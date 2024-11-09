@@ -104,6 +104,38 @@ p::before {
   font-weight: 500;
 }
 
+/* Estilo do botão */
+button {
+  background-color: #2ecc71; /* Cor verde */
+  color: white; /* Texto branco */
+  border: none; /* Remover borda */
+  padding: 12px 24px; /* Tamanho do botão */
+  font-size: 16px; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito no texto */
+  border-radius: 5px; /* Bordas arredondadas */
+  cursor: pointer; /* Mãozinha ao passar o mouse */
+  transition: all 0.3s ease-in-out; /* Transições suaves para cor e efeito de hover */
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+button:hover {
+  background-color: #27ae60; /* Cor mais escura no hover */
+  transform: translateY(-2px); /* Leve movimento para cima */
+}
+
+button:active {
+  background-color: #219150; /* Cor ainda mais escura quando pressionado */
+  transform: translateY(2px); /* Leve movimento para baixo */
+}
+
+button:focus {
+  outline: none; /* Remove o outline padrão */
+  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.5); /* Sombra suave ao focar */
+}
+
 /* Animações */
 @keyframes fadeIn {
   from {
