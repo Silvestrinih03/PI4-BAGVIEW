@@ -45,6 +45,19 @@ export class PagamentoComponent {
     console.log("Email do usuário logado:", userEmail);
   }
 
+    // Função para verificar se o cartão é válido
+    isValido(expiryDate: string): boolean {
+      const [year, month] = expiryDate.split('-').map(num => parseInt(num, 10));
+  
+      // Formatar a data de validade (ano-mês) e a data atual (ano-mês)
+      const expiryFormatted = `${year}-${month.toString().padStart(2, '0')}`;
+      const currentDate = new Date();
+      const currentFormatted = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}`;
+  
+      // Comparar as datas no formato 'YYYY-MM'
+      return expiryFormatted >= currentFormatted;
+    }
+
     // Validação do cartão com chamada ao servidor Java
     async validarCartao(): Promise<boolean> {
       try {
@@ -84,6 +97,13 @@ export class PagamentoComponent {
     const userEmail = localStorage.getItem('userEmail');
     if (!userEmail) {
       this.errorMessage = 'Usuário não identificado';
+      return;
+    }
+
+    // Verificação de validade do cartão
+    const isCardExpired = !this.isValido(this.pagamento.expiryDate);  // Se for expirado, retornar 'false'
+    if (isCardExpired) {
+      this.errorMessage = 'O cartão está expirado. Verifique a data de validade.';
       return;
     }
 
