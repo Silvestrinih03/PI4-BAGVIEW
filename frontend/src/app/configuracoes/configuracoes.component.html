@@ -15,6 +15,7 @@
         <h1>Dados de pagamento</h1>
         <div *ngIf="userData.card && userData.card.length > 0" class="card-container">
           <h2>Dados do Cartão</h2>
+          <!-- Criar uma coluna com apenas os últimos  4 digitos do cartao para exibi-lo com mascara-->
           <div class="card-details">
             <p>Número: {{ userData.card[0].num || 'N/A' }}</p>
             <p>Nome no Cartão: {{ userData.card[0].nome || 'N/A' }}</p>
