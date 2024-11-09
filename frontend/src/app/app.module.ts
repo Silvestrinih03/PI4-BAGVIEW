@@ -24,6 +24,8 @@ import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { ConcluidoComponent } from './concluido/concluido.component';
 import { MensalComponent } from './mensal/mensal.component';
 
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,9 @@ import { MensalComponent } from './mensal/mensal.component';
     RouterModule.forRoot(routes),
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(withInterceptorsFromDi())
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
