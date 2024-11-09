@@ -1,4 +1,6 @@
-public class ValidadorSenha {
+package com.servidorjava.bagview.controller;
+
+public class SenhaValidacao {
 
     public static boolean validarSenha(String senha) {
         // Nao pode ser nula nem ter menos de 8 caracteres
@@ -24,7 +26,8 @@ public class ValidadorSenha {
                 temCaractereEspecial = true;
             }
 
-            // Se todas as condições forem atendidas entao a senha foi atendida e o servidor vai retornar true, prosseguindo
+            // Se todas as condições forem atendidas entao a senha foi atendida e o servidor
+            // vai retornar true, prosseguindo
             if (temNumero && temLetraMaiuscula && temCaractereEspecial) {
                 return true;
             }

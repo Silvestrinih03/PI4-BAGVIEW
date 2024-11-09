@@ -24,7 +24,7 @@ import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { ConcluidoComponent } from './concluido/concluido.component';
 import { MensalComponent } from './mensal/mensal.component';
 
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+// import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -48,13 +48,13 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
     MatInputModule,
     MatDatepickerModule,
     MatButtonModule,
-    MatIconModule, // Adicione esta linha
+    MatIconModule,
     FormsModule,
     RouterModule.forRoot(routes),
     AppRoutingModule,
   ],
   providers: [
-    provideHttpClient(withInterceptorsFromDi())
+    // provideHttpClient(withInterceptorsFromDi())
   ],
   bootstrap: [AppComponent],
 })

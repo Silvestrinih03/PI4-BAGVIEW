@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { firstValueFrom } from 'rxjs';  // Para usar no lugar de toPromise()
+import { Console } from 'console';
 
 @Component({
   selector: 'app-pagamento',
@@ -30,6 +32,7 @@ export class PagamentoComponent {
   errorMessage: string = '';
 
   private apiUrl = 'http://localhost:4200'; // URL do servidor NestJS
+  private javaApiUrl = 'http://localhost:8080/validarcartao/validar'; // URL do servidor Java
 
   //onPlanoChange(event: any) {
     // Mostra/esconde opções do plano temporário
@@ -51,6 +54,23 @@ export class PagamentoComponent {
     console.log("Email do usuário logado:", userEmail);
   }
 
+  // Validação do cartão com chamada ao servidor Java
+  async validarCartao() {
+    console.log("ENTROU NO VALIDAR CARTAO");
+    try {
+      const isValid = await firstValueFrom(this.http.post<boolean>(this.javaApiUrl, { numeroCartao: this.pagamento.cardNumber }));
+      if (!isValid) {
+        this.errorMessage = 'Número de cartão inválido. Verifique os dados.';
+        console.log("Cartão inválido");
+      }
+      return isValid;
+    } catch (error) {
+      this.errorMessage = 'Erro ao validar o cartão. Tente novamente.';
+      return false;
+    }
+  }
+
+  // Submissão do formulário de pagamento
   onSubmit() {
     if (!this.pagamento.termsAccepted) {
       this.errorMessage = 'Você precisa aceitar os termos para continuar.';

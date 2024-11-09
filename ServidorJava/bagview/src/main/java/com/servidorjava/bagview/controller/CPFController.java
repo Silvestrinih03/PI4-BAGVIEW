@@ -1,3 +1,5 @@
+package com.servidorjava.bagview.controller;
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController
