@@ -7,10 +7,12 @@
 
       <div *ngIf="userData">
         <h1>Dados do usuário</h1>
+        <button [routerLink]="['/edicaoUser']" class="btn-acessar-edicaoUser">✏️ Alterar dados pessoais</button>
         <p>Nome: {{ userData.fullName }}</p>
         <p>Email: {{ userData.email }}</p>
         <p>CPF: {{ userData.cpf }}</p>
         <p>Plano Escolhido: {{ planoName }}</p>
+        
         
         <h1>Dados do Cartão</h1>
         <div *ngIf="userData.card && userData.card.length > 0" class="card-container">
