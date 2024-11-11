@@ -6,12 +6,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthClientService } from '../services/auth-client.service';
 import { CadastroClientService } from '../services/cadastro-client.service';
 import { provideHttpClient } from '@angular/common/http';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon'; // Adicione esta linha
+import { firstValueFrom } from 'rxjs'; 
 
 @Component({
   selector: 'app-cadastro',
@@ -28,7 +29,7 @@ import { MatIconModule } from '@angular/material/icon'; // Adicione esta linha
     MatIconModule, // Adicione esta linha
     MatButtonModule,
     RouterModule,
-    MatSlideToggleModule,
+    MatSlideToggleModule
   ],
   providers: [CadastroClientService],
 })
@@ -56,9 +57,12 @@ export class CadastroComponent {
   errorMessage: string = '';
   hide: boolean = true;
 
+  private javaApiUrl = 'http://localhost:8080/validar-senha'; // URL do servidor Java
+
   constructor(
     private router: Router,
-    private cadastroService: CadastroClientService
+    private cadastroService: CadastroClientService,
+    private http: HttpClient
   ) {}
 
   clickEvent(event: MouseEvent) {
@@ -75,6 +79,27 @@ export class CadastroComponent {
     }
   }
 
+  // Validação do cartão com chamada ao servidor Java
+  async validarSenha(): Promise<boolean> {
+    try {
+      const urlComSenha = `${this.javaApiUrl}?senha=${this.usuario.password}`;
+      const isValid = await firstValueFrom(
+        this.http.post<boolean>(urlComSenha, {})
+      );
+      if (!isValid) {
+        this.errorMessage = 'A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, um número e um caractere especial (@, !, *, & etc).';
+      } else {
+        this.errorMessage = ''; // Limpa a mensagem de erro se o cartão for válido
+      }
+      return isValid;
+    } catch (error) {
+      this.errorMessage = 'Erro ao validar a senha. Tente novamente.';
+      console.error("Erro de validação de senha:", error);
+      return false;
+    }
+  }
+
+
   async onSubmit() {
     try {
       if (this.usuario.password !== this.confirmaSenha) {
@@ -82,6 +107,13 @@ export class CadastroComponent {
         return;
       }
 
+      // Validação do cartão antes de enviar
+      const isValidPassword = await this.validarSenha();
+      if (!isValidPassword) {
+        console.log("Senha inválida.");
+        return; // Não enviar os dados para o servidor se o cartão for inválido
+      }
+      
       console.log('=== Detalhes do Cadastro ===');
       console.log(`Plano selecionado: ${this.usuario.idPlan === '6716a54052a0be5933feebc4' ? 'Plano Mensal' : 'Plano Temporário'}`);
       localStorage.setItem('plano', this.usuario.idPlan);
