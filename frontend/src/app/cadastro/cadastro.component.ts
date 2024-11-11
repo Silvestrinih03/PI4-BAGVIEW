@@ -58,6 +58,7 @@ export class CadastroComponent {
   hide: boolean = true;
 
   private javaApiUrl = 'http://localhost:8080/validar-senha'; // URL do servidor Java
+  private javaApiUrlCpf = 'http://localhost:8080/validarcpf'; // URL do servidor Java
 
   constructor(
     private router: Router,
@@ -79,7 +80,7 @@ export class CadastroComponent {
     }
   }
 
-  // Validação do cartão com chamada ao servidor Java
+  // Validação da senha com chamada ao servidor Java
   async validarSenha(): Promise<boolean> {
     try {
       const urlComSenha = `${this.javaApiUrl}?senha=${this.usuario.password}`;
@@ -99,6 +100,26 @@ export class CadastroComponent {
     }
   }
 
+  // Validação do CPF com chamada ao servidor Java
+  async validarCpf(): Promise<boolean> {
+    try {
+      const urlComCPF = `${this.javaApiUrlCpf}?cpf=${this.usuario.cpf}`;
+      const isValid = await firstValueFrom(
+        this.http.post<boolean>(urlComCPF, {})
+      );
+      if (!isValid) {
+        this.errorMessage = 'CPF inválido!';
+      } else {
+        this.errorMessage = ''; // Limpa a mensagem de erro se o cartão for válido
+      }
+      return isValid;
+    } catch (error) {
+      this.errorMessage = 'Erro ao validar o CPF. Tente novamente.';
+      console.error("Erro de validação de CPF:", error);
+      return false;
+    }
+  }
+
 
   async onSubmit() {
     try {
@@ -107,10 +128,17 @@ export class CadastroComponent {
         return;
       }
 
-      // Validação do cartão antes de enviar
+      // Validação da senha antes de enviar
       const isValidPassword = await this.validarSenha();
       if (!isValidPassword) {
         console.log("Senha inválida.");
+        return; // Não enviar os dados para o servidor se o cartão for inválido
+      }
+
+      // Validação do CPF antes de enviar
+      const isValidCpf = await this.validarCpf();
+      if (!isValidCpf) {
+        console.log("CPF inválido.");
         return; // Não enviar os dados para o servidor se o cartão for inválido
       }
       
