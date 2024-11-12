@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # BagView
 
 BagView é uma solução simples e acessível para o rastreamento de bagagens em tempo real. Este projeto permite que os usuários monitorem suas malas durante uma viagem usando tags, com atualizações de localização em tempo real e notificações.
