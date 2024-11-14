@@ -1,22 +1,35 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Router } from '@angular/router';
-import { RouterModule } from '@angular/router';
-import { RouterLinkActive } from '@angular/router';
-import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import {
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterModule,
+  RouterOutlet,
+} from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
+/**
+ * Componente raiz da aplicação.
+ * Define o título da aplicação e configura as rotas principais.
+ */
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  /**
+   * Título da aplicação exibido no navegador.
+   */
   title = 'frontend';
 
+  /**
+   * Construtor do componente.
+   * @param titleService Serviço para manipulação do título da página.
+   */
   constructor(private titleService: Title) {
     this.titleService.setTitle('Bagview');
   }

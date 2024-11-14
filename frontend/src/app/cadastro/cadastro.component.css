@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
 
+/* Reset de Estilos */
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +8,7 @@
   font-family: "Open Sans", sans-serif;
 }
 
+/* Estilos Gerais */
 html,
 body {
   height: 100%;
@@ -23,7 +25,7 @@ body {
   background-attachment: fixed;
 }
 
-/* Estilizações Gerais */
+/* Estilizações do Header */
 .header {
   position: sticky;
   top: 0;
@@ -121,34 +123,37 @@ body {
   background-color: #ffffff;
   flex-grow: 1;
 }
+.form-container a {
+  text-decoration: none;
+}
 
 /* Estilizações para os Campos do Formulário */
 .form-field {
   margin: 20px;
 }
 
-.form-field mat-form-field {
-  width: 85%;
-}
-
+.form-field mat-form-field,
 .form-field select {
   width: 85%;
 }
 
-h4 {
-  text-align: left;
-  color: #333;
-  margin-bottom: 30px;
-  margin-left: 20px;
-}
-
+/* Estilizações para Títulos */
+h4,
 h6 {
   text-align: left;
   color: #333;
-  margin-bottom: 20px;
   margin-left: 20px;
 }
 
+h4 {
+  margin-bottom: 30px;
+}
+
+h6 {
+  margin-bottom: 20px;
+}
+
+/* Estilizações para Labels e Inputs */
 label {
   display: block;
   margin: 10px 0 5px;
@@ -169,6 +174,7 @@ select {
   box-sizing: border-box;
 }
 
+/* Estilizações para o Botão de Envio */
 button[type="submit"] {
   width: 80%;
   padding: 10px;
@@ -188,11 +194,13 @@ button[type="submit"]:hover {
   color: #fff;
 }
 
+/* Estilizações para Mensagens de Erro */
 #error-message {
   color: red;
   text-align: center;
 }
 
+/* Estilizações para Checkbox */
 .checkbox-container {
   display: flex;
   align-items: center;
@@ -213,6 +221,7 @@ button[type="submit"]:hover {
   color: #333;
 }
 
+/* Estilizações para Parágrafos */
 p {
   font-size: 16px;
   color: #555;
@@ -220,6 +229,44 @@ p {
   margin: 20px;
 }
 
+/* Estilizações para Opções Temporárias */
 #temporarioOptions {
   display: none;
+}
+
+/* Estilizações para o Plano do Formulário */
+.form-plan {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.form-plan mat-radio-button {
+  border: 2px solid #ccc;
+  margin-left: 20px;
+  padding: 40px 160px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  transform: scale(1.2);
+  flex-direction: row;
+}
+
+.form-plan span {
+  font-size: 0.8em;
+  color: #333;
+}
+
+.plan-container {
+  margin: 50px;
+  margin-left: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-plan mat-radio-button:hover {
+  background-color: #eeeeee;
+  cursor: pointer;
 }

@@ -1,8 +1,17 @@
+<!-- Container principal para o formulário de login -->
 <div class="login-container">
   <mat-card>
-    <mat-card-title>Login</mat-card-title>
+    <!-- Título do cartão de login com ícone -->
+    <mat-card-title>
+      <mat-icon>lock</mat-icon>
+      Login
+    </mat-card-title>
+
+    <!-- Conteúdo do cartão contendo o formulário -->
     <mat-card-content>
+      <!-- Formulário de login com envio ao método onSubmit -->
       <form (ngSubmit)="onSubmit()">
+        <!-- Campo de entrada para o email -->
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
           <input
@@ -15,6 +24,7 @@
           />
         </mat-form-field>
 
+        <!-- Campo de entrada para a senha -->
         <mat-form-field appearance="fill">
           <mat-label>Senha</mat-label>
           <input
@@ -27,6 +37,7 @@
           />
         </mat-form-field>
 
+        <!-- Botão para enviar o formulário -->
         <button mat-raised-button color="primary" type="submit">Login</button>
       </form>
     </mat-card-content>

@@ -1,36 +1,52 @@
+/* Contêiner de Login */
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  padding: 20px; /* Espaçamento para telas menores */
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
 }
 
+/* Cartão de Login */
 mat-card {
   width: 100%;
-  max-width: 400px; /* Largura máxima */
-  padding: 20px; /* Espaçamento interno */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  border-radius: 8px; /* Bordas arredondadas */
+  max-width: 400px;
+  padding: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
+/* Título do Cartão */
 mat-card-title {
-  text-align: center; /* Centraliza o título */
-  font-size: 24px; /* Aumenta o tamanho da fonte */
-  margin-bottom: 15px; /* Espaçamento inferior */
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
 }
 
+/* Campos de Formulário */
 mat-form-field {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centraliza os itens dentro do form-field */
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 mat-form-field input {
-  text-align: center; /* Centraliza o texto dentro do input */
+  text-align: left;
+  padding: 10px;
 }
 
+/* Botão de Envio */
 button[mat-raised-button] {
-  width: 100%; /* Botão com largura total */
-  margin-top: 15px; /* Espaçamento acima do botão */
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #3f51b5;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+button[mat-raised-button]:hover {
+  background-color: #303f9f;
 }

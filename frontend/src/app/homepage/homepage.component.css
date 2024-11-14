@@ -1,6 +1,7 @@
-/* Importing Google font - Open Sans */
+/* Importando a fonte do Google - Open Sans */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
 
+/* Reset de estilo e configuração de fonte padrão */
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +9,7 @@
   font-family: "Open Sans", sans-serif;
 }
 
+/* Estilo do corpo da página */
 body {
   height: 100vh;
   width: 100%;
@@ -16,6 +18,7 @@ body {
   margin: 0;
 }
 
+/* Estilo do cabeçalho */
 .header {
   position: sticky;
   top: 0;
@@ -25,16 +28,43 @@ body {
   transition: background-color 0.4s ease-in-out;
 }
 
+/* Estilos para o cabeçalho quando rolado */
 .header.scrolled .navbar .links a {
-  color: red;
-  transition: color 0.4s ease;
+  color: #5e5d5d;
+  transition: color 0.7s ease;
+}
+
+.header.scrolled .navbar .links a:hover {
+  color: #47b2e4;
+}
+
+.header.scrolled .navbar .buttons a {
+  color: #5e5e5e;
+}
+
+.header.scrolled .navbar .buttons a:hover {
+  color: #47b2e4;
+}
+
+.header.scrolled .navbar .buttons .btn-cadastro:hover {
+  background-color: #47b2e4;
+  color: #5e5d5d;
+}
+
+.header.scrolled .navbar .buttons .btn-cadastro {
+  border: 1px solid #5e5d5d;
 }
 
 .header.scrolled .navbar .logo img {
-  filter: brightness(0) invert(1);
-  transition: filter 0.4s ease;
+  transition: transform 0.7s ease;
 }
 
+.header.scrolled .navbar {
+  background-color: #fff;
+  transition: background-color 0.7s ease;
+}
+
+/* Estilo da barra de navegação */
 .navbar {
   display: flex;
   align-items: center;
@@ -43,12 +73,14 @@ body {
   margin: 0 auto;
   padding: 5px 180px;
   background-color: #2d8bba;
+  transition: background-color 0.7s ease;
 }
 
 .navbar .logo img {
   cursor: pointer;
 }
 
+/* Estilo dos links de navegação */
 .navbar .links {
   display: flex;
   align-items: center;
@@ -68,6 +100,7 @@ body {
   color: #47b2e4;
 }
 
+/* Estilo dos botões na barra de navegação */
 .navbar .buttons a {
   text-decoration: none;
   color: #fff;
@@ -103,6 +136,7 @@ body {
   width: 140px;
 }
 
+/* Estilo da seção hero */
 .hero-section {
   display: flex;
   justify-content: space-evenly;
@@ -164,6 +198,7 @@ body {
   background-color: #47b2e4;
 }
 
+/* Estilo do menu e botão de hambúrguer */
 #menu-toggle {
   display: none;
 }
@@ -176,6 +211,7 @@ body {
   order: 1;
 }
 
+/* Estilo da seção de detalhes */
 .details-section {
   display: flex;
   justify-content: space-evenly;
@@ -212,6 +248,7 @@ body {
   margin-right: 5px;
 }
 
+/* Estilo da seção de perguntas */
 .questions-section {
   max-width: 2000px;
   margin: 0 auto;
@@ -232,14 +269,6 @@ body {
   color: #5e5d5d;
 }
 
-mat-expansion-panel {
-  border-radius: 5px;
-  padding: 10px;
-  text-shadow: none;
-  box-shadow: none;
-  background-color: #fff;
-}
-
 .questions-accordion {
   margin-bottom: 15px;
 }
@@ -255,6 +284,13 @@ mat-expansion-panel {
   color: #5e5d5d;
 }
 
+.questions-accordion .mat-expansion-panel {
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo do divisor de página */
 .page-divider {
   border: 0;
   height: 1px;
@@ -263,6 +299,7 @@ mat-expansion-panel {
   margin: auto;
 }
 
+/* Estilo do rodapé */
 .footer {
   max-width: 2000px;
   margin: 0 auto;
@@ -286,6 +323,7 @@ mat-expansion-panel {
   width: 100px;
 }
 
+/* Estilos responsivos para telas menores */
 @media screen and (max-width: 1023px) {
   .navbar .logo a {
     font-size: 1.5rem;

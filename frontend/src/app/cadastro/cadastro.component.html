@@ -17,6 +17,7 @@
   <body>
     <header>
       <nav class="navbar">
+        <!-- Logo e navegação -->
         <h2 class="logo">
           <img
             src="assets/img/BagView.png"
@@ -28,6 +29,7 @@
         </h2>
         <input type="checkbox" id="menu-toggle" />
         <label for="menu-toggle" id="hamburger-btn">
+          <!-- Ícone do menu -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24"
@@ -54,7 +56,35 @@
       </nav>
     </header>
     <div class="form-container">
-      <h4>Criar conta</h4>
+      <h3>Cadastre-se na BagView</h3>
+      <div class="form-plan">
+        <!-- Seleção de plano -->
+        <mat-radio-group
+          aria-label="Selecione uma opção"
+          id="plano"
+          name="plano"
+          [(ngModel)]="usuario.idPlan"
+          (change)="onPlanoChange($event)"
+          required
+        >
+          <div class="plan-container">
+            <mat-radio-button value="6716a54052a0be5933feebc4"
+              ><strong>Plano Mensal</strong> <br /><span
+                >R$85,90/mês</span
+              ></mat-radio-button
+            >
+          </div>
+
+          <div class="plan-container">
+            <mat-radio-button value="6716a54052a0be5933feebc5"
+              ><strong>Diária</strong> <br /><span
+                >R$1,90/dia</span
+              ></mat-radio-button
+            >
+          </div>
+        </mat-radio-group>
+      </div>
+
       <p style="text-align: left">
         Se você já possui uma conta com a gente, não precisa criar uma conta
         nova. <a routerLink="/login">Entre</a> com seus dados habituais.
@@ -66,6 +96,7 @@
         Eles serão usados quando você alugar suas TAGs.
       </p>
       <form (ngSubmit)="onSubmit()" #cadastroForm="ngForm">
+        <!-- Campo para CPF -->
         <div class="form-field">
           <mat-form-field appearance="outline">
             <mat-label>Número de CPF</mat-label>
@@ -84,6 +115,7 @@
           </mat-form-field>
         </div>
 
+        <!-- Campo para Nome -->
         <div class="form-field">
           <mat-form-field appearance="outline">
             <mat-label>Nome</mat-label>
@@ -105,6 +137,7 @@
           vai receber nossas comunicações.
         </p>
 
+        <!-- Campo para Email -->
         <div class="form-field">
           <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
@@ -119,6 +152,7 @@
           </mat-form-field>
         </div>
 
+        <!-- Campo para Senha -->
         <div class="form-field">
           <mat-form-field appearance="outline">
             <mat-label>Senha</mat-label>
@@ -141,6 +175,7 @@
           </mat-form-field>
         </div>
 
+        <!-- Campo para Confirmar Senha -->
         <div class="form-field">
           <mat-form-field appearance="outline">
             <mat-label>Confirmar senha</mat-label>
@@ -163,28 +198,14 @@
           </mat-form-field>
         </div>
 
+        <!-- Botão de envio -->
         <div class="form-field">
-          <h6>Planos</h6>
-          <select
-            id="plano"
-            name="plano"
-            [(ngModel)]="usuario.idPlan"
-            (change)="onPlanoChange($event)"
-            required
-          >
-            <option value="">Selecione um plano</option>
-            <option value="6716a54052a0be5933feebc4">
-              Plano Mensal (R$85,90/mês)
-            </option>
-            <option value="6716a54052a0be5933feebc5">
-              Diária (R$1,90/dia)
-            </option>
-          </select>
+          <button type="submit" [disabled]="!cadastroForm.valid">
+            Finalizar
+          </button>
         </div>
 
-        <button type="submit" [disabled]="!cadastroForm.valid">
-          Cadastrar
-        </button>
+        <!-- Mensagem de erro -->
         <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
       </form>
     </div>

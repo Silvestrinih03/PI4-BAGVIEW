@@ -11,8 +11,10 @@ import { AuthClientService } from '../services/auth-client.service';
 import { CadastroClientService } from '../services/cadastro-client.service';
 import { provideHttpClient } from '@angular/common/http';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatIconModule } from '@angular/material/icon'; // Adicione esta linha
+import { MatIconModule } from '@angular/material/icon';
 import { firstValueFrom } from 'rxjs';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatRadioChange } from '@angular/material/radio';
 
 @Component({
   selector: 'app-cadastro',
@@ -22,18 +24,20 @@ import { firstValueFrom } from 'rxjs';
   imports: [
     FormsModule,
     CommonModule,
-    HttpClientModule, // Adicionando HttpClientModule
+    HttpClientModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule, // Adicione esta linha
+    MatIconModule,
     MatButtonModule,
     RouterModule,
     MatSlideToggleModule,
+    MatRadioModule,
   ],
   providers: [CadastroClientService],
 })
 export class CadastroComponent {
+  // Dados do usuário
   usuario = {
     fullName: '',
     email: '',
@@ -59,12 +63,13 @@ export class CadastroComponent {
     ],
   };
 
-  confirmaSenha: string = '';
-  errorMessage: string = '';
-  hide: boolean = true;
+  confirmaSenha: string = ''; // Armazena a confirmação da senha
+  errorMessage: string = ''; // Mensagem de erro
+  hide: boolean = true; // Controle de visibilidade da senha
 
-  private javaApiUrl = 'http://localhost:8080/validar-senha'; // URL do servidor Java
-  private javaApiUrlCpf = 'http://localhost:8080/validarcpf'; // URL do servidor Java
+  // URLs da API Java
+  private javaApiUrl = 'http://localhost:8080/validar-senha';
+  private javaApiUrlCpf = 'http://localhost:8080/validarcpf';
 
   constructor(
     private router: Router,
@@ -72,18 +77,15 @@ export class CadastroComponent {
     private http: HttpClient
   ) {}
 
+  // Alterna a visibilidade da senha
   clickEvent(event: MouseEvent) {
     event.preventDefault();
     this.hide = !this.hide;
   }
 
-  onPlanoChange(event: Event) {
-    const selectElement = event.target as HTMLSelectElement;
-    const temporarioOptions = document.getElementById('temporarioOptions');
-    if (temporarioOptions) {
-      temporarioOptions.style.display =
-        selectElement.value === '6716a54052a0be5933feebc5' ? 'block' : 'none';
-    }
+  // Atualiza o plano selecionado
+  onPlanoChange(event: MatRadioChange) {
+    this.usuario.idPlan = event.value;
   }
 
   // Validação da senha com chamada ao servidor Java
@@ -97,7 +99,7 @@ export class CadastroComponent {
         this.errorMessage =
           'A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, um número e um caractere especial (@, !, *, & etc).';
       } else {
-        this.errorMessage = ''; // Limpa a mensagem de erro se o cartão for válido
+        this.errorMessage = ''; // Limpa a mensagem de erro se a senha for válida
       }
       return isValid;
     } catch (error) {
@@ -117,7 +119,7 @@ export class CadastroComponent {
       if (!isValid) {
         this.errorMessage = 'CPF inválido!';
       } else {
-        this.errorMessage = ''; // Limpa a mensagem de erro se o cartão for válido
+        this.errorMessage = ''; // Limpa a mensagem de erro se o CPF for válido
       }
       return isValid;
     } catch (error) {
@@ -127,8 +129,10 @@ export class CadastroComponent {
     }
   }
 
+  // Envio dos dados do cadastro
   async onSubmit() {
     try {
+      // Verifica se as senhas coincidem
       if (this.usuario.password !== this.confirmaSenha) {
         this.errorMessage = 'As senhas não coincidem';
         return;
@@ -138,16 +142,17 @@ export class CadastroComponent {
       const isValidPassword = await this.validarSenha();
       if (!isValidPassword) {
         console.log('Senha inválida.');
-        return; // Não enviar os dados para o servidor se o cartão for inválido
+        return; // Não enviar os dados para o servidor se a senha for inválida
       }
 
       // Validação do CPF antes de enviar
       const isValidCpf = await this.validarCpf();
       if (!isValidCpf) {
         console.log('CPF inválido.');
-        return; // Não enviar os dados para o servidor se o cartão for inválido
+        return; // Não enviar os dados para o servidor se o CPF for inválido
       }
 
+      // Log dos detalhes do cadastro
       console.log('=== Detalhes do Cadastro ===');
       console.log(
         `Plano selecionado: ${
@@ -159,11 +164,13 @@ export class CadastroComponent {
       localStorage.setItem('plano', this.usuario.idPlan);
       console.log('Plano do usuário:', this.usuario.idPlan);
 
+      // Chamada ao serviço para cadastrar o usuário
       const response = await this.cadastroService
         .cadastrarUsuario(this.usuario)
         .toPromise();
       console.log('Cadastro realizado com sucesso:', response);
 
+      // Armazena o email do usuário e redireciona
       localStorage.setItem('userEmail', this.usuario.email);
       if (this.usuario.idPlan === '6716a54052a0be5933feebc4') {
         await this.router.navigate(['/pagamento']);

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
+    <!-- Metadados e links para fontes e estilos -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Solução de Extravio | BagView</title>
@@ -15,8 +16,10 @@
     <link href="homepage.component.css" rel="stylesheet" />
   </head>
   <body>
+    <!-- Cabeçalho com navegação -->
     <header class="header">
       <nav class="navbar">
+        <!-- Logo da empresa com link para a homepage -->
         <h2 class="logo">
           <img
             src="assets/img/BagView.png"
@@ -24,8 +27,10 @@
             routerLink="/homepage"
             routerLinkActive="active"
             ariaCurrentWhenActive="page"
+            id="logo"
           />
         </h2>
+        <!-- Menu de navegação responsivo -->
         <input type="checkbox" id="menu-toggle" />
         <label for="menu-toggle" id="hamburger-btn">
           <svg
@@ -42,6 +47,7 @@
             />
           </svg>
         </label>
+        <!-- Links de navegação -->
         <ul class="links">
           <li>
             <a
@@ -51,10 +57,11 @@
               >Home</a
             >
           </li>
-          <li><a routerLink="/errorpage">Sobre Nós</a></li>
-          <li><a routerLink="/errorpage">Serviços</a></li>
-          <li><a routerLink="/errorpage">Contato</a></li>
+          <li><a routerLink="/sobre-nos">Sobre Nós</a></li>
+          <li><a routerLink="/servicos">Serviços</a></li>
+          <li><a routerLink="/contato">Contato</a></li>
         </ul>
+        <!-- Botões de login e cadastro -->
         <div class="buttons">
           <a
             routerLink="/login"
@@ -63,7 +70,6 @@
             class="btn-login"
             >Login</a
           >
-
           <a
             routerLink="/cadastro"
             routerLinkActive="active"
@@ -74,18 +80,20 @@
         </div>
       </nav>
     </header>
+    <!-- Seção principal com mensagem de boas-vindas -->
     <section class="hero-section">
       <div class="hero">
         <p>
           Conectando você com a segurança de sua bagagem, em qualquer lugar do
           mundo. Viaje com mais segurança e mais tranquilidade.
         </p>
-
+        <!-- Botão para saber mais -->
         <div class="buttons">
-          <a routerLink="/errorpage" class="learn">Saiba Mais</a>
+          <a routerLink="/sobre-nos" class="learn">Saiba Mais</a>
         </div>
       </div>
     </section>
+    <!-- Seção de detalhes sobre o serviço -->
     <section class="details-section">
       <div class="details">
         <div class="detail-item">
@@ -112,10 +120,13 @@
         </div>
       </div>
     </section>
+    <!-- Divisor de página -->
     <hr class="page-divider" style="height: 1px; width: 85%" />
+    <!-- Seção de perguntas frequentes -->
     <section class="questions-section">
       <div class="questions">
         <h2 class="questions-title">Perguntas Frequentes</h2>
+        <!-- Acordeão de perguntas e respostas -->
         <div class="questions-accordion">
           <mat-expansion-panel [(expanded)]="panel1Open">
             <mat-expansion-panel-header>
@@ -130,7 +141,6 @@
             </p>
           </mat-expansion-panel>
         </div>
-
         <div class="questions-accordion">
           <mat-expansion-panel [(expanded)]="panel2Open">
             <mat-expansion-panel-header>
@@ -145,7 +155,6 @@
             </p>
           </mat-expansion-panel>
         </div>
-
         <div class="questions-accordion">
           <mat-expansion-panel [(expanded)]="panel3Open">
             <mat-expansion-panel-header>
@@ -162,7 +171,9 @@
         </div>
       </div>
     </section>
+    <!-- Divisor de página -->
     <hr class="page-divider" style="height: 1px; width: 85%" />
+    <!-- Rodapé com informações de contato e direitos autorais -->
     <footer class="footer">
       <div class="footer-content">
         <img src="assets/img/BagView.png" alt="logo" />
@@ -174,15 +185,4 @@
       </div>
     </footer>
   </body>
-
-  <script>
-    window.addEventListener("scroll", () => {
-      const header = document.querySelector(".header");
-      if (window.scrollY > 0) {
-        header.classList.add("scrolled");
-      } else {
-        header.classList.remove("scrolled");
-      }
-    });
-  </script>
 </html>
