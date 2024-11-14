@@ -7,7 +7,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatExpansionModule } from '@angular/material/expansion';
 import { RouterModule } from '@angular/router'; // Importa o RouterModule
 import { AppRoutingModule, routes } from './app.routes'; // Importe as rotas
 
@@ -49,6 +49,7 @@ import { MensalComponent } from './mensal/mensal.component';
     MatDatepickerModule,
     MatButtonModule,
     MatIconModule,
+    MatExpansionModule,
     FormsModule,
     RouterModule.forRoot(routes),
     AppRoutingModule,

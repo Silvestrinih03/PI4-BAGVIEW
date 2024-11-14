@@ -9,17 +9,22 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
       <nav class="navbar">
         <h2 class="logo">
-          <a
+          <img
+            src="assets/img/BagView.png"
+            alt="logo"
             routerLink="/homepage"
             routerLinkActive="active"
             ariaCurrentWhenActive="page"
-            >BagView</a
-          >
+          />
         </h2>
         <input type="checkbox" id="menu-toggle" />
         <label for="menu-toggle" id="hamburger-btn">
@@ -49,8 +54,6 @@
       </nav>
     </header>
     <div class="form-container">
-      <br />
-      <br />
       <h4>Criar conta</h4>
       <p style="text-align: left">
         Se você já possui uma conta com a gente, não precisa criar uma conta
@@ -73,6 +76,9 @@
               id="cpf"
               name="cpf"
               [(ngModel)]="usuario.cpf"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              maxlength="14"
             />
             <mat-hint>Exemplo 111.222.333-45</mat-hint>
           </mat-form-field>
@@ -119,7 +125,6 @@
             <input
               matInput
               [type]="hide ? 'password' : 'text'"
-              type="password"
               id="password"
               name="password"
               [(ngModel)]="usuario.password"
@@ -142,7 +147,6 @@
             <input
               matInput
               [type]="hide ? 'password' : 'text'"
-              type="password"
               id="passwordConfirmation"
               name="passwordConfirmation"
               [(ngModel)]="confirmaSenha"
@@ -157,17 +161,25 @@
               <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
             </button>
           </mat-form-field>
-          <label for="plano">Selecione o Plano *</label>
-        <select 
-          id="plano" 
-          name="plano"
-          [(ngModel)]="usuario.idPlan"
-          (change)="onPlanoChange($event)"
-          required>
-          <option value="">Selecione um plano</option>
-          <option value="6716a54052a0be5933feebc4">Plano Mensal (R$85,90/mês)</option>
-          <option value="6716a54052a0be5933feebc5">Plano Temporário</option>
-        </select>
+        </div>
+
+        <div class="form-field">
+          <h6>Planos</h6>
+          <select
+            id="plano"
+            name="plano"
+            [(ngModel)]="usuario.idPlan"
+            (change)="onPlanoChange($event)"
+            required
+          >
+            <option value="">Selecione um plano</option>
+            <option value="6716a54052a0be5933feebc4">
+              Plano Mensal (R$85,90/mês)
+            </option>
+            <option value="6716a54052a0be5933feebc5">
+              Diária (R$1,90/dia)
+            </option>
+          </select>
         </div>
 
         <button type="submit" [disabled]="!cadastroForm.valid">

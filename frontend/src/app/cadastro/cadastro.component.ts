@@ -11,7 +11,7 @@ import { AuthClientService } from '../services/auth-client.service';
 import { CadastroClientService } from '../services/cadastro-client.service';
 import { provideHttpClient } from '@angular/common/http';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatIconModule } from '@angular/material/icon'; // Adicione esta linha
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-cadastro',
@@ -39,17 +39,23 @@ export class CadastroComponent {
     password: '',
     cpf: '',
     idPlan: '',
-    card: [{
-      num: '',
-      nome: '',
-      val: '',
-    }],
-    idFlights: [{
-      objectId: '',
-    }],
-    userTags: [{
-      objectId: '',
-    }],
+    card: [
+      {
+        num: '',
+        nome: '',
+        val: '',
+      },
+    ],
+    idFlights: [
+      {
+        objectId: '',
+      },
+    ],
+    userTags: [
+      {
+        objectId: '',
+      },
+    ],
   };
 
   confirmaSenha: string = '';
@@ -70,7 +76,7 @@ export class CadastroComponent {
     const selectElement = event.target as HTMLSelectElement;
     const temporarioOptions = document.getElementById('temporarioOptions');
     if (temporarioOptions) {
-      temporarioOptions.style.display = 
+      temporarioOptions.style.display =
         selectElement.value === '6716a54052a0be5933feebc5' ? 'block' : 'none';
     }
   }
@@ -83,20 +89,27 @@ export class CadastroComponent {
       }
 
       console.log('=== Detalhes do Cadastro ===');
-      console.log(`Plano selecionado: ${this.usuario.idPlan === '6716a54052a0be5933feebc4' ? 'Plano Mensal' : 'Plano Temporário'}`);
+      console.log(
+        `Plano selecionado: ${
+          this.usuario.idPlan === '6716a54052a0be5933feebc4'
+            ? 'Plano Mensal'
+            : 'Plano Temporário'
+        }`
+      );
       localStorage.setItem('plano', this.usuario.idPlan);
-      console.log("Plano do usuário:", this.usuario.idPlan);
+      console.log('Plano do usuário:', this.usuario.idPlan);
 
-      const response = await this.cadastroService.cadastrarUsuario(this.usuario).toPromise();
+      const response = await this.cadastroService
+        .cadastrarUsuario(this.usuario)
+        .toPromise();
       console.log('Cadastro realizado com sucesso:', response);
-      
+
       localStorage.setItem('userEmail', this.usuario.email);
       if (this.usuario.idPlan === '6716a54052a0be5933feebc4') {
         await this.router.navigate(['/pagamento']);
       } else {
         await this.router.navigate(['/menu']);
       }
-      
     } catch (error) {
       console.error('Erro no cadastro:', error);
       this.errorMessage = 'Erro ao realizar cadastro. Tente novamente.';
