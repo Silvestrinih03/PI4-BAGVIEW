@@ -1,25 +1,65 @@
 # BagView
 
-BagView é uma solução simples e acessível para o rastreamento de bagagens em tempo real. Este projeto permite que os usuários monitorem suas malas durante uma viagem usando tags, com atualizações de localização em tempo real e notificações.
+![Frontend](https://img.shields.io/badge/Frontend-Angular%2018.2.8-red)
+![Backend](https://img.shields.io/badge/Backend-NestJS-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+BagView é uma solução simples e acessível para o rastreamento de bagagens em tempo real. Este projeto permite que os usuários monitorem suas malas durante uma viagem utilizando tags, com atualizações de localização em tempo real e notificações.
+
+## Índice
+
+- [BagView](#bagview)
+  - [Índice](#índice)
+  - [Visão Geral](#visão-geral)
+  - [Estrutura do Projeto](#estrutura-do-projeto)
+  - [Funcionalidades](#funcionalidades)
+  - [Tecnologias Utilizadas](#tecnologias-utilizadas)
+    - [Frontend](#frontend)
+    - [Backend](#backend)
+  - [Instalação](#instalação)
+    - [Frontend](#frontend-1)
+    - [Backend](#backend-1)
+  - [Testes](#testes)
+    - [Frontend](#frontend-2)
+    - [Backend](#backend-2)
+  - [Autores](#autores)
+  - [Licença](#licença)
+
+## Visão Geral
+
+BagView oferece uma maneira eficiente de monitorar suas bagagens durante viagens, garantindo que você esteja sempre informado sobre a localização de suas malas e recebendo notificações importantes em pontos-chave do trajeto.
 
 ## Estrutura do Projeto
 
-O projeto é dividido em duas partes principais:
+O projeto está dividido em duas partes principais:
 
 - `frontend`: Aplicação Angular.
 - `backend`: API NestJS.
 
 ## Funcionalidades
 
-- **Rastreamento de bagagens em tempo real:** Monitore a localização de suas malas durante toda a viagem.
-- **Associação de número de voo:** Permite rastrear qual mala está em qual voo, facilitando a gestão das bagagens.
-- **Notificações:** Receba notificações quando a bagagem chega a determinados pontos-chave (embarque, desembarque, etc.).
+- **Rastreamento de Bagagens em Tempo Real**: Monitore a localização de suas malas durante toda a viagem.
+- **Associação de Número de Voo**: Rastreie qual mala está em qual voo, facilitando a gestão das bagagens.
+- **Notificações**: Receba alertas quando a bagagem chegar a pontos-chave como embarque e desembarque.
 
-## Frontend
+## Tecnologias Utilizadas
 
-O frontend é desenvolvido utilizando Angular versão 18.2.8.
+### Frontend
 
-### Configuração
+- Angular 18
+- TypeScript
+- HTML/CSS
+
+### Backend
+
+- NestJS
+- Prisma
+- MongoDB
+- TypeScript
+
+## Instalação
+
+### Frontend
 
 Para configurar o frontend, siga os passos abaixo:
 
@@ -35,25 +75,7 @@ Para configurar o frontend, siga os passos abaixo:
    npm install -g @angular/cli
    ```
 
-### Testes
-
-Para executar os testes unitários, utilize:
-
-```bash
-ng test
-```
-
-Para executar os testes end-to-end, utilize:
-
-```bash
-ng e2e
-```
-
-## Backend
-
-O backend é uma aplicação NestJS e MongoDB como banco de dados.
-
-### Configuração
+### Backend
 
 Para configurar o backend, siga os passos abaixo:
 
@@ -72,48 +94,42 @@ Para configurar o backend, siga os passos abaixo:
    npm install @nestjs/passport passport
    ```
    ```bash
-   npm install @nestjs/common
+   npm install @nestjs/common
    ```
 
-### Execução
+## Testes
 
-Após realizar as instalações necessárias, utilize:
+### Frontend
+
+Para executar os testes unitários:
+
 ```bash
-npm start
+ng test
 ```
 
-Acesse http://localhost:4201/ no seu navegador. A aplicação será recarregada automaticamente se você alterar qualquer um dos arquivos fonte.
+Para executar os testes end-to-end:
 
-### Testes
+```bash
+ng e2e
+```
 
-Para executar os testes, utilize:
+### Backend
+
+Para executar os testes:
 
 ```bash
 npm run test
 ```
 
-Para executar os testes end-to-end, utilize:
+Para executar os testes end-to-end:
 
 ```bash
 npm run test:e2e
 ```
 
-## Tecnologias Utilizadas
+## Autores
 
-### Frontend
-
-- Angular 18
-- TypeScript
-- HTML/CSS
-
-### Backend
-
-- NestJS
-- Prisma
-- MongoDB
-- TypeScript
-
-# PI3 - Grupo 9
+PI3 - Grupo 9
 
 1. Gustavo Kenji
 2. Júlia Dias
@@ -124,4 +140,3 @@ npm run test:e2e
 ## Licença
 
 Este projeto está licenciado sob a licença MIT. Consulte o [arquivo LICENSE](./LICENSE) na raiz do projeto para obter mais detalhes.
-=======
