@@ -53,7 +53,6 @@ O projeto está dividido em duas partes principais:
 ### Backend
 
 - NestJS
-- Prisma
 - MongoDB
 - TypeScript
 
@@ -99,37 +98,16 @@ Para configurar o backend, siga os passos abaixo:
 
 ## Testes
 
-### Frontend
-
-Para executar os testes unitários:
+Para executar a aplicação rode o comando na raiz do projeto:
 
 ```bash
-ng test
+npm start
 ```
 
-Para executar os testes end-to-end:
-
-```bash
-ng e2e
-```
-
-### Backend
-
-Para executar os testes:
-
-```bash
-npm run test
-```
-
-Para executar os testes end-to-end:
-
-```bash
-npm run test:e2e
-```
 
 ## Autores
 
-PI3 - Grupo 9
+PI4 - Grupo 9
 
 1. Gustavo Kenji
 2. Júlia Dias
