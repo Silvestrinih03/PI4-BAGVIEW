@@ -1,0 +1,37 @@
+<main class="main">
+    <div class="container">
+      <div class="banner">
+        <button [routerLink]="['/menu']" class="btn-acessar-menu">VOLTAR P MENU</button>
+        <h1>BagView</h1>
+        <h1>Alterar dados do cartão</h1>
+      </div>
+        <div *ngIf="userData && userData.card && userData.card.length > 0" class="card-container">
+          <div class="card-details">
+            <p>Número do cartão</p>
+            <input type="text" [(ngModel)]="userData.card[0].num" placeholder="Número do cartão" />
+            <p>Nome no cartão</p>
+            <input type="text" [(ngModel)]="userData.card[0].nome" placeholder="Nome no cartão" />
+            <p>Validade</p>
+            <!-- <input type="text" [(ngModel)]="userData.card[0].val" placeholder="Validade" /> -->
+            <input
+            type="month"
+            id="expiryDate"
+            name="expiryDate"
+            [(ngModel)]="userData.card[0].val"
+            required
+          />
+            <p>CVV</p>
+            <input type="text" placeholder="CVV" />
+          </div>
+        </div>
+        <button mat-raised-button color="primary" (click)="onSubmit()">Alterar</button> <!-- Adicionei o evento click -->
+        <div *ngIf="!userData || !userData.card || userData.card.length == 0">
+          <p>Dados do cartão não disponíveis.</p>
+        </div>
+        <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    </div>
+  </main>
+    
+    
+    

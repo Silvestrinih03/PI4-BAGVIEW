@@ -23,7 +23,7 @@
             <p>Nome no Cartão: {{ userData.card[0].nome || 'N/A' }}</p>
             <p>Validade: {{ userData.card[0].val || 'N/A' }}</p>
           </div>
-          <button [routerLink]="['/pagamento']" class="btn-acessar-pagamento">✏️ Alterar cartão</button>
+          <button [routerLink]="['/cartao']" class="btn-acessar-cartao">✏️ Alterar cartão</button>
         </div>
         <div *ngIf="!userData.card || userData.card.length == 0">
           <p>Dados do cartão não disponíveis.</p>

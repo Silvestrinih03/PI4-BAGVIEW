@@ -28,6 +28,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { ConcluidoComponent } from './concluido/concluido.component';
 import { MensalComponent } from './mensal/mensal.component';
+import { CartaoComponent } from './cartao/cartao.component';
 
 // Serviços HTTP (comentado por enquanto)
 // import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -45,6 +46,7 @@ import { MensalComponent } from './mensal/mensal.component';
     ErrorpageComponent,
     ConcluidoComponent,
     MensalComponent,
+    CartaoComponent
   ],
   imports: [
     BrowserModule,
