@@ -61,6 +61,7 @@ export class CadastroComponent {
         objectId: '',
       },
     ],
+    inactiveTags: 0,
   };
 
   confirmaSenha: string = ''; // Armazena a confirmação da senha

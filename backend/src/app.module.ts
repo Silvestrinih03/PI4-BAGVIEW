@@ -6,6 +6,7 @@ import { CadastroModule } from './cadastro/cadastro.module';
 import { PagamentoModule } from './pagamento/pagamento.module';
 import { VoosModule } from './voos/voos.module';
 import { DadosModule } from './dados/dados.module';
+import { AlugarModule } from './alugar/alugar.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { DadosModule } from './dados/dados.module';
     PagamentoModule,
     VoosModule,
     DadosModule,
+    AlugarModule,
   ],
   providers: [],
 })

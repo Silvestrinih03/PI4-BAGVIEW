@@ -27,9 +27,11 @@ import { AlugarComponent } from './alugar/alugar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { ConcluidoComponent } from './concluido/concluido.component';
-import { MensalComponent } from './mensal/mensal.component';
+import { PossuiComponent } from './possui/possui.component';
 import { CartaoComponent } from './cartao/cartao.component';
 import { DadosComponent } from './dados/dados.component';
+import { AtivarComponent } from './ativar/ativar.component';
+import { MinhasTagsComponent } from './minhas-tags/minhas-tags.component';
 // Serviços HTTP (comentado por enquanto)
 // import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
@@ -45,9 +47,11 @@ import { DadosComponent } from './dados/dados.component';
     HomepageComponent,
     ErrorpageComponent,
     ConcluidoComponent,
-    MensalComponent,
+    PossuiComponent,
     CartaoComponent,
     DadosComponent,
+    AtivarComponent,
+    MinhasTagsComponent,
   ],
   imports: [
     BrowserModule,

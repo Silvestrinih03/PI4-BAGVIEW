@@ -9,7 +9,7 @@ import { MenuComponent } from './menu/menu.component';
 import { PagamentoComponent } from './pagamento/pagamento.component';
 import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
 import { AlugarComponent } from './alugar/alugar.component';
-import { MensalComponent } from './mensal/mensal.component';
+import { PossuiComponent } from './possui/possui.component';
 import { ConcluidoComponent } from './concluido/concluido.component';
 import { SobreNosComponent } from './sobre-nos/sobre-nos.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
@@ -17,6 +17,8 @@ import { ServicosComponent } from './servicos/servicos.component';
 import { ContatoComponent } from './contato/contato.component';
 import { CartaoComponent } from './cartao/cartao.component';
 import { DadosComponent } from './dados/dados.component';
+import { AtivarComponent } from './ativar/ativar.component';
+import { MinhasTagsComponent } from './minhas-tags/minhas-tags.component';
 // Definição das rotas da aplicação
 export const routes: Routes = [
   // Rota padrão redireciona para a homepage
@@ -30,13 +32,15 @@ export const routes: Routes = [
   { path: 'pagamento', component: PagamentoComponent },
   { path: 'configuracoes', component: ConfiguracoesComponent },
   { path: 'alugar', component: AlugarComponent },
-  { path: 'mensal', component: MensalComponent },
+  { path: 'possui', component: PossuiComponent },
   { path: 'concluido', component: ConcluidoComponent },
   { path: 'sobre-nos', component: SobreNosComponent },
   { path: 'servicos', component: ServicosComponent },
   { path: 'contato', component: ContatoComponent },
   { path: 'cartao', component: CartaoComponent },
   { path: 'dados', component: DadosComponent },
+  { path: 'ativar', component: AtivarComponent },
+  { path: 'minhas-tags', component: MinhasTagsComponent },
   // Rota para páginas não encontradas
   { path: '**', redirectTo: '/errorpage' },
 ];

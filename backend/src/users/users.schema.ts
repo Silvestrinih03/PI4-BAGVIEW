@@ -55,6 +55,9 @@ userTags: {
   objectId: string;
 }[];
 
+@Prop()
+  inactiveTags: number;
+
 }
 
 

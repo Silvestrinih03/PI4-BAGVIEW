@@ -1,0 +1,22 @@
+<div class="ativar-tag-container">
+    <mat-card>
+      <mat-card-title>Ativar Tag</mat-card-title>
+      <mat-card-content>
+        <form (ngSubmit)="onSubmit()">
+          <p> Digite o código da Tag </p>
+
+          <mat-form-field appearance="fill">
+            <input
+              matInput
+              type="number"
+              placeholder="Código da tag"
+              required
+          />
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit">Prosseguir</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

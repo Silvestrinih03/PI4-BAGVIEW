@@ -15,5 +15,6 @@ export class CadastroDto {
     userTags: {
       objectId: string;
     }[];
+    inactiveTags: number;
 }
   

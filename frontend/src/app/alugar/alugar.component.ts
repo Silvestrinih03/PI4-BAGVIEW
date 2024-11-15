@@ -30,23 +30,26 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./alugar.component.css'] 
 })
 export class AlugarComponent implements OnInit {
-  numeroVoo: string = '';
   quantidadeTags: number = 1;
   userData: any = null;
+  quantidadeDias: number = 1;
+  planoDoUsuario: string = '';
 
   constructor(private router: Router) {}
 
   async ngOnInit() {
+    console.log("===============================");
     console.log('AlugarComponent inicializado');
-    if (this.quantidadeTags === null) {
-      this.quantidadeTags = 1;
-    }
+    
 
-    const planoDoUsuario = localStorage.getItem('plano');
-    console.log("Plano do usuário:", planoDoUsuario);
+    
 
     const userEmail = localStorage.getItem('userEmail');
     console.log("Email do usuário:", userEmail);
+    
+
+  
+    
     
     if (userEmail) {
       try {
@@ -68,17 +71,23 @@ export class AlugarComponent implements OnInit {
         console.error('Erro ao buscar dados do usuário:', error);
       }
     }
+
+    // Atribuindo o plano do usuário à propriedade da classe
+    this.planoDoUsuario = this.userData?.idPlan || ''; // Atribuindo corretamente
+    console.log("Plano do usuárioooooo:", this.planoDoUsuario);
   }
 
   onSubmit() {
-    console.log("Numero do Voo:", this.numeroVoo);
+
     console.log("Quantidade de Tags:", this.quantidadeTags);
-    
-    localStorage.setItem('numeroVoo', this.numeroVoo);
     localStorage.setItem('quantidadeTags', this.quantidadeTags.toString());
-    
-    const planoDoUsuario = localStorage.getItem('plano');
-    console.log("Plano do usuário:", planoDoUsuario);
+
+    console.log("Quantidade de dias:", this.quantidadeDias);
+    localStorage.setItem('quantidadeDias', this.quantidadeDias.toString());
+
+    //const planoDoUsuario = localStorage.getItem('plano');
+    //console.log("Plano do usuário:", planoDoUsuario);
+    const planoDoUsuario = this.userData.plano;
     
     const userCard = localStorage.getItem('userCard');
     console.log("Cartão do usuário:", userCard);
@@ -86,14 +95,17 @@ export class AlugarComponent implements OnInit {
     // verificar se o cartao do usuário é vazio
     // se sim, redirecionar para a pagina de cadastro de cartao
     // se não, redirecionar para a pagina de 'mensal'
-    if (userCard === '') {
-      this.router.navigate(['/pagamento']);
-    } else {
-      this.router.navigate(['/mensal']);
+    if (planoDoUsuario === '6716a54052a0be5933feebc5'){
+      if (userCard === '') {
+        this.router.navigate(['/pagamento']);
+      } else {
+        this.router.navigate(['/possui']);
+      }
     }
-    
+    else {
+        this.router.navigate(['/possui']);
+    }
 
-    
   }
 }
 

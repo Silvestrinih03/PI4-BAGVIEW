@@ -1,4 +1,4 @@
-<div class="alugar-tag-container">
+<div class="possui-container">
     <mat-card>
       <mat-card-title>Pagamento</mat-card-title>
       <mat-card-content>
@@ -9,17 +9,12 @@
         <!-- Modificar para exibir **** e os 4 ultimos digitos -->
       </div>
       <div>
-        <p> Total a ser pago: ______ </p>
-        <!-- Pegar o valor do plano que o usuário possui (usa o userData)
-                Valores:
-                Plano Temporário: ?? reais
-                    -> Quanto tempo ????? 
-                Plano Mensal: 85,90 reais
-            Multiplica pela quantidade de tags que o usuário alugou -->
+        <p> Total a ser pago: {{ preco }} </p>
+        <p> {{ preco }} </p>
       </div>
       <div>
         <p> Deseja utilizar este cartão para pagamento ou alterar os dados do cartão? </p>
-        <button [routerLink]="['/concluido']" class="btn-acessar-concluido">Usar este cartão</button>
+        <button (click)="onSubmit()" class="btn-acessar-concluido">Usar este cartão</button>
         <button [routerLink]="['/pagamento']" class="btn-acessar-pagamento">Alterar dados do cartão</button>
       </div>
     </mat-card>

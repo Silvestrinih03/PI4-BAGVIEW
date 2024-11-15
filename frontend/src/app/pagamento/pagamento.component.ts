@@ -30,6 +30,8 @@ export class PagamentoComponent {
   };
 
   errorMessage: string = '';
+  planoDoUsuario: string = '';
+  preco: string = '';
 
   private apiUrl = 'http://localhost:4200'; // URL do servidor NestJS
   private javaApiUrl = 'http://localhost:8080/validarcartao'; // URL do servidor Java
@@ -43,6 +45,19 @@ export class PagamentoComponent {
     const userEmail = localStorage.getItem('userEmail');
     console.log('PagamentoComponent inicializado');
     console.log("Email do usuário logado:", userEmail);
+    
+    this.planoDoUsuario = localStorage.getItem('plano') || '';
+    console.log("Plano do usuário:", this.planoDoUsuario);
+
+    if (this.planoDoUsuario === '6716a54052a0be5933feebc5') {
+        console.log("EH TEMPORARIO");
+        const qtdTags = localStorage.getItem('quantidadeTags');
+        const qtdTagsNumber = qtdTags ? parseFloat(qtdTags) : 0;
+        const qtdDias = localStorage.getItem('quantidadeDias');
+        const qtdDiasNumber = qtdDias ? parseFloat(qtdDias) : 0;
+        this.preco = (qtdDiasNumber * qtdTagsNumber * 11.90).toFixed(2);
+        console.log("Preco a ser exibido:", this.preco);
+    }
   }
 
     // Função para verificar se o cartão é válido
@@ -128,13 +143,15 @@ export class PagamentoComponent {
       .subscribe({
         next: (response: any) => {
           console.log('Pagamento atualizado com sucesso:', response);
-          this.router.navigate(['/menu']);
+          this.router.navigate(['/concluido']);
         },
         error: (error) => {
           console.error('Erro ao atualizar pagamento:', error);
           this.errorMessage = 'Erro ao processar pagamento. Tente novamente.';
         }
       });
+
+
   }
 }
 

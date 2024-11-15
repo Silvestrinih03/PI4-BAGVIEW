@@ -11,10 +11,14 @@ import { Router } from '@angular/router';
 import { AuthClientService } from '../services/auth-client.service';
 import { RouterModule } from '@angular/router';
 
+
+
+
 @Component({
-  selector: 'app-concluido',
+  selector: 'app-ativar',
   standalone: true,
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     HttpClientModule,
     MatCardModule,
     MatFormFieldModule,
@@ -22,10 +26,15 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatSelectModule,
     FormsModule,
-    RouterModule],
-  templateUrl: './concluido.component.html',
-  styleUrl: './concluido.component.css'
+    RouterModule
+  ],
+  templateUrl: './ativar.component.html',
+  styleUrl: './ativar.component.css'
 })
-export class ConcluidoComponent {
+export class AtivarComponent {
+
+  async onSubmit() {
+    console.log("Oiiii ");
+  }
 
 }

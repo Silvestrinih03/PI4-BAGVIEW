@@ -12,7 +12,7 @@ import { AuthClientService } from '../services/auth-client.service';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-mensal',
+  selector: 'app-minhas-tags',
   standalone: true,
   imports: [
     CommonModule,
@@ -23,21 +23,24 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatSelectModule,
     FormsModule,
-    RouterModule],
-  templateUrl: './mensal.component.html',
-  styleUrl: './mensal.component.css'
+    RouterModule
+  ],
+  templateUrl: './minhas-tags.component.html',
+  styleUrl: './minhas-tags.component.css'
 })
-export class MensalComponent {
+export class MinhasTagsComponent implements OnInit {
+  
   userData: any = null;
-  planoName: string = '';
 
   constructor(private router: Router) {}
 
   async ngOnInit() {
-    const userEmail = localStorage.getItem('userEmail');
-    console.log('ConfiguracoesComponent inicializado');
-    console.log("Email do usuário logado:", userEmail);
+    console.log("===============================");
+    console.log('MinhasTagsComponent inicializado');
 
+    const userEmail = localStorage.getItem('userEmail');
+    console.log("Email do usuário:", userEmail);
+    
     if (userEmail) {
       try {
         const response = await fetch(`http://localhost:4200/users/${userEmail}`);
@@ -58,5 +61,5 @@ export class MensalComponent {
         console.error('Erro ao buscar dados do usuário:', error);
       }
     }
-}
+  }
 }

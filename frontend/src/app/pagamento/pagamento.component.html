@@ -3,6 +3,13 @@
   <br />
   <h2>Pagamento</h2>
   <form (ngSubmit)="onSubmit()" #pagamentoForm="ngForm">
+    <!-- <div>
+      <p> Cadastre um cartão de crédito para utilizar no site ao alugar uma tag!</p>
+    </div> -->
+    <div *ngIf="planoDoUsuario === '6716a54052a0be5933feebc5'">
+      <p> Total a ser pago: {{preco}} </p>
+      <!-- Deixar mais legal -->
+    </div>
     <p>
       <strong>Obs:</strong> Após a confirmação do aluguel, será cobrada uma
       caução de R$50 por tag, que será ressarcida após a devolução. Em caso de
