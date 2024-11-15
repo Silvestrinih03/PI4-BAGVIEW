@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { CadastroModule } from './cadastro/cadastro.module';
 import { PagamentoModule } from './pagamento/pagamento.module';
 import { VoosModule } from './voos/voos.module';
+import { DadosModule } from './dados/dados.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { VoosModule } from './voos/voos.module';
     CadastroModule,
     PagamentoModule,
     VoosModule,
+    DadosModule,
   ],
   providers: [],
 })

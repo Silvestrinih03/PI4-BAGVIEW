@@ -29,7 +29,7 @@ import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { ConcluidoComponent } from './concluido/concluido.component';
 import { MensalComponent } from './mensal/mensal.component';
 import { CartaoComponent } from './cartao/cartao.component';
-
+import { DadosComponent } from './dados/dados.component';
 // Serviços HTTP (comentado por enquanto)
 // import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
@@ -46,7 +46,8 @@ import { CartaoComponent } from './cartao/cartao.component';
     ErrorpageComponent,
     ConcluidoComponent,
     MensalComponent,
-    CartaoComponent
+    CartaoComponent,
+    DadosComponent,
   ],
   imports: [
     BrowserModule,

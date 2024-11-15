@@ -7,7 +7,7 @@
 
       <div *ngIf="userData">
         <h1>Dados do usuário</h1>
-        <button [routerLink]="['/edicaoUser']" class="btn-acessar-edicaoUser">✏️ Alterar dados pessoais</button>
+        <button [routerLink]="['/dados']" class="btn-acessar-edicaoUser">✏️ Alterar dados pessoais</button>
         <p>Nome: {{ userData.fullName }}</p>
         <p>Email: {{ userData.email }}</p>
         <p>CPF: {{ userData.cpf }}</p>

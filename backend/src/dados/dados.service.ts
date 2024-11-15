@@ -1,27 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { PagamentoDto } from './pagamentoDto';
+import { DadosDto } from './dadosDto';
 import { UsersService } from '../users/users.service';
 
 @Injectable()
-export class PagamentoService {
+export class DadosService {
   constructor(private usersService: UsersService) {}
 
-  async atualizarPagamento(pagamentoDto: PagamentoDto) {
+  async atualizarDados(dadosDto: DadosDto) {
     try {
       const dadosAtualizacao = {
-        card: pagamentoDto.card
+        fullName: dadosDto.fullName,
+        email: dadosDto.email,
+        password: dadosDto.password
       };
 
       const usuarioAtualizado = await this.usersService.updateByEmail(
-        pagamentoDto.email,
+        dadosDto.email,
         dadosAtualizacao
       );
 
       return {
-        message: 'Dados de usuário atualizados com sucesso',
+        message: 'Dados de pagamento atualizados com sucesso',
       };
     } catch (error) {
-      console.error('Erro ao atualizar dados de usuário:', error);
+      console.error('Erro ao atualizar dados de pagamento:', error);
       throw error;
     }
   }

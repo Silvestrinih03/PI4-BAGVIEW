@@ -16,6 +16,7 @@ import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { ServicosComponent } from './servicos/servicos.component';
 import { ContatoComponent } from './contato/contato.component';
 import { CartaoComponent } from './cartao/cartao.component';
+import { DadosComponent } from './dados/dados.component';
 // Definição das rotas da aplicação
 export const routes: Routes = [
   // Rota padrão redireciona para a homepage
@@ -35,6 +36,7 @@ export const routes: Routes = [
   { path: 'servicos', component: ServicosComponent },
   { path: 'contato', component: ContatoComponent },
   { path: 'cartao', component: CartaoComponent },
+  { path: 'dados', component: DadosComponent },
   // Rota para páginas não encontradas
   { path: '**', redirectTo: '/errorpage' },
 ];
