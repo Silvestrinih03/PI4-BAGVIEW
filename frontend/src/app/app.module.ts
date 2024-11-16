@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 // Módulos do Angular Material
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -55,7 +56,7 @@ import { AdicionarVooComponent } from './adicionar-voo/adicionar-voo.component';
     AtivarComponent,
     MinhasTagsComponent,
     MeusVoosComponent,
-    AdicionarVooComponent,
+    AdicionarVooComponent
   ],
   imports: [
     BrowserModule,
