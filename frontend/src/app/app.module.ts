@@ -32,6 +32,8 @@ import { CartaoComponent } from './cartao/cartao.component';
 import { DadosComponent } from './dados/dados.component';
 import { AtivarComponent } from './ativar/ativar.component';
 import { MinhasTagsComponent } from './minhas-tags/minhas-tags.component';
+import { MeusVoosComponent } from './meus-voos/meus-voos.component';
+import { AdicionarVooComponent } from './adicionar-voo/adicionar-voo.component';
 // Serviços HTTP (comentado por enquanto)
 // import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
@@ -52,6 +54,8 @@ import { MinhasTagsComponent } from './minhas-tags/minhas-tags.component';
     DadosComponent,
     AtivarComponent,
     MinhasTagsComponent,
+    MeusVoosComponent,
+    AdicionarVooComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CadastroDto } from 'src/cadastro/cadastroDto';
 
@@ -19,6 +19,11 @@ export class UsersController {
   @Get(':email')
   findOne(@Param('email') email: string) {
     return this.usersService.findOne(email);
+  }
+
+  @Patch('adicionarvoo')
+  async addFlightToUser(@Body() body: { email: string; numVoo: string }) {
+    return this.usersService.addFlightToUser(body.email, body.numVoo);
   }
 
 }

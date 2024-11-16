@@ -92,9 +92,7 @@ export class AlugarComponent implements OnInit {
     const userCard = localStorage.getItem('userCard');
     console.log("Cartão do usuário:", userCard);
     
-    // verificar se o cartao do usuário é vazio
-    // se sim, redirecionar para a pagina de cadastro de cartao
-    // se não, redirecionar para a pagina de 'mensal'
+    // verifica
     if (planoDoUsuario === '6716a54052a0be5933feebc5'){
       if (userCard === '') {
         this.router.navigate(['/pagamento']);

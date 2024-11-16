@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserDocument } from './users.schema';
@@ -61,8 +61,27 @@ export class UsersService {
       throw error;
     }
   }
-
-
-
-
+  
+  async addFlightToUser(email: string, numVoo: string): Promise<User> {
+    console.log('Adicionando voo ao usuário com email:', email);
+    console.log('Número do voo:', numVoo);
+  
+    try {
+      // Encontra o usuário pelo email
+      const user = await this.findOne(email);
+      if (!user) {
+        throw new NotFoundException(`Usuário com email ${email} não encontrado`);
+      }
+  
+      // Adiciona o número do voo ao vetor idFlights
+      user.idFlights.push({ objectId: numVoo }); // Adiciona o número do voo
+  
+      // Atualiza o usuário no banco de dados
+      return await this.updateByEmail(email, user);
+    } catch (error) {
+      console.error('Erro ao adicionar voo ao usuário:', error);
+      throw error;
+    }
+  }
+  
 }
