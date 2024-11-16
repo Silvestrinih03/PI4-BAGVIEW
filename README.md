@@ -73,6 +73,9 @@ Para configurar o frontend, siga os passos abaixo:
    ```bash
    npm install -g @angular/cli
    ```
+   ```bash
+   npm install @types/google.maps --save-dev
+   ```
 
 ### Backend
 
