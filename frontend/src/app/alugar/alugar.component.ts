@@ -34,6 +34,7 @@ export class AlugarComponent implements OnInit {
   userData: any = null;
   quantidadeDias: number = 1;
   planoDoUsuario: string = '';
+  userCardNumber: string = '';
 
   constructor(private router: Router) {}
 
@@ -63,6 +64,7 @@ export class AlugarComponent implements OnInit {
         // Verifica se existe card e se é um array com elementos
         if (this.userData?.card && this.userData.card.length > 0) {
           console.log("Cartão do usuário:", this.userData.card[0].num);
+          this.userCardNumber = this.userData.card[0].num;
           localStorage.setItem('userCard', this.userData.card[0].num);
         } else {
           console.log("Usuário não possui cartão cadastrado");
@@ -91,18 +93,29 @@ export class AlugarComponent implements OnInit {
     
     const userCard = localStorage.getItem('userCard');
     console.log("Cartão do usuário:", userCard);
+    console.log("NUMEROS:", this.userCardNumber);
+
     
     // verifica
-    if (planoDoUsuario === '6716a54052a0be5933feebc5'){
-      if (userCard === '') {
-        this.router.navigate(['/pagamento']);
-      } else {
-        this.router.navigate(['/possui']);
-      }
+
+    if(this.userCardNumber === '' || this.userCardNumber === null){
+      this.router.navigate(['/pagamento']);
     }
-    else {
-        this.router.navigate(['/possui']);
+    else{
+      this.router.navigate(['/possui']);
     }
+
+
+    //if (planoDoUsuario === '6716a54052a0be5933feebc5'){
+    //  if (userCard === '') {
+    //    this.router.navigate(['/pagamento']);
+    //  } else {
+    //    this.router.navigate(['/possui']);
+    //  }
+    //}
+    //else {
+    //    this.router.navigate(['/possui']);
+    //}
 
   }
 }

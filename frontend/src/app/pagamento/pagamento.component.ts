@@ -143,7 +143,13 @@ export class PagamentoComponent {
       .subscribe({
         next: (response: any) => {
           console.log('Pagamento atualizado com sucesso:', response);
-          this.router.navigate(['/concluido']);
+          const alugou = localStorage.getItem('quantidadeTags')
+          if (alugou === null || alugou === ''){
+            this.router.navigate(['/menu']);
+          }
+          else{
+            this.router.navigate(['/concluido']);
+          }
         },
         error: (error) => {
           console.error('Erro ao atualizar pagamento:', error);

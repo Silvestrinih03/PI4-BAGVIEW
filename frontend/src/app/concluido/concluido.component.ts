@@ -1,31 +1,22 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthClientService } from '../services/auth-client.service';
 import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-concluido',
   standalone: true,
-  imports: [CommonModule,
-    HttpClientModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
-    FormsModule,
-    RouterModule],
+  imports: [RouterModule],
   templateUrl: './concluido.component.html',
-  styleUrl: './concluido.component.css'
+  styleUrls: ['./concluido.component.css']
 })
 export class ConcluidoComponent {
+  nuloOuVazio: string = '';
 
+  constructor(private router: Router) {
+    // Armazena a quantidade de tags no localStorage como uma string vazia
+    localStorage.setItem('quantidadeTags', this.nuloOuVazio);
+  }
+
+  // Outros métodos e lógica da classe...
 }
