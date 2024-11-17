@@ -1,12 +1,14 @@
-package com.servidorjava.bagview.controller;
+public class ValidarSenha extends Comunicado {
+    private String senha;
 
-public class SenhaValidacao {
+    public ValidarSenha(String senha) {
+        this.senha = senha;
+    }
 
-    public static boolean validarSenha(String senha) {
+    public boolean isValid() {
         // Nao pode ser nula nem ter menos de 8 caracteres
-        if (senha == null || senha.length() < 8) {
+        if (this.senha == null || this.senha.trim().isEmpty() || this.senha.length() < 8)
             return false;
-        }
 
         // Como vai responder no cod
         boolean temNumero = false;
@@ -17,19 +19,13 @@ public class SenhaValidacao {
         // - Precisa ter pelo menos uma letra maiuscula
         // - Precisa ter pelo menos um caracter especial: @, !, *, &...
         // - Precisa ter pelo menos um numero
-        for (char c : senha.toCharArray()) {
+        for (char c : this.senha.toCharArray()) {
             if (Character.isDigit(c)) {
                 temNumero = true;
             } else if (Character.isUpperCase(c)) {
                 temLetraMaiuscula = true;
             } else if (!Character.isLetterOrDigit(c)) {
                 temCaractereEspecial = true;
-            }
-
-            // Se todas as condições forem atendidas entao a senha foi atendida e o servidor
-            // vai retornar true, prosseguindo
-            if (temNumero && temLetraMaiuscula && temCaractereEspecial) {
-                return true;
             }
         }
 

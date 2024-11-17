@@ -34,7 +34,6 @@ export class PagamentoComponent {
   preco: string = '';
 
   private apiUrl = 'http://localhost:4200'; // URL do servidor NestJS
-  private javaApiUrl = 'http://localhost:8080/validarcartao'; // URL do servidor Java
 
   constructor(
     private router: Router,
@@ -71,26 +70,6 @@ export class PagamentoComponent {
   
       // Comparar as datas no formato 'YYYY-MM'
       return expiryFormatted >= currentFormatted;
-    }
-
-    // Validação do cartão com chamada ao servidor Java
-    async validarCartao(): Promise<boolean> {
-      try {
-        const urlComNumeroCartao = `${this.javaApiUrl}?numeroCartao=${this.pagamento.cardNumber}`;
-        const isValid = await firstValueFrom(
-          this.http.post<boolean>(urlComNumeroCartao, {})
-        );
-        if (!isValid) {
-          this.errorMessage = 'Número de cartão inválido. Verifique os dados.';
-        } else {
-          this.errorMessage = ''; // Limpa a mensagem de erro se o cartão for válido
-        }
-        return isValid;
-      } catch (error) {
-        this.errorMessage = 'Erro ao validar o cartão. Tente novamente.';
-        console.error("Erro de validação de cartão:", error);
-        return false;
-      }
     }
 
   // Submissão do formulário de pagamento
@@ -130,14 +109,7 @@ export class PagamentoComponent {
         val: this.pagamento.expiryDate
       }]
     };
-
-    // Validação do cartão antes de enviar
-    const isValidCartao = await this.validarCartao();
-    if (!isValidCartao) {
-      console.log("Número do cartão inválido.");
-      return; // Não enviar os dados para o servidor se o cartão for inválido
-    }
-
+    
     // URL correta apontando para o servidor na porta 4200
     this.http.patch(`${this.apiUrl}/pagamento/atualizar`, dadosPagamento)
       .subscribe({

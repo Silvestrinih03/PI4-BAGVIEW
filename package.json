@@ -13,8 +13,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:backend": "cd backend && npm run start:dev",
     "start:frontend": "cd frontend && ng serve",
-    "start:ServidorJava": "cd ServidorJava/bagview && mvn spring-boot:run",
-    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\" \"npm run start:ServidorJava\""
+    "start:servidor": "cd servidorValidadorJava && cd ServidorTeste && cd Servidor && java Servidor",
+    "start": "concurrently \"npm run start:servidor\" \"npm run start:backend\" \"npm run start:frontend\""
   },
   "keywords": [],
   "author": "",
