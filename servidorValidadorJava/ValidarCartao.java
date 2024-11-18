@@ -1,14 +1,12 @@
 public class ValidarCartao extends Comunicado {
-    private String numeroCartao, numCartaoRecebido;
+    private String numeroCartao;
 
     public ValidarCartao(String numeroCartao) {
-        this.numCartaoRecebido = numeroCartao;
-        this.numeroCartao = numeroCartao.replaceAll("[^\\d]", "");
+        this.numeroCartao = numeroCartao.replaceAll("\\s+", "");
     }
 
     public boolean isValid() {
-        if (this.numeroCartao == null || this.numeroCartao.isEmpty() || this.numeroCartao.length() != 16
-                || !numCartaoRecebido.matches("[^0-9]"))
+        if (this.numeroCartao == null || this.numeroCartao.isEmpty() || this.numeroCartao.length() != 16)
             return false;
 
         return ehElo() || ehVisa() || ehMastercard();
