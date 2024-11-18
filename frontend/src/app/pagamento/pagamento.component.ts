@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { firstValueFrom } from 'rxjs';  // Para usar no lugar de toPromise()
-import { Console } from 'console';
+import { SocketService } from './pagamento.socket.service';
 
 @Component({
   selector: 'app-pagamento',
@@ -37,7 +36,8 @@ export class PagamentoComponent {
 
   constructor(
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private socketService: SocketService
   ) {}
 
   async ngOnInit() {
@@ -110,26 +110,42 @@ export class PagamentoComponent {
       }]
     };
     
-    // URL correta apontando para o servidor na porta 4200
+    try {
+      console.log('Validando cartão com o servidor...');
+      // Conecta ao servidor
+      await this.socketService.connectToServer('127.0.0.1', 3000);
+
+      // Valida o cartão com o servidor
+      const isCardValid = await this.socketService.sendCardData(this.pagamento.cardNumber);
+
+      if (!isCardValid) {
+        this.errorMessage = 'O cartão é inválido. Verifique os dados e tente novamente.';
+        return;
+      }
+
+      console.log('Cartão válido. Prosseguindo com o cadastro...');
+      this.atualizarPagamento(dadosPagamento);
+
+    } catch (error) {
+      console.error('Erro ao validar o cartão:', error);
+      this.errorMessage = 'Erro ao validar o cartão. Tente novamente mais tarde.';
+    }
+  }
+   
+  // Atualizar pagamento no backend
+  atualizarPagamento(dadosPagamento: any) {
     this.http.patch(`${this.apiUrl}/pagamento/atualizar`, dadosPagamento)
       .subscribe({
         next: (response: any) => {
           console.log('Pagamento atualizado com sucesso:', response);
-          const alugou = localStorage.getItem('quantidadeTags')
-          if (alugou === null || alugou === ''){
-            this.router.navigate(['/menu']);
-          }
-          else{
-            this.router.navigate(['/concluido']);
-          }
+          const alugou = localStorage.getItem('quantidadeTags');
+          const rota = alugou ? '/concluido' : '/menu';
+          this.router.navigate([rota]);
         },
         error: (error) => {
           console.error('Erro ao atualizar pagamento:', error);
           this.errorMessage = 'Erro ao processar pagamento. Tente novamente.';
         }
       });
-
-
   }
 }
-

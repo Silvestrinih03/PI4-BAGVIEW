@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "concurrently": "^9.0.1"
+    "concurrently": "^9.0.1",
+    "net": "^1.0.2"
   },
   "name": "pi4-bagview",
   "version": "1.0.0",

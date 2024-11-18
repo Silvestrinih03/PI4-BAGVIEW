@@ -70,6 +70,8 @@ public class SupervisoraDeConexao extends Thread {
                 } else if (comunicado instanceof ValidadarCartao) {
                     ValidadarCartao cartao = (ValidadarCartao) comunicado;
                     boolean valido = cartao.isValid();
+                    Resultado resultado = new Resultado(valido); // Envia o resultado ao cliente
+                    this.usuario.receba(resultado);
                 } else if (comunicado instanceof PedidoParaSair) {
                     synchronized (this.usuarios) {
                         this.usuarios.remove(this.usuario);
