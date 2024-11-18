@@ -64,9 +64,13 @@ public class SupervisoraDeConexao extends Thread {
                 else if (comunicado instanceof ValidarCpf) {
                     ValidarCpf cpf = (ValidarCpf) comunicado;
                     boolean valido = cpf.isValid();
+                    Resultado resultado = new Resultado(valido); // Envia o resultado ao cliente
+                    this.usuario.receba(resultado);
                 } else if (comunicado instanceof ValidarSenha) {
                     ValidarSenha senha = (ValidarSenha) comunicado;
                     boolean valido = senha.isValid();
+                    Resultado resultado = new Resultado(valido); // Envia o resultado ao cliente
+                    this.usuario.receba(resultado);
                 } else if (comunicado instanceof ValidadarCartao) {
                     ValidadarCartao cartao = (ValidadarCartao) comunicado;
                     boolean valido = cartao.isValid();
