@@ -1,70 +1,72 @@
-<div class="form-container">
-  <br />
-  <br />
-  <h2>Pagamento</h2>
-  <form (ngSubmit)="onSubmit()" #pagamentoForm="ngForm">
-    <!-- <div>
-      <p> Cadastre um cartão de crédito para utilizar no site ao alugar uma tag!</p>
-    </div> -->
-    <div *ngIf="planoDoUsuario === '6716a54052a0be5933feebc5'">
-      <p> Total a ser pago: {{preco}} </p>
-      <!-- Deixar mais legal -->
+<div class="main">
+  <div class="form-container">
+      <br />
+      <br />
+      <h2>Pagamento</h2>
+      <form (ngSubmit)="onSubmit()" #pagamentoForm="ngForm">
+        <!-- <div>
+          <p> Cadastre um cartão de crédito para utilizar no site ao alugar uma tag!</p>
+        </div> -->
+        <div *ngIf="planoDoUsuario === '6716a54052a0be5933feebc5'">
+          <p> Total a ser pago: {{preco}} </p>
+          <!-- Deixar mais legal -->
+        </div>
+        <p>
+          <strong>Obs:</strong> Após a confirmação do aluguel, será cobrada uma
+          caução de R$50 por tag, que será ressarcida após a devolução. Em caso de
+          roubo ou perda da bagagem, o valor da tag também será reembolsado.
+        </p>
+    
+        <label for="cardNumber">Número do Cartão *</label>
+        <input
+          type="text"
+          id="cardNumber"
+          name="cardNumber"
+          [(ngModel)]="pagamento.cardNumber"
+          placeholder="Digite o número do cartão"
+          required
+        />
+    
+        <label for="cardName">Nome no Cartão *</label>
+        <input
+          type="text"
+          id="cardName"
+          name="cardName"
+          [(ngModel)]="pagamento.cardName"
+          placeholder="Nome no cartão"
+          required
+        />
+    
+        <label for="cvv">CVV + Validade *</label>
+        <input
+          type="text"
+          id="cvv"
+          name="cvv"
+          [(ngModel)]="pagamento.cvv"
+          placeholder="CVV"
+          required
+        />
+        <input
+          type="month"
+          id="expiryDate"
+          name="expiryDate"
+          [(ngModel)]="pagamento.expiryDate"
+          required
+        />
+    
+        <div class="checkbox-container">
+          <input
+            type="checkbox"
+            id="terms"
+            name="terms"
+            [(ngModel)]="pagamento.termsAccepted"
+            required
+          />
+          <label for="terms">Li e concordo com os termos *</label>
+        </div>
+    
+        <button type="submit" [disabled]="!pagamentoForm.valid">Finalizar</button>
+        <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+      </form>
     </div>
-    <p>
-      <strong>Obs:</strong> Após a confirmação do aluguel, será cobrada uma
-      caução de R$50 por tag, que será ressarcida após a devolução. Em caso de
-      roubo ou perda da bagagem, o valor da tag também será reembolsado.
-    </p>
-
-    <label for="cardNumber">Número do Cartão *</label>
-    <input
-      type="text"
-      id="cardNumber"
-      name="cardNumber"
-      [(ngModel)]="pagamento.cardNumber"
-      placeholder="Digite o número do cartão"
-      required
-    />
-
-    <label for="cardName">Nome no Cartão *</label>
-    <input
-      type="text"
-      id="cardName"
-      name="cardName"
-      [(ngModel)]="pagamento.cardName"
-      placeholder="Nome no cartão"
-      required
-    />
-
-    <label for="cvv">CVV + Validade *</label>
-    <input
-      type="text"
-      id="cvv"
-      name="cvv"
-      [(ngModel)]="pagamento.cvv"
-      placeholder="CVV"
-      required
-    />
-    <input
-      type="month"
-      id="expiryDate"
-      name="expiryDate"
-      [(ngModel)]="pagamento.expiryDate"
-      required
-    />
-
-    <div class="checkbox-container">
-      <input
-        type="checkbox"
-        id="terms"
-        name="terms"
-        [(ngModel)]="pagamento.termsAccepted"
-        required
-      />
-      <label for="terms">Li e concordo com os termos *</label>
-    </div>
-
-    <button type="submit" [disabled]="!pagamentoForm.valid">Finalizar</button>
-    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
-  </form>
 </div>

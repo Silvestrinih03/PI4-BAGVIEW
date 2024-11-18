@@ -1,101 +1,149 @@
-/* Estilo geral do contêiner do formulário */
+/* Estilo base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f0f4f8; /* Fundo suave */
+}
+
 .form-container {
-    max-width: 600px; /* Largura máxima do formulário */
-    margin: 0 auto; /* Centraliza o formulário na página */
-    padding: 20px; /* Espaçamento interno */
-    border: 1px solid #ccc; /* Borda leve ao redor do formulário */
-    border-radius: 8px; /* Bordas arredondadas */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    background-color: #f9f9f9; /* Fundo claro */
+  background-color: #ffffff; /* Fundo branco */
+  padding: 2rem; /* Espaçamento interno */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra mais marcante */
+  max-width: 600px; /* Largura máxima */
+  width: 90%; /* Responsivo */
+  animation: fadeIn 1s ease-in-out; /* Animação */
+}
+
+/* Cabeçalhos */
+h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  color: #2c3e50; /* Azul escuro */
+  margin-bottom: 1.5rem;
+}
+
+/* Rótulos */
+label {
+  display: block;
+  margin: 1rem 0 0.5rem;
+  font-weight: bold;
+  color: #34495e; /* Texto moderado */
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="month"],
+select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #2ecc71; /* Verde no foco */
+  outline: none;
+  box-shadow: 0 0 4px rgba(46, 204, 113, 0.5); /* Sombra de foco */
+}
+
+/* Botão de envio */
+button[type="submit"] {
+  background-color: #2ecc71; /* Verde */
+  color: #fff; /* Texto branco */
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: block;
+  margin: 1rem auto;
+}
+
+button[type="submit"]:hover {
+  background-color: #27ae60;
+  transform: translateY(-2px);
+}
+
+button[type="submit"]:active {
+  background-color: #219150;
+  transform: translateY(2px);
+}
+
+button[type="submit"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.5);
+}
+
+/* Mensagens de erro */
+#error-message {
+  color: #e74c3c; /* Vermelho */
+  text-align: center;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+/* Contêiner do checkbox */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  color: #34495e;
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.2); /* Tamanho maior */
+  cursor: pointer;
+}
+
+.checkbox-container label {
+  font-size: 0.9rem;
+}
+
+/* Observação */
+p {
+  font-size: 0.95rem;
+  color: #34495e;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+/* Ocultar temporariamente */
+#temporarioOptions {
+  display: none;
+}
+
+/* Animação */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
   }
-  
-  /* Estilo para cabeçalhos */
-  h2 {
-    text-align: center; /* Centraliza o texto */
-    color: #333; /* Cor do texto */
-    margin-bottom: 20px; /* Espaçamento abaixo do cabeçalho */
+  to {
+      opacity: 1;
+      transform: translateY(0);
   }
-  
-  /* Estilo para rótulos */
-  label {
-    display: block; /* Faz com que os rótulos ocupem toda a largura */
-    margin: 10px 0 5px; /* Margens para espaçamento */
-    font-weight: bold; /* Texto em negrito */
-  }
-  
-  /* Estilo para campos de entrada */
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  input[type="number"],
-  input[type="month"],
-  select {
-    width: 100%; /* Largura total */
-    padding: 10px; /* Espaçamento interno */
-    margin-bottom: 15px; /* Espaço abaixo dos campos */
-    border: 1px solid #ccc; /* Borda leve */
-    border-radius: 4px; /* Bordas arredondadas */
-    font-size: 16px; /* Tamanho da fonte */
-    box-sizing: border-box; /* Inclui a borda e o preenchimento no tamanho total */
-  }
-  
-  /* Estilo para o botão de submissão */
-  button[type="submit"] {
-    width: 100%; /* Largura total */
-    padding: 10px; /* Espaçamento interno */
-    background-color: #007bff; /* Cor de fundo azul */
-    color: #fff; /* Cor do texto */
-    border: none; /* Remove borda */
-    border-radius: 4px; /* Bordas arredondadas */
-    font-size: 16px; /* Tamanho da fonte */
-    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
-    transition: background-color 0.3s ease; /* Transição suave para cor de fundo */
-  }
-  
-  /* Efeito ao passar o mouse no botão */
-  button[type="submit"]:hover {
-    background-color: #0056b3; /* Escurece o azul ao passar o mouse */
-  }
-  
-  /* Estilo para mensagens de erro */
-  #error-message {
-    color: red; /* Cor do texto de erro */
-    text-align: center; /* Centraliza o texto */
-  }
-  
-  /* Estilo para o contêiner do checkbox */
-  .checkbox-container {
-    display: flex; /* Usar flexbox para alinhar os itens */
-    align-items: center; /* Alinha verticalmente o conteúdo */
-    margin: 15px 0; /* Margens em torno da caixa de seleção */
-  }
-  
-  /* Estilo para o checkbox */
-  .checkbox-container input[type="checkbox"] {
-    margin-right: 10px; /* Espaço entre a caixa e o texto */
-    height: 10px;
-    width: 10px;
-    transform: scale(1.5); /* Aumenta o tamanho do checkbox */
-    cursor: pointer; /* Muda o cursor ao passar o mouse */
-  }
-  
-  /* Estilo para o rótulo do checkbox */
-  .checkbox-container label {
-    margin: 0; /* Remove margens do rótulo */
-    font-size: 14px; /* Ajuste o tamanho da fonte, se necessário */
-    color: #333; /* Cor do texto */
-  }
-  
-  /* Estilo para a observação */
-  p {
-    font-size: 16px; /* Tamanho da fonte */
-    color: #555; /* Cor do texto */
-    text-align: center; /* Centraliza o texto */
-    margin: 20px; /* Espaço acima da observação */
-  }
-  
-  /* Estilo para esconder temporariamente as opções */
-  #temporarioOptions {
-    display: none; /* Esconde as opções por padrão */
-  }
-  
+}
