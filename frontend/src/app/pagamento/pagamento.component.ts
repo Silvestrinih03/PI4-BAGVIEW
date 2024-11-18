@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { SocketService } from './pagamento.socket.service';
 
 @Component({
   selector: 'app-pagamento',
@@ -36,8 +35,7 @@ export class PagamentoComponent {
 
   constructor(
     private router: Router,
-    private http: HttpClient,
-    private socketService: SocketService
+    private http: HttpClient
   ) {}
 
   async ngOnInit() {
@@ -109,27 +107,6 @@ export class PagamentoComponent {
         val: this.pagamento.expiryDate
       }]
     };
-    
-    try {
-      console.log('Validando cartão com o servidor...');
-      // Conecta ao servidor
-      await this.socketService.connectToServer('127.0.0.1', 3000);
-
-      // Valida o cartão com o servidor
-      const isCardValid = await this.socketService.sendCardData(this.pagamento.cardNumber);
-
-      if (!isCardValid) {
-        this.errorMessage = 'O cartão é inválido. Verifique os dados e tente novamente.';
-        return;
-      }
-
-      console.log('Cartão válido. Prosseguindo com o cadastro...');
-      this.atualizarPagamento(dadosPagamento);
-
-    } catch (error) {
-      console.error('Erro ao validar o cartão:', error);
-      this.errorMessage = 'Erro ao validar o cartão. Tente novamente mais tarde.';
-    }
   }
    
   // Atualizar pagamento no backend
