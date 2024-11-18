@@ -68,10 +68,6 @@ export class CadastroComponent {
   errorMessage: string = ''; // Mensagem de erro
   hide: boolean = true; // Controle de visibilidade da senha
 
-  // URLs da API Java
-  private javaApiUrl = 'http://localhost:8080/validar-senha';
-  private javaApiUrlCpf = 'http://localhost:8080/validarcpf';
-
   constructor(
     private router: Router,
     private cadastroService: CadastroClientService,
@@ -89,47 +85,6 @@ export class CadastroComponent {
     this.usuario.idPlan = event.value;
   }
 
-  // Validação da senha com chamada ao servidor Java
-  async validarSenha(): Promise<boolean> {
-    try {
-      const urlComSenha = `${this.javaApiUrl}?senha=${this.usuario.password}`;
-      const isValid = await firstValueFrom(
-        this.http.post<boolean>(urlComSenha, {})
-      );
-      if (!isValid) {
-        this.errorMessage =
-          'A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, um número e um caractere especial (@, !, *, & etc).';
-      } else {
-        this.errorMessage = ''; // Limpa a mensagem de erro se a senha for válida
-      }
-      return isValid;
-    } catch (error) {
-      this.errorMessage = 'Erro ao validar a senha. Tente novamente.';
-      console.error('Erro de validação de senha:', error);
-      return false;
-    }
-  }
-
-  // Validação do CPF com chamada ao servidor Java
-  async validarCpf(): Promise<boolean> {
-    try {
-      const urlComCPF = `${this.javaApiUrlCpf}?cpf=${this.usuario.cpf}`;
-      const isValid = await firstValueFrom(
-        this.http.post<boolean>(urlComCPF, {})
-      );
-      if (!isValid) {
-        this.errorMessage = 'CPF inválido!';
-      } else {
-        this.errorMessage = ''; // Limpa a mensagem de erro se o CPF for válido
-      }
-      return isValid;
-    } catch (error) {
-      this.errorMessage = 'Erro ao validar o CPF. Tente novamente.';
-      console.error('Erro de validação de CPF:', error);
-      return false;
-    }
-  }
-
   // Envio dos dados do cadastro
   async onSubmit() {
     try {
@@ -138,21 +93,7 @@ export class CadastroComponent {
         this.errorMessage = 'As senhas não coincidem';
         return;
       }
-
-      // Validação da senha antes de enviar
-      const isValidPassword = await this.validarSenha();
-      if (!isValidPassword) {
-        console.log('Senha inválida.');
-        return; // Não enviar os dados para o servidor se a senha for inválida
-      }
-
-      // Validação do CPF antes de enviar
-      const isValidCpf = await this.validarCpf();
-      if (!isValidCpf) {
-        console.log('CPF inválido.');
-        return; // Não enviar os dados para o servidor se o CPF for inválido
-      }
-
+      
       // Log dos detalhes do cadastro
       console.log('=== Detalhes do Cadastro ===');
       console.log(

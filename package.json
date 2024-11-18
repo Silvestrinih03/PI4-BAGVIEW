@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "concurrently": "^9.0.1"
+    "concurrently": "^9.0.1",
+    "net": "^1.0.2"
   },
   "name": "pi4-bagview",
   "version": "1.0.0",
@@ -13,8 +14,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:backend": "cd backend && npm run start:dev",
     "start:frontend": "cd frontend && ng serve",
-    "start:ServidorJava": "cd ServidorJava/bagview && mvn spring-boot:run",
-    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\" \"npm run start:ServidorJava\""
+    "start:servidor": "java -cp servidorValidadorJava Servidor",
+    "start:javabridge": "java -cp servidorValidadorJava JavaBridge",
+    "start:validation": "node frontend/ponte.validacoes.js",
+    "start": "concurrently \"npm run start:servidor\" \"npm run start:javabridge\" \"npm run start:validation\" \"npm run start:backend\" \"npm run start:frontend\""
   },
   "keywords": [],
   "author": "",
