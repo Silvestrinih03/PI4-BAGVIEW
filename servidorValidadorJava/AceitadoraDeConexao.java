@@ -12,8 +12,9 @@ public class AceitadoraDeConexao extends Thread {
 
         try {
             this.pedido = new ServerSocket(Integer.parseInt(porta));
+            System.out.println("Servidor escutando na porta " + porta);
         } catch (Exception erro) {
-            throw new Exception("Porta invalida");
+            throw new Exception("Porta invalida: " + erro.getMessage());
         }
 
         if (usuarios == null)
@@ -23,20 +24,23 @@ public class AceitadoraDeConexao extends Thread {
     }
 
     public void run() {
-        for (;;) {
+        while (true) {
             Socket conexao = null;
             try {
                 conexao = this.pedido.accept();
+                System.out.println("Nova conexão aceita: " + conexao.getInetAddress().getHostAddress());
             } catch (Exception erro) {
+                System.err.println("Erro ao aceitar conexão: " + erro.getMessage());
                 continue;
             }
 
             SupervisoraDeConexao supervisoraDeConexao = null;
             try {
                 supervisoraDeConexao = new SupervisoraDeConexao(conexao, usuarios);
+                supervisoraDeConexao.start();
             } catch (Exception erro) {
-            } // sei que passei parametros corretos para o construtor
-            supervisoraDeConexao.start();
+                System.err.println("Erro ao iniciar supervisora de conexão: " + erro.getMessage());
+            }
         }
     }
 }

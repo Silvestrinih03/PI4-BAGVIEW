@@ -10,11 +10,8 @@ public class ValidarCpf extends Comunicado {
         if (this.cpf == null || this.cpf.isEmpty() || this.cpf.length() != 11)
             return false;
 
-        // Verifica se todos os caracteres são números
-        for (int i = 0; i < this.cpf.length(); i++) {
-            if (!Character.isDigit(cpf.charAt(i))) {
-                return false;
-            }
+        if (!cpf.matches("\\d+")) {
+            return false;
         }
 
         // Separa os 9 primeiros dígitos

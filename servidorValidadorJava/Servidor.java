@@ -1,4 +1,8 @@
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.util.*;
 
 public class Servidor {
@@ -54,6 +58,52 @@ public class Servidor {
                 System.exit(0);
             } else
                 System.err.println("Comando invalido!\n");
+        }
+    }
+}
+
+class ClientHandler implements Runnable {
+    private Socket socket;
+
+    public ClientHandler(Socket socket) {
+        this.socket = socket;
+    }
+
+    @Override
+    public void run() {
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                PrintWriter out = new PrintWriter(socket.getOutputStream(), true)) {
+
+            String request = in.readLine();
+            String[] parts = request.split(",");
+            String tipoValidacao = parts[0];
+            String valor = parts[1];
+
+            boolean isValid = false;
+
+            switch (tipoValidacao.toLowerCase()) {
+                case "cartao":
+                    ValidarCartao validarCartao = new ValidarCartao(valor);
+                    isValid = validarCartao.isValid();
+                    break;
+                case "cpf":
+                    ValidarCpf validarCpf = new ValidarCpf(valor);
+                    isValid = validarCpf.isValid();
+                    break;
+                case "senha":
+                    ValidarSenha validarSenha = new ValidarSenha(valor);
+                    isValid = validarSenha.isValid();
+                    break;
+                default:
+                    out.println("Tipo de validação desconhecido");
+                    return;
+            }
+
+            String response = isValid ? "Valido" : "Invalido";
+            out.println(response);
+
+        } catch (IOException e) {
+            System.err.println("Erro ao comunicar com o cliente: " + e.getMessage());
         }
     }
 }

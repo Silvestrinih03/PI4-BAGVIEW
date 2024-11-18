@@ -14,8 +14,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:backend": "cd backend && npm run start:dev",
     "start:frontend": "cd frontend && ng serve",
-    "start:servidor": "cd servidorValidadorJava && cd ServidorTeste && cd Servidor && java Servidor",
-    "start": "concurrently \"npm run start:servidor\" \"npm run start:backend\" \"npm run start:frontend\""
+    "start:servidor": "java -cp servidorValidadorJava Servidor",
+    "start:javabridge": "java -cp servidorValidadorJava JavaBridge",
+    "start:validation": "node frontend/ponte.validacoes.js",
+    "start": "concurrently \"npm run start:servidor\" \"npm run start:javabridge\" \"npm run start:validation\" \"npm run start:backend\" \"npm run start:frontend\""
   },
   "keywords": [],
   "author": "",

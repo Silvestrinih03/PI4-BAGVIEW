@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -8,8 +7,7 @@ public class SupervisoraDeConexao extends Thread {
     private Socket conexao;
     private ArrayList<Parceiro> usuarios;
 
-    public SupervisoraDeConexao(Socket conexao, ArrayList<Parceiro> usuarios)
-            throws Exception {
+    public SupervisoraDeConexao(Socket conexao, ArrayList<Parceiro> usuarios) throws Exception {
         if (conexao == null)
             throw new Exception("Conexao ausente");
 
@@ -21,76 +19,75 @@ public class SupervisoraDeConexao extends Thread {
     }
 
     public void run() {
-
-        ObjectOutputStream transmissor;
-        try {
-            transmissor = new ObjectOutputStream(
-                    this.conexao.getOutputStream());
-        } catch (Exception erro) {
-            return;
-        }
-
+        ObjectOutputStream transmissor = null;
         ObjectInputStream receptor = null;
-        try {
-            receptor = new ObjectInputStream(
-                    this.conexao.getInputStream());
-        } catch (Exception erro) {
-            try {
-                transmissor.close();
-            } catch (Exception falha) {
-            } // so tentando fechar antes de acabar a thread
 
+        try {
+            transmissor = new ObjectOutputStream(this.conexao.getOutputStream());
+            receptor = new ObjectInputStream(this.conexao.getInputStream());
+            this.usuario = new Parceiro(this.conexao, receptor, transmissor);
+        } catch (Exception erro) {
+            System.err.println("Erro ao inicializar streams ou criar usuario: " + erro.getMessage());
+            try {
+                if (transmissor != null)
+                    transmissor.close();
+                if (receptor != null)
+                    receptor.close();
+                this.conexao.close();
+            } catch (IOException e) {
+                System.err.println("Erro ao fechar conexao: " + e.getMessage());
+            }
             return;
         }
-
-        try {
-            this.usuario = new Parceiro(this.conexao,
-                    receptor,
-                    transmissor);
-        } catch (Exception erro) {
-        } // sei que passei os parametros corretos
 
         try {
             synchronized (this.usuarios) {
                 this.usuarios.add(this.usuario);
             }
 
-            for (;;) {
+            while (true) {
                 Comunicado comunicado = this.usuario.envie();
 
-                if (comunicado == null)
-                    return;
+                if (comunicado == null) {
+                    System.out.println("Comunicado nulo recebido, encerrando conexão");
+                    break;
+                }
 
-                else if (comunicado instanceof ValidarCpf) {
+                if (comunicado instanceof ValidarCpf) {
                     ValidarCpf cpf = (ValidarCpf) comunicado;
                     boolean valido = cpf.isValid();
-                    Resultado resultado = new Resultado(valido); // Envia o resultado ao cliente
+                    Resultado resultado = new Resultado(valido);
                     this.usuario.receba(resultado);
                 } else if (comunicado instanceof ValidarSenha) {
                     ValidarSenha senha = (ValidarSenha) comunicado;
                     boolean valido = senha.isValid();
-                    Resultado resultado = new Resultado(valido); // Envia o resultado ao cliente
+                    Resultado resultado = new Resultado(valido);
                     this.usuario.receba(resultado);
-                } else if (comunicado instanceof ValidadarCartao) {
-                    ValidadarCartao cartao = (ValidadarCartao) comunicado;
+                } else if (comunicado instanceof ValidarCartao) {
+                    ValidarCartao cartao = (ValidarCartao) comunicado;
                     boolean valido = cartao.isValid();
-                    Resultado resultado = new Resultado(valido); // Envia o resultado ao cliente
+                    Resultado resultado = new Resultado(valido);
                     this.usuario.receba(resultado);
                 } else if (comunicado instanceof PedidoParaSair) {
                     synchronized (this.usuarios) {
                         this.usuarios.remove(this.usuario);
                     }
                     this.usuario.adeus();
+                    break;
                 }
             }
         } catch (Exception erro) {
+            System.err.println("Erro durante comunicacao: " + erro.getMessage());
+        } finally {
             try {
-                transmissor.close();
-                receptor.close();
-            } catch (Exception falha) {
-            } // so tentando fechar antes de acabar a thread
-
-            return;
+                if (transmissor != null)
+                    transmissor.close();
+                if (receptor != null)
+                    receptor.close();
+                this.conexao.close();
+            } catch (IOException e) {
+                System.err.println("Erro ao fechar recursos: " + e.getMessage());
+            }
         }
     }
 }

@@ -1,20 +1,15 @@
-public class ValidadarCartao extends Comunicado {
-    private String numeroCartao;
+public class ValidarCartao extends Comunicado {
+    private String numeroCartao, numCartaoRecebido;
 
-    public ValidadarCartao(String numeroCartao) {
+    public ValidarCartao(String numeroCartao) {
+        this.numCartaoRecebido = numeroCartao;
         this.numeroCartao = numeroCartao.replaceAll("[^\\d]", "");
     }
 
     public boolean isValid() {
-        if (this.numeroCartao == null || this.numeroCartao.isEmpty() || this.numeroCartao.length() != 16)
+        if (this.numeroCartao == null || this.numeroCartao.isEmpty() || this.numeroCartao.length() != 16
+                || !numCartaoRecebido.matches("[^0-9]"))
             return false;
-
-        // Verifica se todos os caracteres são números
-        for (int i = 0; i < numeroCartao.length(); i++) {
-            if (!Character.isDigit(numeroCartao.charAt(i))) {
-                return false;
-            }
-        }
 
         return ehElo() || ehVisa() || ehMastercard();
     }
