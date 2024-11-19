@@ -1,44 +1,51 @@
 <div class="alugar-tag-container">
-    <mat-card>
-      <mat-card-title>Alugar Tag</mat-card-title>
-      <mat-card-content>
-        <form (ngSubmit)="onSubmit()">
-          <p> Selecione/Digite a quantidade de tags que você deseja alugar </p>
+  <mat-card>
+    <mat-card-title>Alugar Tag</mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()">
+        <p> Selecione o número do voo </p>
+        <mat-form-field appearance="fill">
+          <mat-label>Número do Voo</mat-label>
+          <mat-select [(ngModel)]="numVoo" name="numVoo" required>
+            <mat-option *ngFor="let voo of voos" [value]="voo.numvoo">
+              {{ voo.numvoo }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
+        <p>Quantas tags você deseja alugar?</p>
+        <mat-form-field appearance="fill">
+          <mat-label>Quantidade de Tags</mat-label>
+          <input
+            matInput
+            type="number"
+            min="1"
+            max="10"
+            placeholder="Digite a quantidade de tags"
+            required
+            [(ngModel)]="quantidadeTags"
+            name="quantidadeTags"
+          />
+        </mat-form-field>
+
+        <!-- <div *ngIf="planoDoUsuario === '6716a54052a0be5933feebc5'">
+          <p> Selecione/Digite a quantidade de dias que deseja alugar as tags </p>
           <mat-form-field appearance="fill">
-            <mat-label>Quantidade de Tags</mat-label>
+            <mat-label>Quantidade de Dias</mat-label>
             <input
               matInput
               type="number"
               min="1"
-              max="10"
-              placeholder="Digite a quantidade de tags"
+              placeholder="Dias"
               required
-              [(ngModel)]="quantidadeTags"
-              name="quantidadeTags"
+              [(ngModel)]="quantidadeDias"
+              name="quantidadeDias"
             />
-          <!-- <mat-hint>Máximo de 10 tags por voo</mat-hint> -->
           </mat-form-field>
+        </div> -->
 
-          <div *ngIf="planoDoUsuario === '6716a54052a0be5933feebc5'">
-            <p> Selecione/Digite a quantidade de dias que deseja alugar as tags </p>
-            <mat-form-field appearance="fill">
-                <mat-label>Quantidade de Dias</mat-label>
-                <input
-                    matInput
-                    type="number"
-                    min="1"
-                    placeholder="Dias"
-                    required
-                    [(ngModel)]="quantidadeDias"
-                    name="quantidadeDias"
-                />
-            </mat-form-field>
-        </div>
-
-          <button mat-raised-button color="primary" type="submit">Prosseguir</button>
-        </form>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  
+        <button mat-raised-button color="primary" type="submit">Prosseguir</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

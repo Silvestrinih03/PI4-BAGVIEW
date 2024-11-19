@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,10 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { AuthClientService } from '../services/auth-client.service';
 import { RouterModule } from '@angular/router';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-alugar-tag',
@@ -27,31 +25,38 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   templateUrl: './alugar.component.html',
-  styleUrls: ['./alugar.component.css'] 
+  styleUrls: ['./alugar.component.css']
 })
 export class AlugarComponent implements OnInit {
-  quantidadeTags: number = 1;
-  userData: any = null;
-  quantidadeDias: number = 1;
-  planoDoUsuario: string = '';
-  userCardNumber: string = '';
+  voos: any[] = []; // Lista de voos
+  numVoo: string = ''; // Número do voo selecionado
+  quantidadeTags: number = 1; // Quantidade de tags
+  quantidadeDias: number = 1; // Quantidade de dias
+  planoDoUsuario: string = ''; // Plano do usuário
+  userData: any = null; // Dados do usuário
+  userCardNumber: string = ''; // Número do cartão do usuário
 
   constructor(private router: Router) {}
 
   async ngOnInit() {
     console.log("===============================");
     console.log('AlugarComponent inicializado');
-    
-
-    
 
     const userEmail = localStorage.getItem('userEmail');
     console.log("Email do usuário:", userEmail);
-    
 
-  
-    
-    
+    // Carregar a lista de voos (substitua a URL com a do seu backend)
+    try {
+      const response = await fetch('http://localhost:4200/api/voos'); // Supondo que sua API de voos esteja nessa URL
+      if (!response.ok) {
+        throw new Error('Erro ao buscar voos');
+      }
+      this.voos = await response.json();
+      console.log('Lista de voos:', this.voos);
+    } catch (error) {
+      console.error('Erro ao buscar voos:', error);
+    }
+
     if (userEmail) {
       try {
         const response = await fetch(`http://localhost:4200/users/${userEmail}`);
@@ -60,10 +65,8 @@ export class AlugarComponent implements OnInit {
         }
         this.userData = await response.json();
         console.log('Dados do usuário:', this.userData);
-        
-        // Verifica se existe card e se é um array com elementos
+
         if (this.userData?.card && this.userData.card.length > 0) {
-          console.log("Cartão do usuário:", this.userData.card[0].num);
           this.userCardNumber = this.userData.card[0].num;
           localStorage.setItem('userCard', this.userData.card[0].num);
         } else {
@@ -74,49 +77,24 @@ export class AlugarComponent implements OnInit {
       }
     }
 
-    // Atribuindo o plano do usuário à propriedade da classe
-    this.planoDoUsuario = this.userData?.idPlan || ''; // Atribuindo corretamente
-    console.log("Plano do usuárioooooo:", this.planoDoUsuario);
+    this.planoDoUsuario = this.userData?.idPlan || ''; 
+    console.log("Plano do usuário:", this.planoDoUsuario);
   }
 
   onSubmit() {
-
     console.log("Quantidade de Tags:", this.quantidadeTags);
     localStorage.setItem('quantidadeTags', this.quantidadeTags.toString());
 
     console.log("Quantidade de dias:", this.quantidadeDias);
     localStorage.setItem('quantidadeDias', this.quantidadeDias.toString());
 
-    //const planoDoUsuario = localStorage.getItem('plano');
-    //console.log("Plano do usuário:", planoDoUsuario);
-    const planoDoUsuario = this.userData.plano;
-    
     const userCard = localStorage.getItem('userCard');
     console.log("Cartão do usuário:", userCard);
-    console.log("NUMEROS:", this.userCardNumber);
 
-    
-    // verifica
-
-    if(this.userCardNumber === '' || this.userCardNumber === null){
+    if (!this.userCardNumber) {
       this.router.navigate(['/pagamento']);
-    }
-    else{
+    } else {
       this.router.navigate(['/possui']);
     }
-
-
-    //if (planoDoUsuario === '6716a54052a0be5933feebc5'){
-    //  if (userCard === '') {
-    //    this.router.navigate(['/pagamento']);
-    //  } else {
-    //    this.router.navigate(['/possui']);
-    //  }
-    //}
-    //else {
-    //    this.router.navigate(['/possui']);
-    //}
-
   }
 }
-
