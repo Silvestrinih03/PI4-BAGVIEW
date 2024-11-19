@@ -6,12 +6,21 @@
         <p> Selecione o número do voo </p>
         <mat-form-field appearance="fill">
           <mat-label>Número do Voo</mat-label>
-          <mat-select [(ngModel)]="numVoo" name="numVoo" required>
-            <mat-option *ngFor="let voo of voos" [value]="voo.numVoo">
+          <input 
+            matInput
+            [(ngModel)]="numVoo"
+            [matAutocomplete]="auto"
+            [formControl]="numVooControl"
+            name="numVoo"
+            required
+          />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let voo of filteredVoos" [value]="voo.numVoo">
               {{ voo.numVoo }}
             </mat-option>
-          </mat-select>
-        </mat-form-field>        
+          </mat-autocomplete>
+        </mat-form-field> 
+               
 
         <p>Quantas tags você deseja alugar?</p>
         <mat-form-field appearance="fill">

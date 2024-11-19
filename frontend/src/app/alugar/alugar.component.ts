@@ -5,24 +5,25 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-import { FormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
-
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-alugar-tag',
   standalone: true,
   imports: [
     CommonModule,
-    HttpClientModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
+    MatAutocompleteModule,
     FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     RouterModule
   ],
   templateUrl: './alugar.component.html',
@@ -30,6 +31,8 @@ import { Router } from '@angular/router';
 })
 export class AlugarComponent implements OnInit {
   voos: any[] = []; // Lista de voos
+  filteredVoos: any[] = []; // Voos filtrados
+  numVooControl: FormControl = new FormControl(); // Controle de input para o filtro de voo
   numVoo: string = ''; // Número do voo selecionado
   quantidadeTags: number = 1; // Quantidade de tags
   planoDoUsuario: string = ''; // Plano do usuário
@@ -50,10 +53,11 @@ export class AlugarComponent implements OnInit {
       }
 
       // Transformando os dados para incluir apenas o número do voo
-    const data = await response.json();
-    this.voos = data.map((voo: any) => ({ numVoo: voo.numvoo }));
+      const data = await response.json();
+      this.voos = data.map((voo: any) => ({ numVoo: voo.numvoo }));
+      this.filteredVoos = this.voos;
 
-    console.log('Lista de voos (apenas números):', this.voos);
+      console.log('Lista de voos (apenas números):', this.voos);
     } catch (error) {
       console.error('Erro ao buscar voos:', error);
     }
@@ -82,6 +86,17 @@ export class AlugarComponent implements OnInit {
 
     this.planoDoUsuario = this.userData?.idPlan || ''; 
     console.log("Plano do usuário:", this.planoDoUsuario);
+
+    // Filtro de voos por digitação
+    this.numVooControl.valueChanges.subscribe(value => {
+      this.filteredVoos = this.filterVoos(value);
+    });
+  }
+
+  // Função para filtrar os voos conforme o texto digitado
+  filterVoos(value: string) {
+    const filterValue = value.toLowerCase();
+    return this.voos.filter(voo => voo.numVoo.toLowerCase().includes(filterValue));
   }
 
   onSubmit() {
