@@ -7,11 +7,11 @@
         <mat-form-field appearance="fill">
           <mat-label>Número do Voo</mat-label>
           <mat-select [(ngModel)]="numVoo" name="numVoo" required>
-            <mat-option *ngFor="let voo of voos" [value]="voo.numvoo">
-              {{ voo.numvoo }}
+            <mat-option *ngFor="let voo of voos" [value]="voo.numVoo">
+              {{ voo.numVoo }}
             </mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field>        
 
         <p>Quantas tags você deseja alugar?</p>
         <mat-form-field appearance="fill">

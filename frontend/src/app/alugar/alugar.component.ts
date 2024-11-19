@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-alugar-tag',
   standalone: true,
@@ -31,7 +32,6 @@ export class AlugarComponent implements OnInit {
   voos: any[] = []; // Lista de voos
   numVoo: string = ''; // Número do voo selecionado
   quantidadeTags: number = 1; // Quantidade de tags
-  quantidadeDias: number = 1; // Quantidade de dias
   planoDoUsuario: string = ''; // Plano do usuário
   userData: any = null; // Dados do usuário
   userCardNumber: string = ''; // Número do cartão do usuário
@@ -41,22 +41,25 @@ export class AlugarComponent implements OnInit {
   async ngOnInit() {
     console.log("===============================");
     console.log('AlugarComponent inicializado');
-
-    const userEmail = localStorage.getItem('userEmail');
-    console.log("Email do usuário:", userEmail);
-
+    
     // Carregar a lista de voos (substitua a URL com a do seu backend)
     try {
-      const response = await fetch('http://localhost:4200/api/voos'); // Supondo que sua API de voos esteja nessa URL
+      const response = await fetch('http://localhost:4200/voos'); // Supondo que sua API de voos esteja nessa URL
       if (!response.ok) {
         throw new Error('Erro ao buscar voos');
       }
-      this.voos = await response.json();
-      console.log('Lista de voos:', this.voos);
+
+      // Transformando os dados para incluir apenas o número do voo
+    const data = await response.json();
+    this.voos = data.map((voo: any) => ({ numVoo: voo.numvoo }));
+
+    console.log('Lista de voos (apenas números):', this.voos);
     } catch (error) {
       console.error('Erro ao buscar voos:', error);
     }
 
+    const userEmail = localStorage.getItem('userEmail');
+    console.log("Email do usuário:", userEmail);
     if (userEmail) {
       try {
         const response = await fetch(`http://localhost:4200/users/${userEmail}`);
@@ -84,9 +87,6 @@ export class AlugarComponent implements OnInit {
   onSubmit() {
     console.log("Quantidade de Tags:", this.quantidadeTags);
     localStorage.setItem('quantidadeTags', this.quantidadeTags.toString());
-
-    console.log("Quantidade de dias:", this.quantidadeDias);
-    localStorage.setItem('quantidadeDias', this.quantidadeDias.toString());
 
     const userCard = localStorage.getItem('userCard');
     console.log("Cartão do usuário:", userCard);

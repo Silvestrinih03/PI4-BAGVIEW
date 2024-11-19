@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 
 export type VoosDocument = Voos & Document;
 
-@Schema({ collection: 'flights' })
+@Schema({ collection: 'voos' })
 export class Voos extends Document {
 
   @Prop({ required: true, unique: true })
