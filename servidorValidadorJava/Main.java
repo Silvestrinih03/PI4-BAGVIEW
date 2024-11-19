@@ -20,6 +20,21 @@ public class Main {
             System.out.println("É válido? " + validador.isValid());
             System.out.println("--------------------------");
         }
-    }
 
+        // Testando várias senhas
+        String[] senhas = {
+                "Senha123!", // Válida
+                "senha123", // Inválida, sem maiúscula e caractere especial
+                "Senha!123", // Válida
+                "abc123!A", // Válida
+                "12345!A", // Inválida, menos de 8 caracteres
+                "Senh@1234", // Válida
+                "s3nh@1234" // Válida
+        };
+
+        for (String senha : senhas) {
+            ValidarSenha validacao = new ValidarSenha(senha);
+            System.out.println("Senha: " + senha + " | Válida: " + validacao.isValid());
+        }
+    }
 }
