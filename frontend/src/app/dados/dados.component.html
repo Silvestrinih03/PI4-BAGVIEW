@@ -1,7 +1,6 @@
 <main class="main">
     <div class="container">
       <div class="banner">
-        <button [routerLink]="['/menu']" class="btn-acessar-menu">VOLTAR P MENU</button>
         <h1>BagView</h1>
         <h1>Alterar dados pessoais</h1>
       </div>
@@ -16,7 +15,10 @@
         <!-- Alterar front para deixar asterisco sei la -->
         <input type="text" [(ngModel)]="userData.password"/>
       </div>
-      <button mat-raised-button color="primary" (click)="onSubmit()">Alterar</button>
+      <div class="button-group">
+        <button (click)="onSubmit()">ALTERAR</button>
+        <button [routerLink]="['/menu']" class="btn-acessar-menu">VOLTAR</button>
+      </div>
       <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
     </div>
 </main>
