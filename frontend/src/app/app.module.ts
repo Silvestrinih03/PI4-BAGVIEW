@@ -27,16 +27,9 @@ import { ConfiguracoesComponent } from './configuracoes/configuracoes.component'
 import { AlugarComponent } from './alugar/alugar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
-import { ConcluidoComponent } from './concluido/concluido.component';
-import { PossuiComponent } from './possui/possui.component';
 import { CartaoComponent } from './cartao/cartao.component';
 import { DadosComponent } from './dados/dados.component';
 import { AtivarComponent } from './ativar/ativar.component';
-import { MinhasTagsComponent } from './minhas-tags/minhas-tags.component';
-import { MeusVoosComponent } from './meus-voos/meus-voos.component';
-import { AdicionarVooComponent } from './adicionar-voo/adicionar-voo.component';
-// Serviços HTTP (comentado por enquanto)
-// import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -49,14 +42,9 @@ import { AdicionarVooComponent } from './adicionar-voo/adicionar-voo.component';
     AlugarComponent,
     HomepageComponent,
     ErrorpageComponent,
-    ConcluidoComponent,
-    PossuiComponent,
     CartaoComponent,
     DadosComponent,
-    AtivarComponent,
-    MinhasTagsComponent,
-    MeusVoosComponent,
-    AdicionarVooComponent
+    AtivarComponent
   ],
   imports: [
     BrowserModule,

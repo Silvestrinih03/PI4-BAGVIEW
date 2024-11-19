@@ -1,80 +1,102 @@
-/* Estilo para o main */
+/* Estilo base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
 .main {
-  background-color: #ffffff;
-  padding: 20px;
-  text-align: center;
-}
-
-/* Estilo para o banner */
-.banner {
-  background-color: #f8f9fa;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-/* Estilo para o contêiner de botões */
-.opcoes {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 colunas */
-  gap: 20px; /* Espaçamento entre os botões */
-  margin: 20px 0;
-}
-
-/* Estilo para os botões */
-/* .btn-acessar-configuracoes,
-.btn-acessar-tags,
-.btn-acessar-alugar,
-.btn-acessar-ativar {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 15px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.btn-acessar-configuracoes:hover,
-.btn-acessar-tags:hover,
-.btn-acessar-alugar:hover,
-.btn-acessar-ativar:hover {
-  background-color: #0056b3;
-} */
-
-#map {
-  height: 400px;
-  width: 100%;
-  margin: 20px 0;
-  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f4f8; /* Fundo suave */
 }
 
 .container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 95%; /* Maior largura disponível */
+  max-width: 1200px; /* Limitado a 1200px */
+  background-color: #ffffff; /* Fundo branco */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra mais marcante */
+  animation: fadeIn 1s ease-in-out;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+/* Banner */
+.banner {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.custom-map-control-button {
-  background-color: #fff;
-  border: 0;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
-  margin: 10px;
-  padding: 0 0.5em;
-  font: 400 18px Roboto, Arial, sans-serif;
-  overflow: hidden;
-  height: 40px;
+.banner h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2c3e50; /* Azul escuro */
+  margin-bottom: 0.5rem;
+}
+
+.banner p {
+  font-size: 1.5rem;
+  color: #34495e; /* Cinza escuro */
+}
+
+/* Botões de opções */
+.opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.opcoes button {
+  background-color: #2ecc71; /* Verde */
+  color: #ffffff; /* Texto branco */
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Ocupa toda a largura do container */
 }
 
-.custom-map-control-button:hover {
-  background: rgb(235, 235, 235);
+.opcoes button:hover {
+  background-color: #27ae60; /* Verde mais escuro */
+  transform: translateY(-2px);
+}
+
+.opcoes button:active {
+  background-color: #219150;
+  transform: translateY(2px);
+}
+
+.opcoes button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.5);
+}
+
+/* Mapa */
+#map {
+  margin-top: 2rem;
+  height: 400px;
+  background-color: #e8e8e8; /* Fundo cinza claro */
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Animação */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
