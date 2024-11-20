@@ -1,0 +1,29 @@
+<div class="main">
+  <div class="container">
+    <div class="banner">
+      <h1>BagView</h1>
+      <p>HISTÓRICO DE COMPRAS</p>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Data do Aluguel</th>
+          <th>Data de Finalização</th>
+          <th>Condição</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <!-- <tbody>
+        <tr *ngFor="let registro of historicoCompras">
+          <td>{{ registro.retirada ? (registro.retirada | date: 'dd/MM/yyyy') : 'N/A' }}</td>
+          <td>{{ registro.devolucao ? (registro.devolucao | date: 'dd/MM/yyyy') : 'N/A' }}</td>
+          <td>{{ registro.condicao || 'Sem condição' }}</td>
+          <td>
+            <button (click)="onAcaoClick(registro)">Ver detalhes</button>
+          </td>
+        </tr>
+      </tbody> -->
+    </table>
+  </div>
+</div>

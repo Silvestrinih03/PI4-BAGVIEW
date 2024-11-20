@@ -23,4 +23,13 @@ export class HistoricoComprasService {
   async findAll(): Promise<HistoricoCompras[]> {
     return this.historicoComprasModel.find().exec();
   }
+
+  async findByUserId(userId: string): Promise<HistoricoCompras[]> {
+    try {
+      return this.historicoComprasModel.find({ userId }).exec();
+    } catch (error) {
+      console.error('Erro ao buscar histórico de compras:', error);
+      throw error;
+    }
+  }
 }

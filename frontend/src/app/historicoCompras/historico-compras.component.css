@@ -1,0 +1,91 @@
+/* Estilo base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f0f4f8;
+}
+
+.container {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 80%; /* Alterado para ocupar 80% da largura da tela */
+  width: 90%;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.banner {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #34495e;
+}
+
+.banner h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.banner p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #34495e;
+}
+
+/* Estilo da tabela */
+.table {
+  width: 100%;
+  border-collapse: collapse; /* Remove espaços entre as bordas */
+  margin-top: 1rem;
+  border: 1px solid #ddd; /* Adiciona borda à tabela */
+}
+
+.table th, .table td {
+  padding: 0.8rem;
+  text-align: center; /* Centraliza o texto */
+  border: 1px solid #ddd; /* Adiciona borda ao cabeçalho e às células */
+}
+
+.table th {
+  background-color: #2ecc71;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Estilo do botão */
+button {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #27ae60;
+}
+
+button:active {
+  background-color: #219150;
+}

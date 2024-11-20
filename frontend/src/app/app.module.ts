@@ -29,7 +29,9 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { CartaoComponent } from './cartao/cartao.component';
 import { DadosComponent } from './dados/dados.component';
-import { AtivarComponent } from './ativar/ativar.component';
+import { HistoricoComprasComponent } from './historicoCompras/historico-compras.component';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { AtivarComponent } from './ativar/ativar.component';
     ErrorpageComponent,
     CartaoComponent,
     DadosComponent,
-    AtivarComponent
+    HistoricoComprasComponent,
+    CommonModule
   ],
   imports: [
     BrowserModule,
