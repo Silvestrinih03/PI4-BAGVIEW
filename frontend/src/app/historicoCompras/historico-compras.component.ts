@@ -31,23 +31,27 @@ export class HistoricoComprasComponent implements OnInit {
       const response = await fetch(`http://localhost:4200/users/${userEmail}`);
       if (!response.ok) throw new Error('Erro ao buscar dados do usuário');
 
-      this.idUser = await response.json();
-      this.idUser = this.idUser.id;
+      const userData = await response.json();
+      this.idUser = userData._id;
+      console.log('ID do usuário:', this.idUser);
     } catch (error) {
       console.error('Erro ao carregar dados do usuário:', error);
     }
   }
 
-  // Função para buscar o histórico de compras do usuário logado
-  private async fetchHistoricoCompras() {
-    if (this.idUser == null) return;
-  
+   // Função para buscar o histórico de compras do usuário logado
+   private async fetchHistoricoCompras() {
+    if (!this.idUser) {
+      console.log('ID do usuário não encontrado');
+      return; // Se o idUser for nulo, não faz a requisição
+    }
+
+    console.log('Buscando histórico de compras para o usuário:', this.idUser);
     this.http
       .get<any[]>(`http://localhost:4200/historicoCompras/${this.idUser}`)
       .subscribe({
         next: (data) => {
-          // Agora a variável historicoCompras conterá os dados diretamente, sem modificações
-          this.historicoCompras = data;
+          this.historicoCompras = data; // Atribui o histórico de compras retornado pela API
           console.log(this.historicoCompras); // Verifique os dados no console
         },
         error: (err) => {
@@ -56,6 +60,7 @@ export class HistoricoComprasComponent implements OnInit {
       });
   }
 
+  // Função para exibir os detalhes do registro de compra
   onAcaoClick(registro: any): void {
     alert(`Detalhes do registro: \nData Aluguel: ${registro.retirada}\nData Finalização: ${registro.devolucao}\nCondição: ${registro.condicao}`);
   }
