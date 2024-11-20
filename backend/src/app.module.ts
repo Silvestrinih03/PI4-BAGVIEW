@@ -9,6 +9,7 @@ import { DadosModule } from './dados/dados.module';
 import { AlugarModule } from './alugar/alugar.module';
 import { TagsModule } from './tags/tags.module';
 import { HistoricoComprasModule } from './historicoCompras/historico-compras.module';
+import { CondicoesModule } from './Condicoes/condicoes.module'
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { HistoricoComprasModule } from './historicoCompras/historico-compras.mod
     DadosModule,
     AlugarModule,
     TagsModule,
-    HistoricoComprasModule
+    HistoricoComprasModule,
+    CondicoesModule
   ],
   providers: [],
 })
