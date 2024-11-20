@@ -7,6 +7,7 @@ import { PagamentoModule } from './pagamento/pagamento.module';
 import { VoosModule } from './voos/voos.module';
 import { DadosModule } from './dados/dados.module';
 import { AlugarModule } from './alugar/alugar.module';
+import { TagsModule } from './tags/tags.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { AlugarModule } from './alugar/alugar.module';
     VoosModule,
     DadosModule,
     AlugarModule,
+    TagsModule
   ],
   providers: [],
 })
