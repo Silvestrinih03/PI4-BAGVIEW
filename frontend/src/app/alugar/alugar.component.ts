@@ -100,21 +100,30 @@ export class AlugarComponent implements OnInit {
         local: origem,
         status: false, // Apenas tags não alugadas
       };
-
+  
       console.log(`Verificando disponibilidade com filtros:`, filters);
-
+  
       const response = await this.http.post<any[]>('http://localhost:4200/tags/filter', filters).toPromise();
       const tagsDisponiveis = response || [];
-
+  
       if (tagsDisponiveis.length < quantidade) {
         const mensagemErro = `Desculpe, há apenas ${tagsDisponiveis.length} tag(s) disponível(is) neste local de partida`;
         alert(mensagemErro);
         console.error(mensagemErro);
         return false;
       }
-
-      alert('Há tags disponíveis!');
+  
       console.log('Tags disponíveis:', tagsDisponiveis);
+  
+      // Verifica o plano do usuário
+      if (this.planoDoUsuario === '6716a54052a0be5933feebc4') {
+        alert(
+          'Aluguel finalizado!\nVocê já pode retirar as tags no aeroporto!\nIMPORTANTE: Após retirar a tag é necessário ativá-la no menu "Histórico de Compras".'
+        );
+      } else {
+        alert('Plano temporário');
+      }
+  
       return true;
     } catch (error) {
       console.error('Erro ao verificar disponibilidade de tags:', error);
