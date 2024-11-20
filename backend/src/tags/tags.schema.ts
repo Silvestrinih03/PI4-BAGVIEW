@@ -7,7 +7,7 @@ export type TagsDocument = Tags & Document;
 export class Tags extends Document {
 
   @Prop({ required: true })
-  status: string;
+  status: boolean;
 
   @Prop({ required: true})
   localizacao: string;

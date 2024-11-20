@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
 import { TagsService } from './tags.service';
 
 
@@ -11,4 +11,9 @@ export class TagsController {
     return this.tagsService.findAll();
   }
 
+  // Nova rota para buscar tags com filtros JSON
+  @Post('filter')
+  async findByFilters(@Body() filters: Record<string, any>) {
+    return this.tagsService.findByFilters(filters);
+  }
 }
