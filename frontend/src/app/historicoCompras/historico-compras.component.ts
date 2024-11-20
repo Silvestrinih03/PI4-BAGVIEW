@@ -16,7 +16,9 @@ import { CommonModule } from '@angular/common';
 export class HistoricoComprasComponent implements OnInit {
   historicoCompras: any[] = []; // Array para armazenar os registros do histórico de compras
   idUser: any = null; // Dados do usuário
-  condicoes: any;
+  condicoes: any[] = [];
+  condicoesMap: { [key: string]: string } = {};
+
 
   constructor(private http: HttpClient) {}
 
@@ -73,16 +75,25 @@ export class HistoricoComprasComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.condicoes = data; // Atribui o histórico de compras retornado pela API
-          console.log(this.condicoes); // Verifique os dados no console
+          this.condicoes.forEach((condicao) => {
+            this.condicoesMap[condicao._id] = condicao.descricao; // Mapeando o ID para a descrição
+          });
+          console.log(this.condicoesMap); // Verifique os dados no console
         },
         error: (err) => {
           console.error('Erro ao buscar condições', err);
         }
       });
   }
+  
+  // Método para obter a descrição da condição com base no ID
+  getCondicaoDescricao(condicaoId: string): string {
+    return this.condicoesMap[condicaoId] || 'Sem condição';
+  }
 
   // Função para exibir os detalhes do registro de compra
   onAcaoClick(registro: any): void {
     alert(`Detalhes do registro: \nData Aluguel: ${registro.retirada}\nData Finalização: ${registro.devolucao}\nCondição: ${registro.condicao}`);
   }
+
 }

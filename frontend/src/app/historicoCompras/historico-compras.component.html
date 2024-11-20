@@ -23,10 +23,17 @@
           <td>{{ registro.devolucao ? (registro.devolucao | date: 'dd/MM/yyyy') : 'N/A' }}</td>
           
           <!-- Exibindo a condição, ou N/A se não houver valor -->
-          <td>{{ registro.condicaoId || 'Sem condição' }}</td>
+          <td>{{ getCondicaoDescricao(registro.condicaoId) }}</td>
 
           <td>
-            <button (click)="onAcaoClick(registro)">Ver detalhes</button>
+            <!-- Botão 'Ativar tags' -->
+            <button *ngIf="registro.condicaoId === '673d46d835c68f866f8cdbeb'" (click)="onAcaoClick(registro)">Ativar tags</button>
+            
+            <!-- Botão 'Encerrar Aluguel' -->
+            <button *ngIf="registro.condicaoId === '673d46d835c68f866f8cdbec'" (click)="onAcaoClick(registro)">Encerrar Aluguel</button>
+            
+            <!-- Nenhum botão se a condição for '673d46d835c68f866f8cdbed' -->
+            <p *ngIf="registro.condicaoId === '673d46d835c68f866f8cdbed'" class="sem-acao-texto"></p>
           </td>
         </tr>
       </tbody>
