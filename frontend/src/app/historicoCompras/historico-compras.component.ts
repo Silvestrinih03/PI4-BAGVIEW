@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'; // Importe o HttpClientModule
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-historico-compras',
   standalone: true,
   imports: [
-    HttpClientModule
+    HttpClientModule,
+    CommonModule 
   ],
   templateUrl: './historico-compras.component.html',
   styleUrls: ['./historico-compras.component.css']

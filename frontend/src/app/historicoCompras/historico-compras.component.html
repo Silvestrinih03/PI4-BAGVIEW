@@ -14,16 +14,22 @@
           <th>Ação</th>
         </tr>
       </thead>
-      <!-- <tbody>
+      <tbody>
         <tr *ngFor="let registro of historicoCompras">
+          <!-- Exibindo a data de retirada, formatada se houver, ou N/A -->
           <td>{{ registro.retirada ? (registro.retirada | date: 'dd/MM/yyyy') : 'N/A' }}</td>
+          
+          <!-- Exibindo a data de devolução, formatada se houver, ou N/A -->
           <td>{{ registro.devolucao ? (registro.devolucao | date: 'dd/MM/yyyy') : 'N/A' }}</td>
-          <td>{{ registro.condicao || 'Sem condição' }}</td>
+          
+          <!-- Exibindo a condição, ou N/A se não houver valor -->
+          <td>{{ registro.condicaoId || 'Sem condição' }}</td>
+
           <td>
             <button (click)="onAcaoClick(registro)">Ver detalhes</button>
           </td>
         </tr>
-      </tbody> -->
+      </tbody>
     </table>
   </div>
 </div>
