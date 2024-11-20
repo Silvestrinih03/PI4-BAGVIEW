@@ -11,10 +11,9 @@ export class CondicoesController {
     return this.condicoesService.findAll();
   }
 
-
-  // @Get(':numVoo')
-  // findOne(@Param('numVoo') numVoo: string) {
-  //   return this.voosService.findOne(numVoo);
-  // }
-
+  // Nova rota para buscar uma condição pelo id
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    return this.condicoesService.findOne(id);
+  }
 }
