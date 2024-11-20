@@ -16,11 +16,13 @@ import { CommonModule } from '@angular/common';
 export class HistoricoComprasComponent implements OnInit {
   historicoCompras: any[] = []; // Array para armazenar os registros do histórico de compras
   idUser: any = null; // Dados do usuário
+  condicoes: any;
 
   constructor(private http: HttpClient) {}
 
   async ngOnInit() {
     await this.carregarUsuario();
+    await this.fetchCondicoes();
     await this.fetchHistoricoCompras();
   }
 
@@ -58,6 +60,23 @@ export class HistoricoComprasComponent implements OnInit {
         },
         error: (err) => {
           console.error('Erro ao buscar histórico de compras:', err);
+        }
+      });
+  }
+
+  // Função para buscar as condicoes do banco
+  private async fetchCondicoes() {
+
+    console.log('Buscando condições cadastradas no banco');
+    this.http
+      .get<any[]>(`http://localhost:4200/condicoes`)
+      .subscribe({
+        next: (data) => {
+          this.condicoes = data; // Atribui o histórico de compras retornado pela API
+          console.log(this.condicoes); // Verifique os dados no console
+        },
+        error: (err) => {
+          console.error('Erro ao buscar condições', err);
         }
       });
   }
