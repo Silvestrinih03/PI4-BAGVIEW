@@ -8,6 +8,7 @@ import { VoosModule } from './voos/voos.module';
 import { DadosModule } from './dados/dados.module';
 import { AlugarModule } from './alugar/alugar.module';
 import { TagsModule } from './tags/tags.module';
+import { HistoricoComprasModule } from './historicoCompras/historico-compras.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { TagsModule } from './tags/tags.module';
     VoosModule,
     DadosModule,
     AlugarModule,
-    TagsModule
+    TagsModule,
+    HistoricoComprasModule
   ],
   providers: [],
 })

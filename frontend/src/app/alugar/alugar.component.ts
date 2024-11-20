@@ -117,9 +117,21 @@ export class AlugarComponent implements OnInit {
   
       // Verifica o plano do usuário
       if (this.planoDoUsuario === '6716a54052a0be5933feebc4') {
+        const historicoCompra = {
+          userId: this.userData?._id, // Id do usuário logado
+          retirada: '',              // Retirada ainda não realizada
+          devolucao: '',             // Devolução ainda não realizada
+          condicaoId: '673d46d835c68f866f8cdbeb', // Condição definida
+        };
+  
+        // Envia os dados para o banco de histórico de compras
+        await this.http.post('http://localhost:4200/historicoCompras', historicoCompra).toPromise();
+        console.log('Dados enviados para historicoCompras:', historicoCompra);
+
         alert(
           'Aluguel finalizado!\nVocê já pode retirar as tags no aeroporto!\nIMPORTANTE: Após retirar a tag é necessário ativá-la no menu "Histórico de Compras".'
         );
+        this.router.navigate(['/menu']);
       } else {
         alert('Plano temporário');
       }
