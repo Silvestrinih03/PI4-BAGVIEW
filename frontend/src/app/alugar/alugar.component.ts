@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule, Router } from '@angular/router';
 
 @Component({
@@ -24,87 +24,128 @@ import { RouterModule, Router } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
   ],
   templateUrl: './alugar.component.html',
-  styleUrls: ['./alugar.component.css']
+  styleUrls: ['./alugar.component.css'],
 })
 export class AlugarComponent implements OnInit {
-  voos: any[] = []; // Lista de voos
-  filteredVoos: any[] = []; // Voos filtrados
-  numVooControl: FormControl = new FormControl(); // Controle de input para o filtro de voo
+  voos: { numVoo: string; origem: string }[] = []; // Lista de voos
+  filteredVoos: { numVoo: string; origem: string }[] = []; // Voos filtrados
+  numVooControl: FormControl = new FormControl(''); // Controle de input para o filtro de voo
   numVoo: string = ''; // Número do voo selecionado
-  quantidadeTags: number = 1; // Quantidade de tags
+  quantidadeTags: number = 1; // Quantidade de tags a alugar
   planoDoUsuario: string = ''; // Plano do usuário
   userData: any = null; // Dados do usuário
   userCardNumber: string = ''; // Número do cartão do usuário
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   async ngOnInit() {
-    console.log("===============================");
-    console.log('AlugarComponent inicializado');
-    
-    // Carregar a lista de voos (substitua a URL com a do seu backend)
+    console.log('Inicializando AlugarComponent...');
+    await this.carregarVoos();
+    await this.carregarUsuario();
+    this.setupFiltroVoos();
+  }
+
+  // Função para carregar lista de voos
+  private async carregarVoos() {
     try {
-      const response = await fetch('http://localhost:4200/voos'); // Supondo que sua API de voos esteja nessa URL
-      if (!response.ok) {
-        throw new Error('Erro ao buscar voos');
-      }
+      const response = await fetch('http://localhost:4200/voos');
+      if (!response.ok) throw new Error('Erro ao buscar voos');
 
-      // Transformando os dados para incluir apenas o número do voo
       const data = await response.json();
-      this.voos = data.map((voo: any) => ({ numVoo: voo.numvoo }));
-      this.filteredVoos = this.voos;
-
-      console.log('Lista de voos (apenas números):', this.voos);
+      this.voos = data.map((voo: any) => ({ numVoo: voo.numvoo, origem: voo.origem }));
+      this.filteredVoos = [...this.voos]; // Inicialmente todos os voos estão disponíveis
+      console.log('Voos carregados:', this.voos);
     } catch (error) {
-      console.error('Erro ao buscar voos:', error);
+      console.error('Erro ao carregar voos:', error);
     }
+  }
 
+  // Função para carregar informações do usuário
+  private async carregarUsuario() {
     const userEmail = localStorage.getItem('userEmail');
-    console.log("Email do usuário:", userEmail);
-    if (userEmail) {
-      try {
-        const response = await fetch(`http://localhost:4200/users/${userEmail}`);
-        if (!response.ok) {
-          throw new Error('Erro ao buscar usuário');
-        }
-        this.userData = await response.json();
-        console.log('Dados do usuário:', this.userData);
+    if (!userEmail) return;
 
-        if (this.userData?.card && this.userData.card.length > 0) {
-          this.userCardNumber = this.userData.card[0].num;
-          localStorage.setItem('userCard', this.userData.card[0].num);
-        } else {
-          console.log("Usuário não possui cartão cadastrado");
-        }
-      } catch (error) {
-        console.error('Erro ao buscar dados do usuário:', error);
-      }
+    try {
+      const response = await fetch(`http://localhost:4200/users/${userEmail}`);
+      if (!response.ok) throw new Error('Erro ao buscar dados do usuário');
+
+      this.userData = await response.json();
+      this.userCardNumber = this.userData?.card?.[0]?.num || '';
+      this.planoDoUsuario = this.userData?.idPlan || '';
+      localStorage.setItem('userCard', this.userCardNumber);
+
+      console.log('Dados do usuário carregados:', this.userData);
+    } catch (error) {
+      console.error('Erro ao carregar dados do usuário:', error);
     }
+  }
 
-    this.planoDoUsuario = this.userData?.idPlan || ''; 
-    console.log("Plano do usuário:", this.planoDoUsuario);
-
-    // Filtro de voos por digitação
-    this.numVooControl.valueChanges.subscribe(value => {
-      this.filteredVoos = this.filterVoos(value);
+  // Configura o filtro de voos ao digitar
+  private setupFiltroVoos() {
+    this.numVooControl.valueChanges.subscribe((value) => {
+      const filterValue = (value || '').toLowerCase();
+      this.filteredVoos = this.voos.filter((voo) =>
+        voo.numVoo.toLowerCase().includes(filterValue)
+      );
     });
   }
 
-  // Função para filtrar os voos conforme o texto digitado
-  filterVoos(value: string) {
-    const filterValue = value.toLowerCase();
-    return this.voos.filter(voo => voo.numVoo.toLowerCase().includes(filterValue));
+  // Função para verificar a disponibilidade de tags
+  private async verificarDisponibilidadeTags(origem: string, quantidade: number) {
+    try {
+      const filters = {
+        local: origem,
+        status: false, // Apenas tags não alugadas
+      };
+
+      console.log(`Verificando disponibilidade com filtros:`, filters);
+
+      const response = await this.http.post<any[]>('http://localhost:4200/tags/filter', filters).toPromise();
+      const tagsDisponiveis = response || [];
+
+      if (tagsDisponiveis.length < quantidade) {
+        const mensagemErro = `Desculpe, há apenas ${tagsDisponiveis.length} tag(s) disponível(is) neste local de partida`;
+        alert(mensagemErro);
+        console.error(mensagemErro);
+        return false;
+      }
+
+      alert('Há tags disponíveis!');
+      console.log('Tags disponíveis:', tagsDisponiveis);
+      return true;
+    } catch (error) {
+      console.error('Erro ao verificar disponibilidade de tags:', error);
+      alert('Erro ao verificar disponibilidade de tags. Tente novamente mais tarde.');
+      return false;
+    }
   }
 
-  onSubmit() {
-    console.log("Quantidade de Tags:", this.quantidadeTags);
-    localStorage.setItem('quantidadeTags', this.quantidadeTags.toString());
+  // Ação ao enviar o formulário
+  async onSubmit() {
+    console.log('Formulário enviado:');
+    console.log('Número do Voo:', this.numVoo);
+    console.log('Quantidade de Tags:', this.quantidadeTags);
 
-    const userCard = localStorage.getItem('userCard');
-    console.log("Cartão do usuário:", userCard);
+    // Encontra o voo correspondente
+    const vooSelecionado = this.voos.find((voo) => voo.numVoo === this.numVoo);
+    if (!vooSelecionado) {
+      alert('Voo não encontrado! Verifique o número do voo.');
+      return;
+    }
+
+    const origem = vooSelecionado.origem;
+
+    // Verifica a disponibilidade de tags
+    const tagsDisponiveis = await this.verificarDisponibilidadeTags(origem, this.quantidadeTags);
+    if (!tagsDisponiveis) {
+      return; // Interrompe o fluxo caso não haja tags suficientes
+    }
+
+    // Continua o fluxo normal
+    localStorage.setItem('quantidadeTags', this.quantidadeTags.toString());
 
     if (!this.userCardNumber) {
       this.router.navigate(['/pagamento']);
