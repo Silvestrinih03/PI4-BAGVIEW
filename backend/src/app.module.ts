@@ -10,6 +10,7 @@ import { AlugarModule } from './alugar/alugar.module';
 import { TagsModule } from './tags/tags.module';
 import { HistoricoComprasModule } from './historicoCompras/historico-compras.module';
 import { CondicoesModule } from './Condicoes/condicoes.module'
+import { AeroportosModule } from './aeroportos/aeroportos.module';
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import { CondicoesModule } from './Condicoes/condicoes.module'
     AlugarModule,
     TagsModule,
     HistoricoComprasModule,
-    CondicoesModule
+    CondicoesModule,
+    AeroportosModule
   ],
   providers: [],
 })

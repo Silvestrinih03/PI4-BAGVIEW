@@ -6,11 +6,14 @@ export class HistoricoCompras extends Document {
   @Prop({ required: true })
   userId: string;
 
-  @Prop({ type: Date, default: null })
-  retirada: Date | null;
+  @Prop({ type: String, default: null })
+  origem: String | null;
+
+  @Prop({ type: String, default: null })
+  destino: String | null;
   
   @Prop({ type: Date, default: null })
-  devolucao: Date | null;
+  data: Date | null;
   
   @Prop({ required: true })
   condicaoId: string;
