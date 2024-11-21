@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body, Param } from '@nestjs/common';
+import { Controller, Post, Get, Body, Param, Put } from '@nestjs/common';
 import { HistoricoComprasService } from './historico-compras.service';
 import { HistoricoCompras } from './historico-compras.schema';
 
@@ -20,5 +20,10 @@ export class HistoricoComprasController {
   @Get(':userId')
   async findByUserId(@Param('userId') userId: string): Promise<HistoricoCompras[]> {
     return this.historicoComprasService.findByUserId(userId);
+  }
+
+  @Put(':id')
+  async updateRegistro(@Param('id') id: string, @Body() registroAtualizado: any) {
+    return this.historicoComprasService.updateRegistro(id, registroAtualizado);
   }
 }

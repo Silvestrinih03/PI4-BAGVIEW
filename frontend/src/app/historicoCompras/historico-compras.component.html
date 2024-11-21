@@ -27,10 +27,10 @@
 
           <td>
             <!-- Botão 'Ativar tags' -->
-            <button *ngIf="registro.condicaoId === '673d46d835c68f866f8cdbeb'" (click)="onAcaoClick(registro)">Ativar tags</button>
+            <button *ngIf="registro.condicaoId === '673d46d835c68f866f8cdbeb'" (click)="onAlterarCondicao(registro, 'confirmacao')">Ativar tags</button>
             
             <!-- Botão 'Encerrar Aluguel' -->
-            <button *ngIf="registro.condicaoId === '673d46d835c68f866f8cdbec'" (click)="onAcaoClick(registro)">Encerrar Aluguel</button>
+            <button *ngIf="registro.condicaoId === '673d46d835c68f866f8cdbec'" (click)="onAlterarCondicao(registro, 'encerramento')">Encerrar Aluguel</button>
             
             <!-- Nenhum botão se a condição for '673d46d835c68f866f8cdbed' -->
             <p *ngIf="registro.condicaoId === '673d46d835c68f866f8cdbed'" class="sem-acao-texto"></p>
@@ -38,5 +38,28 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<!-- Modal de Confirmação -->
+<div *ngIf="showModal && modalType === 'confirmacao'" class="modal">
+  <div class="modal-content">
+    <h2>Você confirma que já retirou suas tags no aeroporto de partida?</h2>
+    <div class="modal-actions">
+      <button (click)="onAtivar()">Confirmar</button>
+      <button (click)="onCancelar()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Encerramento -->
+<div *ngIf="showModal && modalType === 'encerramento'" class="modal">
+  <div class="modal-content">
+    <h2>Você tem certeza de que deseja finalizar o aluguel?</h2>
+    <p>Ao confirmar, você declara que chegou ao seu destino final. <br><br> Esta ação é irreversível e, após a finalização, o valor do caução será devolvido automaticamente.</p>
+    <div class="modal-actions">
+      <button (click)="onFinalizar()">Confirmar</button>
+      <button (click)="onCancelar()">Cancelar</button>
+    </div>
   </div>
 </div>

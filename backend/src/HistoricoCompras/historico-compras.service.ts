@@ -32,4 +32,8 @@ export class HistoricoComprasService {
       throw error;
     }
   }
+
+  async updateRegistro(id: string, registroAtualizado: any): Promise<HistoricoCompras> {
+    return this.historicoComprasModel.findByIdAndUpdate(id, registroAtualizado, { new: true });
+  }
 }
