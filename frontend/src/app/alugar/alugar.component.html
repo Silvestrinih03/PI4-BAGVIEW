@@ -37,24 +37,22 @@
           />
         </mat-form-field>
 
-        <!-- <div *ngIf="planoDoUsuario === '6716a54052a0be5933feebc5'">
-          <p> Selecione/Digite a quantidade de dias que deseja alugar as tags </p>
-          <mat-form-field appearance="fill">
-            <mat-label>Quantidade de Dias</mat-label>
-            <input
-              matInput
-              type="number"
-              min="1"
-              placeholder="Dias"
-              required
-              [(ngModel)]="quantidadeDias"
-              name="quantidadeDias"
-            />
-          </mat-form-field>
-        </div> -->
-
         <button mat-raised-button color="primary" type="submit">Prosseguir</button>
       </form>
     </mat-card-content>
   </mat-card>
+</div>
+
+
+<!-- Modal de Finalização -->
+<div *ngIf="showModalFinalizacao" class="modal-overlay">
+  <div class="modal">
+    <h2>Aluguel Finalizado!</h2>
+    <p>Você já pode retirar as tags no aeroporto!</p>
+    <p>IMPORTANTE: Após retirar a tag, ative-a no menu "Histórico de Compras".</p>
+    <div class="modal-actions">
+      <button mat-button color="primary" (click)="confirmarFinalizacao()">Confirmar</button>
+      <button mat-button color="warn" (click)="cancelarFinalizacao()">Cancelar</button>
+    </div>
+  </div>
 </div>

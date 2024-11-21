@@ -38,6 +38,7 @@ export class AlugarComponent implements OnInit {
   planoDoUsuario: string = ''; // Plano do usuário
   userData: any = null; // Dados do usuário
   userCardNumber: string = ''; // Número do cartão do usuário
+  showModalFinalizacao: boolean = false;
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -128,10 +129,8 @@ export class AlugarComponent implements OnInit {
         await this.http.post('http://localhost:4200/historicoCompras', historicoCompra).toPromise();
         console.log('Dados enviados para historicoCompras:', historicoCompra);
 
-        alert(
-          'Aluguel finalizado!\nVocê já pode retirar as tags no aeroporto!\nIMPORTANTE: Após retirar a tag é necessário ativá-la no menu "Histórico de Compras".'
-        );
-        this.router.navigate(['/menu']);
+        // Exibe o modal de confirmação
+        this.showModalFinalizacao = true;
       } else {
         alert('Plano temporário');
       }
@@ -142,6 +141,16 @@ export class AlugarComponent implements OnInit {
       alert('Erro ao verificar disponibilidade de tags. Tente novamente mais tarde.');
       return false;
     }
+  }
+
+  // Fecha o modal e redireciona para o menu
+  confirmarFinalizacao(): void {
+    this.showModalFinalizacao = false; // Fecha o modal
+    this.router.navigate(['/menu']); // Redireciona para o menu
+  }
+
+  cancelarFinalizacao(): void {
+    this.showModalFinalizacao = false; // Fecha o modal
   }
 
   // Ação ao enviar o formulário

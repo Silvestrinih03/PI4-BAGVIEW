@@ -191,12 +191,12 @@ button:disabled {
 }
 
 .modal-actions button:first-child {
-  background-color: #007bff; /* Azul */
+  background-color: #2ecc71;
   color: #fff;
 }
 
 .modal-actions button:first-child:hover {
-  background-color: #0056b3;
+  background-color: #27ae60;
 }
 
 .modal-actions button:last-child {

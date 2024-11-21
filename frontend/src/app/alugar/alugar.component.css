@@ -35,3 +35,79 @@ button {
   width: 100%;
   margin-top: 15px;
 }
+
+/* Estilo geral do modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Conteúdo do modal */
+.modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Título do modal */
+.modal h2 {
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+/* Estilo do texto no modal */
+.modal p {
+  font-size: 16px;
+  color: #555;
+  margin: 10px 0;
+}
+
+/* Botões do modal */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Botão de confirmação */
+.modal-actions button:first-child {
+  background-color: #2ecc71; /* Azul */
+  color: #fff;
+}
+
+.modal-actions button:first-child:hover {
+  background-color: #27ae60;
+}
+
+/* Botão de cancelamento */
+.modal-actions button:last-child {
+  background-color: #f5f5f5; /* Cinza claro */
+  color: #333;
+}
+
+.modal-actions button:last-child:hover {
+  background-color: #e0e0e0;
+}
