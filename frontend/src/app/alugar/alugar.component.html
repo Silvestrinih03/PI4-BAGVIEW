@@ -43,6 +43,17 @@
   </mat-card>
 </div>
 
+<!-- Modal de Caução -->
+<div *ngIf="showModalCaucao" class="modal-overlay">
+  <div class="modal">
+    <h2>Atenção!</h2>
+    <p><strong>Ao confirmar o aluguel, será cobrado um caução de R$50 reais por tag, totalizando R${{ quantidadeTags * 50 }}.</strong></p>
+    <div class="modal-actions">
+      <button mat-button color="primary" (click)="confirmarAluguel()">Confirmar</button>
+      <button mat-button color="warn" (click)="cancelarModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
 
 <!-- Modal de Finalização -->
 <div *ngIf="showModalFinalizacao" class="modal-overlay">
@@ -51,8 +62,7 @@
     <p>Você já pode retirar as tags no aeroporto!</p>
     <p>IMPORTANTE: Após retirar a tag, ative-a no menu "Histórico de Compras".</p>
     <div class="modal-actions">
-      <button mat-button color="primary" (click)="confirmarFinalizacao()">Confirmar</button>
-      <button mat-button color="warn" (click)="cancelarFinalizacao()">Cancelar</button>
+      <button mat-button (click)="confirmarFinalizacao()">Fechar</button>
     </div>
   </div>
 </div>

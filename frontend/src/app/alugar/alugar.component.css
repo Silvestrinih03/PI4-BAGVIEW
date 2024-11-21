@@ -92,9 +92,8 @@ button {
   transition: background-color 0.3s ease;
 }
 
-/* Botão de confirmação */
 .modal-actions button:first-child {
-  background-color: #2ecc71; /* Azul */
+  background-color: #2ecc71;
   color: #fff;
 }
 
@@ -102,7 +101,6 @@ button {
   background-color: #27ae60;
 }
 
-/* Botão de cancelamento */
 .modal-actions button:last-child {
   background-color: #f5f5f5; /* Cinza claro */
   color: #333;

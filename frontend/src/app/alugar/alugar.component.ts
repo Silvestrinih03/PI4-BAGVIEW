@@ -39,6 +39,7 @@ export class AlugarComponent implements OnInit {
   userData: any = null; // Dados do usuário
   userCardNumber: string = ''; // Número do cartão do usuário
   showModalFinalizacao: boolean = false;
+  showModalCaucao: boolean = false;
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -118,19 +119,7 @@ export class AlugarComponent implements OnInit {
   
       // Verifica o plano do usuário
       if (this.planoDoUsuario === '6716a54052a0be5933feebc4') {
-        const historicoCompra = {
-          userId: this.userData?._id, // Id do usuário logado
-          retirada: '',              // Retirada ainda não realizada
-          devolucao: '',             // Devolução ainda não realizada
-          condicaoId: '673d46d835c68f866f8cdbeb', // Condição definida
-        };
-  
-        // Envia os dados para o banco de histórico de compras
-        await this.http.post('http://localhost:4200/historicoCompras', historicoCompra).toPromise();
-        console.log('Dados enviados para historicoCompras:', historicoCompra);
-
-        // Exibe o modal de confirmação
-        this.showModalFinalizacao = true;
+        this.showModalCaucao = true;
       } else {
         alert('Plano temporário');
       }
@@ -143,14 +132,42 @@ export class AlugarComponent implements OnInit {
     }
   }
 
+  // Função para confirmar o aluguel e gerar o histórico de compra
+  async confirmarAluguel(): Promise<void> {
+    // Calcular o valor do caução
+    const caucao = this.quantidadeTags * 50;
+    
+    // Gerar o histórico de compra
+    const historicoCompra = {
+      userId: this.userData?._id, // Id do usuário logado
+      retirada: '',               // Retirada ainda não realizada
+      devolucao: '',              // Devolução ainda não realizada
+      condicaoId: '673d46d835c68f866f8cdbeb', // Condição definida
+      caucao: caucao,            // Valor do caução
+    };
+
+    try {
+      // Envia os dados para o banco de histórico de compras
+      await this.http.post('http://localhost:4200/historicoCompras', historicoCompra).toPromise();
+      console.log('Histórico de compra gerado:', historicoCompra);
+      
+      // Fecha o modal de caução e exibe o modal de finalização
+      this.showModalCaucao = false;
+      this.showModalFinalizacao = true;
+    } catch (error) {
+      console.error('Erro ao gerar histórico de compra:', error);
+      alert('Erro ao gerar o histórico de compra. Tente novamente mais tarde.');
+    }
+  }
+
   // Fecha o modal e redireciona para o menu
   confirmarFinalizacao(): void {
     this.showModalFinalizacao = false; // Fecha o modal
     this.router.navigate(['/menu']); // Redireciona para o menu
   }
 
-  cancelarFinalizacao(): void {
-    this.showModalFinalizacao = false; // Fecha o modal
+  cancelarModal(): void {
+    this.showModalCaucao = false;
   }
 
   // Ação ao enviar o formulário
