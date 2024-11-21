@@ -140,8 +140,8 @@ export class AlugarComponent implements OnInit {
     // Gerar o histórico de compra
     const historicoCompra = {
       userId: this.userData?._id, // Id do usuário logado
-      retirada: '',               // Retirada ainda não realizada
-      devolucao: '',              // Devolução ainda não realizada
+      numVoo: this.numVoo,               // Retirada ainda não realizada
+      data: Date.now(),              // Devolução ainda não realizada
       condicaoId: '673d46d835c68f866f8cdbeb', // Condição definida
       caucao: caucao,            // Valor do caução
     };

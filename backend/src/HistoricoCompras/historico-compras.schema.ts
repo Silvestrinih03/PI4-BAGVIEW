@@ -7,13 +7,10 @@ export class HistoricoCompras extends Document {
   userId: string;
 
   @Prop({ type: String, default: null })
-  origem: String | null;
+  numVoo: String | null;
 
-  @Prop({ type: String, default: null })
-  destino: String | null;
-  
-  @Prop({ type: Date, default: null })
-  data: Date | null;
+  @Prop({ type: Date, default: () => new Date() })
+  Data: Date;
   
   @Prop({ required: true })
   condicaoId: string;
