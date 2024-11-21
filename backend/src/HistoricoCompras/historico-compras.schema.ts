@@ -10,7 +10,7 @@ export class HistoricoCompras extends Document {
   numVoo: String | null;
 
   @Prop({ type: Date, default: () => new Date() })
-  Data: Date;
+  data: Date;
   
   @Prop({ required: true })
   condicaoId: string;

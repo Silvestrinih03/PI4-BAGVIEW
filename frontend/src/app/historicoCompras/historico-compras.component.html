@@ -17,10 +17,10 @@
       <tbody>
         <tr *ngFor="let registro of historicoCompras">
           <!-- Exibindo a data de retirada, formatada se houver, ou N/A -->
-          <td>{{ registro.retirada ? (registro.retirada | date: 'dd/MM/yyyy') : 'N/A' }}</td>
+          <td>{{ registro.numVoo }}</td>
           
           <!-- Exibindo a data de devolução, formatada se houver, ou N/A -->
-          <td>{{ registro.devolucao ? (registro.devolucao | date: 'dd/MM/yyyy') : 'N/A' }}</td>
+          <td>{{ registro.data }}</td>
           
           <!-- Exibindo a condição, ou N/A se não houver valor -->
           <td>{{ getCondicaoDescricao(registro.condicaoId) }}</td>
