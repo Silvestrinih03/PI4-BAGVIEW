@@ -9,6 +9,11 @@ public class ValidarCartao extends Comunicado {
         if (this.numeroCartao == null || this.numeroCartao.isEmpty() || this.numeroCartao.length() != 16)
             return false;
 
+        // Verifica se o número do cartão contém apenas números de 0 a 9
+        if (!this.numeroCartao.matches("[0-9]+")) {
+            return false;
+        }
+
         return ehElo() || ehVisa() || ehMastercard();
     }
 
