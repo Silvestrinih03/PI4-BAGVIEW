@@ -23,10 +23,6 @@ export class AuthService {
         throw new UnauthorizedException('Credenciais inválidas');
       }
 
-      console.log('Comparando senhas');
-      console.log('Senha fornecida:', loginDto.password);
-      console.log('Senha armazenada:', user.password);
-
       if (user.password !== loginDto.password) {
         console.log('Senhas não correspondem');
         throw new UnauthorizedException('Credenciais inválidas');

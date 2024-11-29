@@ -50,3 +50,10 @@ button[mat-raised-button] {
 button[mat-raised-button]:hover {
   background-color: #303f9f;
 }
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}

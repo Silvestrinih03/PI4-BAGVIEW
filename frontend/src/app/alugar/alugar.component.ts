@@ -76,7 +76,7 @@ export class AlugarComponent implements OnInit {
       console.error('Erro ao carregar voos:', error);
     }
   }
-  
+
   // Função para carregar informações do usuário
   private async carregarUsuario() {
     const userEmail = localStorage.getItem('userEmail');
@@ -125,16 +125,16 @@ export class AlugarComponent implements OnInit {
   
       console.log('Tags disponíveis:', tagsDisponiveis);
   
+      // Confirma que existe um cartão cadastrado
+      if(!this.userData.card || !this.userData.card[0]?.num) 
+        this.showModalCartao = true;
+
       // Verifica o plano do usuário é mensal
       if (this.userData.idPlan === '6716a54052a0be5933feebc4') {
         this.showModalCaucao = true;
       } else {
         // Plano temporário
-        // alert('Você ainda não possui um cartão cadastrado!');
-        if(!this.userData.card || !this.userData.card[0]?.num) 
-          this.showModalCartao = true;
-        else
-          this.showModalAluguelTemp = true;
+        this.showModalAluguelTemp = true;
       }
   
       return true;
