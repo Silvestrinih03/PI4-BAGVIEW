@@ -14,6 +14,9 @@ export class Voos extends Document {
 
   @Prop({ required: true})
   destino: string;
+
+  @Prop({ required: true, type: Date })
+  dataHora: Date;
 }
 
 export const VoosSchema = SchemaFactory.createForClass(Voos);

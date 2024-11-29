@@ -30,16 +30,16 @@ import { RouterModule, Router } from '@angular/router';
   styleUrls: ['./alugar.component.css'],
 })
 export class AlugarComponent implements OnInit {
-  voos: { numVoo: string; origem: string }[] = []; // Lista de voos
+  voos: { numVoo: string; origem: string; destino: string; dataHora: Date }[] = []; // Lista de voos
   filteredVoos: { numVoo: string; origem: string }[] = []; // Voos filtrados
   numVooControl: FormControl = new FormControl(''); // Controle de input para o filtro de voo
   numVoo: string = ''; // Número do voo selecionado
   quantidadeTags: number = 1; // Quantidade de tags a alugar
-  planoDoUsuario: string = ''; // Plano do usuário
   userData: any = null; // Dados do usuário
-  userCardNumber: string = ''; // Número do cartão do usuário
   showModalFinalizacao: boolean = false;
   showModalCaucao: boolean = false;
+  showModalCartao: boolean = false;
+  showModalAluguelTemp: boolean = false;
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -56,14 +56,35 @@ export class AlugarComponent implements OnInit {
       const response = await fetch('http://localhost:4200/voos');
       if (!response.ok) throw new Error('Erro ao buscar voos');
 
+      const dataAtual = new Date().toJSON();
+      console.log("Data em UTC:", dataAtual);
+
       const data = await response.json();
-      this.voos = data.map((voo: any) => ({ numVoo: voo.numvoo, origem: voo.origem }));
+      this.voos = data
+      .map((voo: any) => ({ numVoo: voo.numvoo, origem: voo.origem, destino: voo.destino, dataHora: voo.dataHora}));
       this.filteredVoos = [...this.voos]; // Inicialmente todos os voos estão disponíveis
       console.log('Voos carregados:', this.voos);
     } catch (error) {
       console.error('Erro ao carregar voos:', error);
     }
   }
+
+  // private async	compareDatesInUTC(date1: Date, date2: Date): Promise<number> {
+  //   const time1 = date1.getTime();
+  //   const time2 = date2.getTime();
+
+  //   return time1 - time2; // Negative if date1 < date2, 0 if equal, positive if date1 > date2
+  // }
+
+  // const result = compareDatesInUTC(date1, date2);
+        // if (result === 0) {
+        //     console.log('The dates are equal.');
+        // } else if (result > 0) {
+        //     console.log('date1 is after date2.');
+        // } else {
+        //     console.log('date1 is before date2.');
+        // }
+
 
   // Função para carregar informações do usuário
   private async carregarUsuario() {
@@ -75,10 +96,6 @@ export class AlugarComponent implements OnInit {
       if (!response.ok) throw new Error('Erro ao buscar dados do usuário');
 
       this.userData = await response.json();
-      this.userCardNumber = this.userData?.card?.[0]?.num || '';
-      this.planoDoUsuario = this.userData?.idPlan || '';
-      localStorage.setItem('userCard', this.userCardNumber);
-
       console.log('Dados do usuário carregados:', this.userData);
     } catch (error) {
       console.error('Erro ao carregar dados do usuário:', error);
@@ -117,11 +134,16 @@ export class AlugarComponent implements OnInit {
   
       console.log('Tags disponíveis:', tagsDisponiveis);
   
-      // Verifica o plano do usuário
-      if (this.planoDoUsuario === '6716a54052a0be5933feebc4') {
+      // Verifica o plano do usuário é mensal
+      if (this.userData.plano === '6716a54052a0be5933feebc4') {
         this.showModalCaucao = true;
       } else {
-        alert('Plano temporário');
+        // Plano temporário
+        // alert('Você ainda não possui um cartão cadastrado!');
+        if(!this.userData.card || !this.userData.card[0]?.num) 
+          this.showModalCartao = true;
+        else
+          this.showModalAluguelTemp = true;
       }
   
       return true;
@@ -166,8 +188,14 @@ export class AlugarComponent implements OnInit {
     this.router.navigate(['/menu']); // Redireciona para o menu
   }
 
+  confirmarCartao(): void{
+    // this.showModalCartao = false;
+    this.router.navigate(['/pagamento']);
+  }
+
   cancelarModal(): void {
     this.showModalCaucao = false;
+    this.showModalCartao = false;
   }
 
   // Ação ao enviar o formulário
@@ -189,15 +217,6 @@ export class AlugarComponent implements OnInit {
     const tagsDisponiveis = await this.verificarDisponibilidadeTags(origem, this.quantidadeTags);
     if (!tagsDisponiveis) {
       return; // Interrompe o fluxo caso não haja tags suficientes
-    }
-
-    // Continua o fluxo normal
-    localStorage.setItem('quantidadeTags', this.quantidadeTags.toString());
-
-    if (!this.userCardNumber) {
-      this.router.navigate(['/pagamento']);
-    } else {
-      this.router.navigate(['/possui']);
     }
   }
 }

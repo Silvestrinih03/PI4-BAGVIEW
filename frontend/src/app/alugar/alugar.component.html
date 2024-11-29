@@ -56,6 +56,20 @@
   </div>
 </div>
 
+<!-- Valor de compra para usuário temporário -->
+<div *ngIf="showModalAluguelTemp" class="modal-overlay">
+  <div class="modal">
+    <h2>Atenção!</h2>
+    <p><strong>O valor do aluguel para o plano temporário é de R$ 40,00. Além disso, será cobrada uma caução de R$ 50,00 por tag, totalizando R$ {{ quantidadeTags * 50 }}.</strong></p>
+    <p><br>A caução será reembolsada automaticamente assim que você finalizar o aluguel da tag no aeroporto de destino.</p>
+    <p><br>Lembre-se: o aluguel da tag não pode ultrapassar a duração do voo. Caso a locação não seja finalizada, o valor da caução não será reembolsado.</p>
+    <div class="modal-actions">
+      <button mat-button color="primary" (click)="confirmarAluguel()">Confirmar</button>
+      <button mat-button color="warn" (click)="cancelarModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
 <!-- Modal de Finalização -->
 <div *ngIf="showModalFinalizacao" class="modal-overlay">
   <div class="modal">
@@ -64,6 +78,18 @@
     <p>IMPORTANTE: Após retirar a tag, ative-a no menu "Histórico de Compras".</p>
     <div class="modal-actions">
       <button mat-button (click)="confirmarFinalizacao()">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Cartão não cadastrado -->
+<div *ngIf="showModalCartao" class="modal-overlay">
+  <div class="modal">
+    <h2>Você ainda não possui um cartão cadastrado!</h2>
+    <p>Deseja cadastrar um cartão para seguir com o aluguel?</p>
+    <div class="modal-actions">
+      <button mat-button color="primary" (click)="confirmarCartao()">Cadastrar cartão</button>
+      <button mat-button color="warn" (click)="cancelarModal()">Cancelar</button>
     </div>
   </div>
 </div>
