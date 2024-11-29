@@ -8,8 +8,9 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Data do Aluguel</th>
-          <th>Data de Finalização</th>
+          <th>Número do Voo</th>
+          <th>Data do Voo</th>
+          <th>Quantidade de tags</th>
           <th>Condição</th>
           <th>Ação</th>
         </tr>
@@ -22,6 +23,8 @@
           <!-- Exibindo a data de devolução, formatada se houver, ou N/A -->
           <td>{{ registro.data }}</td>
           
+          <td>{{ registro.qtdTags }}</td>
+
           <!-- Exibindo a condição, ou N/A se não houver valor -->
           <td>{{ getCondicaoDescricao(registro.condicaoId) }}</td>
 
