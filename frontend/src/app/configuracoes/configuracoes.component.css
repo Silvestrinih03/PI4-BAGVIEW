@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
 }
 
 .main {
@@ -11,53 +11,55 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f0f4f8;
+  background-color: #ecf0f1;
 }
 
 .container {
   background-color: #ffffff;
   padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  max-width: 600px;
-  width: 90%;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  max-width: 700px;
+  width: 95%;
   animation: fadeIn 1s ease-in-out;
 }
 
 .banner {
   text-align: center;
-  margin-bottom: 1.5rem;
-  color: #34495e;
-}
-
-.banner h1:first-of-type {
-  font-size: 2rem;
-  font-weight: bold;
+  margin-bottom: 2rem;
   color: #2c3e50;
 }
 
+.banner h1:first-of-type {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #34495e;
+}
+
 .banner h1:last-of-type {
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: #2ecc71;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #27ae60;
   margin-top: 0.5rem;
 }
 
 h1 {
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   margin-bottom: 1rem;
-  color: #2c3e50;
+  color: #34495e;
+  font-weight: bold;
 }
 
 p {
   font-size: 1rem;
   color: #34495e;
-  font-weight: 500;
+  font-weight: 400;
+  margin-bottom: 0.8rem;
 }
 
 p::before {
   content: "• ";
-  color: #2ecc71;
+  color: #27ae60;
   font-size: 1.2rem;
   font-weight: bold;
 }
@@ -69,72 +71,90 @@ p::before {
 }
 
 .table td {
-  padding: 0.5rem;
+  padding: 0.8rem;
   color: #34495e;
   font-weight: 400;
 }
 
 .table td:first-child {
   font-weight: bold;
-  color: #2ecc71;
+  color: #27ae60;
 }
 
 /* Estilo para os dados do cartão */
 .card-container {
-  background-color: #f9f9f9;
-  padding: 1rem;
-  border: 1px solid #2ecc71;
-  border-radius: 8px;
-  margin-top: 1.5rem;
+  background-color: #f7f9fa;
+  padding: 1.5rem;
+  border: 2px solid #27ae60;
+  border-radius: 10px;
+  margin-top: 2rem;
 }
 
 .card-container h2 {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  color: #2ecc71;
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+  color: #27ae60;
   font-weight: bold;
-  border-bottom: 1px solid #2ecc71;
+  border-bottom: 2px solid #27ae60;
   padding-bottom: 0.5rem;
 }
 
 .card-details p {
-  font-size: 0.9rem;
-  margin: 0.3rem 0;
+  font-size: 1rem;
+  margin: 0.5rem 0;
   color: #34495e;
   font-weight: 500;
 }
 
-/* Estilo do botão */
+/* Botões */
 button {
-  background-color: #2ecc71; /* Cor verde */
-  color: white; /* Texto branco */
-  border: none; /* Remover borda */
-  padding: 5px 10px; /* Tamanho do botão */
-  font-size: 16px; /* Tamanho da fonte */
-  font-weight: bold; /* Negrito no texto */
-  border-radius: 5px; /* Bordas arredondadas */
-  cursor: pointer; /* Mãozinha ao passar o mouse */
-  transition: all 0.3s ease-in-out; /* Transições suaves para cor e efeito de hover */
+  background-color: #27ae60; /* Cor verde */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
   display: inline-block;
   text-align: center;
   text-decoration: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  margin-left: 5px;
 }
 
 button:hover {
-  background-color: #27ae60; /* Cor mais escura no hover */
-  transform: translateY(-2px); /* Leve movimento para cima */
+  background-color: #1e874b;
+  transform: translateY(-3px);
 }
 
 button:active {
-  background-color: #219150; /* Cor ainda mais escura quando pressionado */
-  transform: translateY(2px); /* Leve movimento para baixo */
+  background-color: #16643c;
+  transform: translateY(2px);
 }
 
 button:focus {
-  outline: none; /* Remove o outline padrão */
-  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.5); /* Sombra suave ao focar */
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.4);
+}
+
+/* Botão específico para diferentes ações */
+.btn-acessar-edicaoUser {
+  background-color: #2ecc71;
+}
+
+.btn-acessar-edicaoUser:hover {
+  background-color: #27ae60;
+}
+
+.btn-acessar-pagamento {
+  background-color: #2ecc71;
+}
+
+.btn-acessar-pagamento:hover {
+  background-color: #27ae60;
 }
 
 /* Animações */
@@ -146,5 +166,29 @@ button:focus {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Estilo responsivo */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .banner h1:first-of-type {
+    font-size: 2rem;
+  }
+
+  .banner h1:last-of-type {
+    font-size: 1.4rem;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
 }

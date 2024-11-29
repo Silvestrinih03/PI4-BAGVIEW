@@ -42,7 +42,7 @@
           required
         />
     
-        <p> <strong>Observação:</strong> Ao confirmar o aluguel de tags, será exigido o pagamento de uma caução no valor de R$50 por tag, aplicável tanto para planos temporários quanto mensais. Esse valor será reembolsado após a devolução das tags.</p>
+        <p> <strong>Observação:</strong> Sempre que for realizado aluguel de tags, será cobrado neste cartão uma caução no valor de R$50 por tag, aplicável tanto para planos temporários quanto mensais. Esse valor será reembolsado após a devolução das tags.</p>
 
         <div class="checkbox-container">
           <input
@@ -55,7 +55,10 @@
           <label for="terms">Li e concordo com os termos *</label>
         </div>
     
-        <button type="submit" [disabled]="!pagamentoForm.valid">Finalizar</button>
+        <div class="button-container">
+          <button type="submit" [disabled]="!pagamentoForm.valid">SALVAR</button>
+          <button [routerLink]="['/configuracoes']" class="btn-acessar-voltar">VOLTAR</button>
+        </div>
         <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
       </form>
     </div>

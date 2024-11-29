@@ -79,7 +79,7 @@ export class PagamentoComponent {
   
     const isValidCard = await this.validateWithSocket('cartao', this.pagamento.cardNumber);
     if (!isValidCard) {
-      this.displayError('Cartão inválido');
+      this.displayError('Número do Cartão inválido');
       return;
     }
 
