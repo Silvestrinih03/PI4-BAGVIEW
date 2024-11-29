@@ -47,7 +47,8 @@
 <div *ngIf="showModalCaucao" class="modal-overlay">
   <div class="modal">
     <h2>Atenção!</h2>
-    <p><strong>Ao confirmar o aluguel, será cobrada uma caução de R$50,00 por tag, totalizando R${{ quantidadeTags * 50 }}.<br><br> Esse valor será reembolsado assim que você chegar ao aeroporto de destino e finalizar o aluguel da tag.</strong></p>
+    <p><strong>Ao confirmar o aluguel, será cobrada uma caução de R$50,00 por tag, totalizando R${{ quantidadeTags * 50 }}.</strong></p>
+    <p><br>Esse valor será reembolsado assim que você chegar ao aeroporto de destino e finalizar o aluguel da tag.</p>
     <p><br>Lembre-se: o aluguel da tag não pode ultrapassar a duração do voo. Caso a locação não seja finalizada, o valor da caução não será reembolsado.</p>
     <div class="modal-actions">
       <button mat-button color="primary" (click)="confirmarAluguel()">Confirmar</button>

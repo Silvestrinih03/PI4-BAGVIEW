@@ -10,13 +10,7 @@
         <div *ngIf="planoDoUsuario === '6716a54052a0be5933feebc5'">
           <p> Total a ser pago: {{preco}} </p>
           <!-- Deixar mais legal -->
-        </div>
-        <p>
-          <strong>Obs:</strong> Após a confirmação do aluguel, será cobrada uma
-          caução de R$50 por tag, que será ressarcida após a devolução. Em caso de
-          roubo ou perda da bagagem, o valor da tag também será reembolsado.
-        </p>
-    
+        </div>    
         <label for="cardNumber">Número do Cartão *</label>
         <input
           type="text"
@@ -54,6 +48,8 @@
           required
         />
     
+        <p> <strong>Observação:</strong> Ao confirmar o aluguel de tags, será exigido o pagamento de uma caução no valor de R$50 por tag, aplicável tanto para planos temporários quanto mensais. Esse valor será reembolsado após a devolução das tags.</p>
+
         <div class="checkbox-container">
           <input
             type="checkbox"
