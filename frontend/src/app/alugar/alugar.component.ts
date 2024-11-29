@@ -135,7 +135,7 @@ export class AlugarComponent implements OnInit {
       console.log('Tags disponíveis:', tagsDisponiveis);
   
       // Verifica o plano do usuário é mensal
-      if (this.userData.plano === '6716a54052a0be5933feebc4') {
+      if (this.userData.idPlan === '6716a54052a0be5933feebc4') {
         this.showModalCaucao = true;
       } else {
         // Plano temporário
