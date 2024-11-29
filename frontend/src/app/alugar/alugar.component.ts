@@ -76,24 +76,7 @@ export class AlugarComponent implements OnInit {
       console.error('Erro ao carregar voos:', error);
     }
   }
-
-  // private async	compareDatesInUTC(date1: Date, date2: Date): Promise<number> {
-  //   const time1 = date1.getTime();
-  //   const time2 = date2.getTime();
-
-  //   return time1 - time2; // Negative if date1 < date2, 0 if equal, positive if date1 > date2
-  // }
-
-  // const result = compareDatesInUTC(date1, date2);
-        // if (result === 0) {
-        //     console.log('The dates are equal.');
-        // } else if (result > 0) {
-        //     console.log('date1 is after date2.');
-        // } else {
-        //     console.log('date1 is before date2.');
-        // }
-
-
+  
   // Função para carregar informações do usuário
   private async carregarUsuario() {
     const userEmail = localStorage.getItem('userEmail');
