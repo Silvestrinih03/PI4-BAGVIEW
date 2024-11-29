@@ -56,13 +56,21 @@ export class AlugarComponent implements OnInit {
       const response = await fetch('http://localhost:4200/voos');
       if (!response.ok) throw new Error('Erro ao buscar voos');
 
-      const dataAtual = new Date().toJSON();
-      console.log("Data em UTC:", dataAtual);
+      const dataAtual = new Date(new Date().setHours(new Date().getHours() - 3));
+      console.log("Data atual menos 3 horas:", dataAtual.toISOString());
+
 
       const data = await response.json();
       this.voos = data
-      .map((voo: any) => ({ numVoo: voo.numvoo, origem: voo.origem, destino: voo.destino, dataHora: voo.dataHora}));
-      this.filteredVoos = [...this.voos]; // Inicialmente todos os voos estão disponíveis
+      .map((voo: any) => ({
+        numVoo: voo.numvoo,
+        origem: voo.origem,
+        destino: voo.destino,
+        dataHora: voo.dataHora
+      }))
+      // Filtra voos com dataHora > dataAtual
+      .filter((voo: any) => voo.dataHora > dataAtual.toISOString());
+      this.filteredVoos = [...this.voos];
       console.log('Voos carregados:', this.voos);
     } catch (error) {
       console.error('Erro ao carregar voos:', error);
