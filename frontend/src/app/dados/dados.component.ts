@@ -18,6 +18,7 @@ export class DadosComponent implements OnInit {
   userData: any = null;
   errorMessage: string = '';
   private apiUrl = 'http://localhost:4200';
+  showModalSucesso = false;
 
   constructor(
     private router: Router,
@@ -47,7 +48,7 @@ export class DadosComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('ALTERACAO DOS DADOS DO USUARIO');
+    console.log('SALVAR ALTERACOES DOS DADOS DO USUARIO');
     // previne erro de login
     const userEmail = localStorage.getItem('userEmail');
     if (!userEmail) {
@@ -67,12 +68,22 @@ export class DadosComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           console.log('Dados de usuário atualizados com sucesso:', response);
-          this.router.navigate(['/menu']);
+          if (this.userData.idPlan === "6716a54052a0be5933feebc4" && !this.userData.card[0]?.num) {
+            console.log('Plano mensal sem cartão cadastrado');
+            this.router.navigate(['/pagamento']);
+          } else{
+            this.showModalSucesso = true;
+          }
         },
         error: (error) => {
           console.error('Erro ao atualizar dados de usuário:', error);
           this.errorMessage = 'Erro ao processar dados de usuário. Tente novamente.';
         }
       });
+  }
+
+  closeModal(): void {
+    this.showModalSucesso = false;
+    this.router.navigate(['/configuracoes']);
   }
 }

@@ -30,11 +30,18 @@
       </div>
       <div class="button-group">
         <button (click)="onSubmit()">ALTERAR</button>
-        <button [routerLink]="['/menu']" class="btn-acessar-menu">VOLTAR</button>
+        <button [routerLink]="['/configuracoes']" class="btn-acessar-voltar">VOLTAR</button>
       </div>
       <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
     </div>
 </main>
-    
-    
-    
+
+<!-- Modal de Sucesso -->
+<div *ngIf="showModalSucesso" class="modal-overlay">
+  <div class="modal">
+    <h2>Dados alterados com sucesso!</h2>
+    <div class="modal-actions">
+      <button mat-button (click)="closeModal()">Fechar</button>
+    </div>
+  </div>
+</div>
