@@ -18,8 +18,10 @@ export class HomepageComponent implements OnInit {
 
   // Método chamado quando o componente é inicializado
   ngOnInit() {
-    // Adiciona um listener para o evento de scroll da janela
-    window.addEventListener('scroll', this.onScroll);
+    if (typeof window !== 'undefined') {
+      // Adiciona um listener para o evento de scroll da janela
+      window.addEventListener('scroll', this.onScroll);
+    }
   }
 
   // Método para lidar com o evento de scroll
