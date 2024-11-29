@@ -9,8 +9,9 @@ export class DadosService {
   async atualizarDados(dadosDto: DadosDto) {
     try {
       const dadosAtualizacao = {
-        fullName: dadosDto.fullName,
         email: dadosDto.email,
+        fullName: dadosDto.fullName,
+        idPlan: dadosDto.plan,
         password: dadosDto.password
       };
 

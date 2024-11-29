@@ -34,9 +34,9 @@ export class ConfiguracoesComponent implements OnInit {
         
         // Define o nome do plano baseado no idPlan
         if (this.userData.idPlan === '6716a54052a0be5933feebc5') {
-          this.planoName = 'Plano Temporário';
+          this.planoName = 'Temporário';
         } else if (this.userData.idPlan === '6716a54052a0be5933feebc4') {
-          this.planoName = 'Plano Mensal';
+          this.planoName = 'Mensal';
         }
         
         console.log('Nome do Plano:', this.planoName);

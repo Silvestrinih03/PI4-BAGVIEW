@@ -4,13 +4,7 @@
       <br />
       <h2>Pagamento</h2>
       <form (ngSubmit)="onSubmit()" #pagamentoForm="ngForm">
-        <!-- <div>
-          <p> Cadastre um cartão de crédito para utilizar no site ao alugar uma tag!</p>
-        </div> -->
-        <div *ngIf="planoDoUsuario === '6716a54052a0be5933feebc5'">
-          <p> Total a ser pago: {{preco}} </p>
-          <!-- Deixar mais legal -->
-        </div>    
+        
         <label for="cardNumber">Número do Cartão *</label>
         <input
           type="text"

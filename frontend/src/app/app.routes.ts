@@ -13,7 +13,6 @@ import { SobreNosComponent } from './sobre-nos/sobre-nos.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { ServicosComponent } from './servicos/servicos.component';
 import { ContatoComponent } from './contato/contato.component';
-import { CartaoComponent } from './cartao/cartao.component';
 import { DadosComponent } from './dados/dados.component';
 import { HistoricoComprasComponent } from './historicoCompras/historico-compras.component';
 
@@ -33,7 +32,6 @@ export const routes: Routes = [
   { path: 'sobre-nos', component: SobreNosComponent },
   { path: 'servicos', component: ServicosComponent },
   { path: 'contato', component: ContatoComponent },
-  { path: 'cartao', component: CartaoComponent },
   { path: 'dados', component: DadosComponent },
   { path: 'historico-compras', component: HistoricoComprasComponent},
   // Rota para páginas não encontradas

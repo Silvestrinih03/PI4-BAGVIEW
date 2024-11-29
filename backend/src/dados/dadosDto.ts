@@ -1,6 +1,7 @@
 export class DadosDto {
-    email: string;
     fullName: string;
+    email: string;
+    plan: string;
     password: string;
 }
   

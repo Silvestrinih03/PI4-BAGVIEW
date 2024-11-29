@@ -8,10 +8,10 @@
       <div *ngIf="userData">
         <h1>Dados do usuário</h1>
         <button [routerLink]="['/dados']" class="btn-acessar-edicaoUser">✏️ Alterar dados pessoais</button>
-        <p>Nome: {{ userData.fullName }}</p>
-        <p>Email: {{ userData.email }}</p>
-        <p>CPF: {{ userData.cpf }}</p>
-        <p>Plano Escolhido: {{ planoName }}</p>
+        <p><strong>CPF:</strong> {{ userData.cpf }}</p>
+        <p><strong>Nome:</strong> {{ userData.fullName }}</p>
+        <p><strong>Email:</strong> {{ userData.email }}</p>
+        <p><strong>Plano Escolhido:</strong> {{ planoName }}</p>
         
         
         <h1>Dados do Cartão</h1>
@@ -19,9 +19,9 @@
           <h2>Dados do Cartão</h2>
           <!-- Criar uma coluna com apenas os últimos  4 digitos do cartao para exibi-lo com mascara-->
           <div class="card-details">
-            <p>Número: {{ userData.card[0].num || 'N/A' }}</p>
-            <p>Nome no Cartão: {{ userData.card[0].nome || 'N/A' }}</p>
-            <p>Validade: {{ userData.card[0].val || 'N/A' }}</p>
+            <p><strong>Número:</strong> {{ userData.card[0].num || 'N/A' }}</p>
+            <p><strong>Nome no Cartão:</strong> {{ userData.card[0].nome || 'N/A' }}</p>
+            <p><strong>Validade:</strong> {{ userData.card[0].val || 'N/A' }}</p>
           </div>
           <button [routerLink]="['/pagamento']" class="btn-acessar-pagamento">✏️ Alterar cartão</button>
         </div>

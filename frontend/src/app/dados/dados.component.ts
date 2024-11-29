@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms'; // Importando FormsModule
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-dados',
@@ -16,13 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 export class DadosComponent implements OnInit {
   userData: any = null;
-  dados = {
-    fullName: '',
-    email: '',
-    cpf: '',
-  };
   errorMessage: string = '';
-
   private apiUrl = 'http://localhost:4200';
 
   constructor(
@@ -38,26 +32,22 @@ export class DadosComponent implements OnInit {
 
     if (userEmail) {
       try {
-        const response = await fetch(`http://localhost:4200/users/${userEmail}`);
-        if (!response.ok) {
-          throw new Error('Erro ao buscar usuário');
-        }
-        this.userData = await response.json();
+        this.userData = await this.fetchUserData(userEmail);
         console.log('Dados do usuário:', this.userData);
-
       } catch (error) {
         console.error('Erro ao buscar dados do usuário:', error);
+        this.errorMessage = 'Erro ao buscar os dados do usuário. Tente novamente.';
       }
     }
   }
 
-  async onSubmit() {
-    console.log('=== ALTERACAO DOS DADOS DO USUARIO ===');
-    console.log(`Nome Completo: ${this.userData.fullName}`);
-    console.log(`Email: ${this.userData.email}`);
-    console.log(`Senha: ${this.userData.password}`);
-    console.log('========================');
+  // Busca dados do usuário do backend
+  private fetchUserData(userEmail: string): Promise<any> {
+    return this.http.get(`${this.apiUrl}/users/${userEmail}`).toPromise();
+  }
 
+  onSubmit(): void {
+    console.log('ALTERACAO DOS DADOS DO USUARIO');
     // previne erro de login
     const userEmail = localStorage.getItem('userEmail');
     if (!userEmail) {
@@ -69,7 +59,7 @@ export class DadosComponent implements OnInit {
     const dadosAlteracao = {
       fullName: this.userData.fullName,
       email: this.userData.email,
-      password: this.userData.password
+      plan: this.userData.idPlan
     };
 
     // manda pro banco - sem validacao de cpf em java
@@ -84,28 +74,5 @@ export class DadosComponent implements OnInit {
           this.errorMessage = 'Erro ao processar dados de usuário. Tente novamente.';
         }
       });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   }
-
-
-
-
-
-
-
-
 }
-
