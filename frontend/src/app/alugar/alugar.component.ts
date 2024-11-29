@@ -155,6 +155,7 @@ export class AlugarComponent implements OnInit {
       userId: this.userData?._id, // Id do usuário logado
       numVoo: this.numVoo,               // Retirada ainda não realizada
       data: Date.now(),              // Devolução ainda não realizada
+      qtdTags: this.quantidadeTags,
       condicaoId: '673d46d835c68f866f8cdbeb', // Condição definida
       caucao: caucao,            // Valor do caução
     };
