@@ -128,9 +128,9 @@ export class AlugarComponent implements OnInit {
       // Confirma que existe um cartão cadastrado
       if(!this.userData.card || !this.userData.card[0]?.num) 
         this.showModalCartao = true;
-
+      
       // Verifica o plano do usuário é mensal
-      if (this.userData.idPlan === '6716a54052a0be5933feebc4') {
+      else if (this.userData.idPlan === '6716a54052a0be5933feebc4') {
         this.showModalCaucao = true;
       } else {
         // Plano temporário
@@ -184,10 +184,14 @@ export class AlugarComponent implements OnInit {
     // this.showModalCartao = false;
     this.router.navigate(['/pagamento']);
   }
-
+  
+  cancelarCartao(): void {
+    this.router.navigate(['/menu']); // Redireciona para o menu
+  }
+  
   cancelarModal(): void {
     this.showModalCaucao = false;
-    this.showModalCartao = false;
+    this.showModalAluguelTemp = false;
   }
 
   // Ação ao enviar o formulário
