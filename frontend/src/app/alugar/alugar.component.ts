@@ -9,6 +9,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule, Router } from '@angular/router';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-alugar-tag',
@@ -25,6 +26,7 @@ import { RouterModule, Router } from '@angular/router';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    MatSnackBarModule
   ],
   templateUrl: './alugar.component.html',
   styleUrls: ['./alugar.component.css'],
@@ -41,7 +43,7 @@ export class AlugarComponent implements OnInit {
   showModalCartao: boolean = false;
   showModalAluguelTemp: boolean = false;
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient, private snackBar: MatSnackBar) {}
 
   async ngOnInit() {
     console.log('Inicializando AlugarComponent...');
@@ -118,7 +120,13 @@ export class AlugarComponent implements OnInit {
   
       if (tagsDisponiveis.length < quantidade) {
         const mensagemErro = `Desculpe, há apenas ${tagsDisponiveis.length} tag(s) disponível(is) neste local de partida`;
-        alert(mensagemErro);
+        this.snackBar.open(mensagemErro, "x", {
+          duration: 5000, // Duração em milissegundos
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: ['custom-snackbar'], // Classe CSS personalizada, opcional
+        });
+        
         console.error(mensagemErro);
         return false;
       }
@@ -140,7 +148,12 @@ export class AlugarComponent implements OnInit {
       return true;
     } catch (error) {
       console.error('Erro ao verificar disponibilidade de tags:', error);
-      alert('Erro ao verificar disponibilidade de tags. Tente novamente mais tarde.');
+      this.snackBar.open('Erro ao verificar disponibilidade de tags. Tente novamente mais tarde.', "x", {
+        duration: 5000, // Duração em milissegundos
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        panelClass: ['custom-snackbar'], // Classe CSS personalizada, opcional
+      });
       return false;
     }
   }
@@ -170,7 +183,12 @@ export class AlugarComponent implements OnInit {
       this.showModalFinalizacao = true;
     } catch (error) {
       console.error('Erro ao gerar histórico de compra:', error);
-      alert('Erro ao gerar o histórico de compra. Tente novamente mais tarde.');
+      this.snackBar.open('Erro ao gerar o histórico de compra. Tente novamente mais tarde.', "x", {
+        duration: 5000, // Duração em milissegundos
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        panelClass: ['custom-snackbar'], // Classe CSS personalizada, opcional
+      });
     }
   }
 
@@ -203,7 +221,12 @@ export class AlugarComponent implements OnInit {
     // Encontra o voo correspondente
     const vooSelecionado = this.voos.find((voo) => voo.numVoo === this.numVoo);
     if (!vooSelecionado) {
-      alert('Voo não encontrado! Verifique o número do voo.');
+      this.snackBar.open('Voo não encontrado! Verifique o número do voo.', "x", {
+        duration: 5000, // Duração em milissegundos
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        panelClass: ['custom-snackbar'], // Classe CSS personalizada, opcional
+      });
       return;
     }
 

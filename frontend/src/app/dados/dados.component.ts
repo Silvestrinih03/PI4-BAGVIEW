@@ -56,14 +56,13 @@ export class DadosComponent implements OnInit {
       this.errorMessage = 'Usuário não identificado';
       return;
     }
-
+    
     const dadosAlteracao = {
       fullName: this.userData.fullName,
       email: this.userData.email,
       plan: this.userData.idPlan
     };
 
-    // manda pro banco - sem validacao de cpf em java
     this.http.patch(`${this.apiUrl}/dados/atualizar`, dadosAlteracao)
       .subscribe({
         next: (response: any) => {

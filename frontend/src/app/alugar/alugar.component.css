@@ -109,3 +109,10 @@ button {
 .modal-actions button:last-child:hover {
   background-color: #e0e0e0;
 }
+
+.custom-snackbar {
+  background-color: #d32f2f; /* Vermelho para erros */
+  color: #fff; /* Texto branco */
+  font-size: 16px;
+  font-weight: bold;
+}

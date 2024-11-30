@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { DadosDto } from './dadosDto';
 import { UsersService } from '../users/users.service';
 
@@ -8,6 +8,11 @@ export class DadosService {
 
   async atualizarDados(dadosDto: DadosDto) {
     try {
+
+      if (!dadosDto.fullName || dadosDto.fullName.trim() === '') {
+        throw new BadRequestException('O nome completo não pode estar vazio.');
+      }
+
       const dadosAtualizacao = {
         email: dadosDto.email,
         fullName: dadosDto.fullName,

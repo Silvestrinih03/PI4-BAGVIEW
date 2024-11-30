@@ -1,4 +1,4 @@
-import { Controller, Patch, Body } from '@nestjs/common';
+import { Controller, Patch, Body, Post } from '@nestjs/common';
 import { DadosService } from './dados.service';
 import { DadosDto } from './dadosDto';
 
