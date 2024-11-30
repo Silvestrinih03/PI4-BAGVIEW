@@ -15,6 +15,7 @@ import { ServicosComponent } from './servicos/servicos.component';
 import { ContatoComponent } from './contato/contato.component';
 import { DadosComponent } from './dados/dados.component';
 import { HistoricoComprasComponent } from './historicoCompras/historico-compras.component';
+import { AlterarSenhaComponent } from './alterar-senha/alterar-senha.component'; 
 
 // Definição das rotas da aplicação
 export const routes: Routes = [
@@ -34,6 +35,7 @@ export const routes: Routes = [
   { path: 'contato', component: ContatoComponent },
   { path: 'dados', component: DadosComponent },
   { path: 'historico-compras', component: HistoricoComprasComponent},
+  { path: 'alterar-senha', component: AlterarSenhaComponent},
   // Rota para páginas não encontradas
   { path: '**', redirectTo: '/errorpage' },
 ];

@@ -27,10 +27,10 @@ import { ConfiguracoesComponent } from './configuracoes/configuracoes.component'
 import { AlugarComponent } from './alugar/alugar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
-import { CartaoComponent } from './cartao/cartao.component';
 import { DadosComponent } from './dados/dados.component';
 import { HistoricoComprasComponent } from './historicoCompras/historico-compras.component';
 import { CommonModule } from '@angular/common';
+import { AlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
 
 
 @NgModule({
@@ -44,10 +44,10 @@ import { CommonModule } from '@angular/common';
     AlugarComponent,
     HomepageComponent,
     ErrorpageComponent,
-    CartaoComponent,
     DadosComponent,
     HistoricoComprasComponent,
-    CommonModule
+    CommonModule,
+    AlterarSenhaComponent
   ],
   imports: [
     BrowserModule,
