@@ -31,6 +31,15 @@ export class HistoricoComprasController {
     return this.historicoComprasService.findByUserIdAndCondicao(userId, condicaoId);
   }
 
+  @Get(':userId/voo/:numVoo/condicao/:condicaoId')
+  async findByUserIdVooAndCondicao(
+    @Param('userId') userId: string,
+    @Param('numVoo') numVoo: string,
+    @Param('condicaoId') condicaoId: string
+  ): Promise<HistoricoCompras[]> {
+    return this.historicoComprasService.findByUserIdVooAndCondicao(userId, numVoo, condicaoId);
+  }
+
   @Put(':id')
   async updateRegistro(@Param('id') id: string, @Body() registroAtualizado: any) {
     return this.historicoComprasService.updateRegistro(id, registroAtualizado);

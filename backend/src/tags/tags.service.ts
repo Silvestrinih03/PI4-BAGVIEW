@@ -40,4 +40,10 @@ export class TagsService {
       throw error;
     }
   }
+
+  // Método para atualizar o status de uma tag
+  async updateStatus(idTag: string[], status: boolean): Promise<void> {
+    await this.tagsModel.updateMany({ _id: { $in: idTag } }, { $set: { status: status } }).exec();
+    console.log(`Status das tags ${idTag} atualizado para ${status}`);
+  }
 }

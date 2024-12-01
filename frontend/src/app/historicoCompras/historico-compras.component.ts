@@ -24,6 +24,7 @@ export class HistoricoComprasComponent implements OnInit {
   showModal: boolean = false;
   registroSelecionado: any;
   modalType: 'confirmacao' | 'encerramento' | null = null;
+  qtdTags: number = 0;
 
 
   constructor(private http: HttpClient) {}
@@ -117,10 +118,59 @@ export class HistoricoComprasComponent implements OnInit {
       this.http
         .put(`http://localhost:4200/historicoCompras/${this.registroSelecionado._id}`, atualizadoRegistro)
         .subscribe({
-          next: () => {
+          next: async () => {
+            const qtdTags = this.registroSelecionado.qtdTags;
+            // FAZ ANTES
+            //console.log("Registro selecionado: ", this.registroSelecionado)
+            //const numeroDoVoo = this.registroSelecionado.numVoo;
+            //const condicaoId = this.registroSelecionado.condicaoId;
+            //console.log("Numero do voo: ", numeroDoVoo)
+            //const response = await fetch(`http://localhost:4200/historicoCompras/${this.idUser}/voo/${numeroDoVoo}/condicao/${condicaoId}`);
+            //if (!response.ok) {
+            //    console.error('Erro ao buscar compra para o usuário, condicaoId e Voo:', response.statusText);
+            //    throw new Error('Erro ao buscar compra para o usuário,condicaoId e Voo');
+            //}
+            const response = await fetch(`http://localhost:4200/voos/${this.registroSelecionado.numVoo}`);
+            if (!response.ok) {
+                console.error('Erro ao buscar voo:', response.statusText);
+                throw new Error('Erro ao buscar voo');
+            }
+            //console.log("Resposta da busca: ", response)
+            const dadosDoVoo = await response.json();
+            console.log("Dados do Voo: ", dadosDoVoo)
+            const lugar = dadosDoVoo.origem;
+            const idTagsTotal: any[] = [];
+            const idTags: any[] = [];
+            // mudar o status para qtdTags
+            
+            const tags = await this.http.post(`http://localhost:4200/tags/filter`, {local: lugar, status: false}).toPromise();
+            console.log("Tags recebidas", tags);
+
+            // Adiciona apenas os campos _id ao vetor idTags
+            if (Array.isArray(tags)) {
+                tags.forEach(tag => {
+                    if (tag._id) {
+                        idTagsTotal.push(tag._id); // Adiciona o _id ao vetor idTags
+                    }
+                });
+            }
+
+            console.log("IDs de todas as tags: ", idTagsTotal); // Exibe todos os IDs das tags
+            for (let i = 0; i < qtdTags; i++) {
+              idTags.push(idTagsTotal[i]);
+            }
+            console.log("IDs das tags a serem alugadas: ", idTags);
+            for (let t = 0; t < idTags.length; t++) {
+              const response2 = await this.http.patch(`http://localhost:4200/tags/updateStatus`, {idTag: idTags[t], status: true}).toPromise();
+            }
+            // mudou pra true??
+
             // Atualiza a condição no frontend
             this.registroSelecionado.condicaoId = '673d46d835c68f866f8cdbec';
             this.showModal = false;
+            // aqui -- pega o numero do voo
+            
+
           },
           error: (err) => {
             console.error('Erro ao atualizar condição do registro:', err);
