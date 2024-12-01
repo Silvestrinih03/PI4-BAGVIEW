@@ -1,8 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-alterar-senha',
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './alterar-senha.component.html',
   styleUrls: ['./alterar-senha.component.css']
 })

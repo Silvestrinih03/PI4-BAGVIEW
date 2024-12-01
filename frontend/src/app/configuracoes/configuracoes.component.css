@@ -157,6 +157,16 @@ button:focus {
   background-color: #27ae60;
 }
 
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem; /* Espaço entre os botões */
+  margin-top: 1rem;
+}
+
 /* Animações */
 @keyframes fadeIn {
   from {

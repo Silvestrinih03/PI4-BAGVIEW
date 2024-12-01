@@ -26,6 +26,9 @@
           </div>
           <button [routerLink]="['/pagamento']" class="btn-acessar-pagamento">✏️ Alterar cartão</button>
         </div>
+        <div class="button-group">
+          <button [routerLink]="['/menu']" class="btn-acessar-voltar">VOLTAR</button>
+        </div>
         <div *ngIf="!userData.card || userData.card.length == 0">
           <p>Dados do cartão não disponíveis.</p>
         </div>
