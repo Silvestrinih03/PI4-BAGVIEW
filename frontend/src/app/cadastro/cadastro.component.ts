@@ -10,7 +10,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CadastroClientService } from '../services/cadastro-client.service';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
-import { firstValueFrom } from 'rxjs';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatRadioChange } from '@angular/material/radio';
 

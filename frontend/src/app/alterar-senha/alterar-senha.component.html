@@ -11,24 +11,35 @@
           <h1>Alterar Senha</h1>
           <h1>Mantenha sua conta segura</h1>
         </div>
-        <form>
+        <form (ngSubmit)="onSubmit()">
           <div class="plan-container">
             <label for="old-password">Senha Antiga</label>
-            <input type="password" id="old-password" placeholder="Digite sua senha antiga" required>
-          </div>
-          <div class="plan-container">
-            <label for="current-password">Senha Atual</label>
-            <input type="password" id="current-password" placeholder="Digite sua senha atual" required>
+            <input type="password" id="old-password" [(ngModel)]="oldPassword" name="oldPassword" placeholder="Digite sua senha antiga" required>
           </div>
           <div class="plan-container">
             <label for="new-password">Nova Senha</label>
-            <input type="password" id="new-password" placeholder="Digite sua nova senha" required>
+            <input type="password" id="new-password" [(ngModel)]="newPassword" name="newPassword" placeholder="Digite sua nova senha" required>
+          </div>
+          <div class="plan-container">
+            <label for="confirm-password">Confirmar Nova Senha</label>
+            <input type="password" id="confirm-password" [(ngModel)]="confirmPassword" name="confirmPassword" placeholder="Confirme sua nova senha" required>
           </div>
           <div class="button-group">
             <button type="submit">Salvar</button>
             <button [routerLink]="['/configuracoes']" class="btn-acessar-voltar">VOLTAR</button>
           </div>
+          <div *ngIf="errorMessage" class="error-message">
+            <p>{{ errorMessage }}</p>
+          </div>
         </form>
       </div>
+      
+      <div *ngIf="showModalSucesso" class="modal">
+        <div class="modal-content">
+            <h2>Senha Alterada com Sucesso!</h2>
+            <button (click)="closeModal()">Fechar</button>
+        </div>
+    </div>
     </div>
   </body>
+  
