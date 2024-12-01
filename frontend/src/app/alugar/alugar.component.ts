@@ -61,28 +61,36 @@ export class AlugarComponent implements OnInit {
     try {
       const response = await fetch('http://localhost:4200/voos');
       if (!response.ok) throw new Error('Erro ao buscar voos');
-
-      const dataAtual = new Date(new Date().setHours(new Date().getHours() - 3));
-      console.log("Data atual menos 3 horas:", dataAtual.toISOString());
-
-
+  
+      // Obtém a data atual sem horas, minutos e segundos
+      const dataAtual = new Date();
+      dataAtual.setHours(0, 0, 0, 0);  // Define a hora como 00:00:00
+  
+      console.log("Data atual (sem hora):", dataAtual.toISOString());
+  
       const data = await response.json();
       this.voos = data
-      .map((voo: any) => ({
-        numVoo: voo.numvoo,
-        origem: voo.origem,
-        destino: voo.destino,
-        dataHora: voo.dataHora
-      }))
-      // Filtra voos com dataHora > dataAtual
-      .filter((voo: any) => voo.dataHora > dataAtual.toISOString());
+        .map((voo: any) => ({
+          numVoo: voo.numvoo,
+          origem: voo.origem,
+          destino: voo.destino,
+          dataHora: voo.dataHora
+        }))
+        // Filtra voos com a mesma data (desconsiderando hora, minutos e segundos)
+        .filter((voo: any) => {
+          const vooData = new Date(voo.dataHora);
+          vooData.setHours(0, 0, 0, 0);  // Remove a hora do voo
+  
+          return vooData.getTime() === dataAtual.getTime();  // Compara apenas a data
+        });
+  
       this.filteredVoos = [...this.voos];
       console.log('Voos carregados:', this.voos);
     } catch (error) {
       console.error('Erro ao carregar voos:', error);
     }
   }
-
+  
   // Função para carregar informações do usuário
   private async carregarUsuario() {
     const userEmail = localStorage.getItem('userEmail');
