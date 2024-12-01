@@ -46,4 +46,39 @@ export class TagsService {
     await this.tagsModel.updateMany({ _id: { $in: idTag } }, { $set: { status: status } }).exec();
     console.log(`Status das tags ${idTag} atualizado para ${status}`);
   }
+
+  // Método para atualizar o local de uma tag
+  async updateLocal(idTag: string[], local: string): Promise<any> {
+    try {
+      const idTagsObjectId = idTag.map((id) => new Types.ObjectId(id));
+      const localObjectId = new Types.ObjectId(local);
+  
+      console.log('IDs das Tags:', idTagsObjectId);
+      console.log('Novo Local:', localObjectId);
+  
+      const result = await this.tagsModel.collection.updateMany(
+        { _id: { $in: idTagsObjectId } },
+        { $set: { local: localObjectId } }
+      );
+  
+      console.log('Resultado da atualização:', {
+        documentosEncontrados: result.matchedCount,
+        documentosModificados: result.modifiedCount,
+        operacaoReconhecida: result.acknowledged,
+        detalhes: result
+      });
+
+      if (result.matchedCount === 0) {
+        console.warn('Nenhuma tag encontrada para atualização');
+      } else {
+        console.log(`${result.modifiedCount} tags atualizadas com sucesso`);
+      }
+
+      return result;
+    } catch (error) {
+      console.error('Erro ao atualizar local das tags:', error);
+      throw error;
+    }
+  }
+  
 }

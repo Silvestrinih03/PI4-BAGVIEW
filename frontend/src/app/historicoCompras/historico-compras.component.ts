@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'; // Importe o HttpClientModule
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+//import { ObjectId } from 'bson';
+import { ObjectId } from 'mongodb';
 
 @Component({
   selector: 'app-historico-compras',
@@ -140,7 +142,7 @@ export class HistoricoComprasComponent implements OnInit {
             console.log("Dados do Voo: ", dadosDoVoo)
             const lugar = dadosDoVoo.origem;
             const idTagsTotal: any[] = [];
-            const idTags: any[] = [];
+            const idTags: ObjectId[] = [];
             // mudar o status para qtdTags
             
             const tags = await this.http.post(`http://localhost:4200/tags/filter`, {local: lugar, status: false}).toPromise();
@@ -156,10 +158,15 @@ export class HistoricoComprasComponent implements OnInit {
             }
 
             console.log("IDs de todas as tags: ", idTagsTotal); // Exibe todos os IDs das tags
+
+            // adiciona a qtd q o usuario comprou
             for (let i = 0; i < qtdTags; i++) {
               idTags.push(idTagsTotal[i]);
             }
             console.log("IDs das tags a serem alugadas: ", idTags);
+
+
+            // mudar o status das tags alugadas para true
             for (let t = 0; t < idTags.length; t++) {
               const response2 = await this.http.patch(`http://localhost:4200/tags/updateStatus`, {idTag: idTags[t], status: true}).toPromise();
             }
@@ -183,20 +190,79 @@ export class HistoricoComprasComponent implements OnInit {
   }
 
   // Ação de confirmação
-  onFinalizar(): void {
+  async onFinalizar(): Promise<void> {
     console.log('Finalizar clicado');
-    
+  
     if (this.registroSelecionado) {
-      // Atualize a condição do registro no backend
-      const atualizadoRegistro = { ...this.registroSelecionado, condicaoId: '673d46d835c68f866f8cdbed' };
+      const atualizadoRegistro = {
+        ...this.registroSelecionado,
+        condicaoId: '673d46d835c68f866f8cdbed',
+      };
   
       this.http
-        .put(`http://localhost:4200/historicoCompras/${this.registroSelecionado._id}`, atualizadoRegistro)
+        .put(
+          `http://localhost:4200/historicoCompras/${this.registroSelecionado._id}`,
+          atualizadoRegistro
+        )
         .subscribe({
-          next: () => {
-            // Atualiza a condição no frontend
-            this.registroSelecionado.condicaoId = '673d46d835c68f866f8cdbed';
-            this.showModal = false;
+          next: async () => {
+            const qtdTags = this.registroSelecionado.qtdTags;
+            console.log("Número do voo a ser finalizado:", this.registroSelecionado.numVoo);
+  
+            try {
+              // Busca dados do voo
+              const response = await fetch(`http://localhost:4200/voos/${this.registroSelecionado.numVoo}`);
+              if (!response.ok) throw new Error('Erro ao buscar voo');
+  
+              const dadosDoVoo = await response.json();
+              const origem = dadosDoVoo.origem;
+              const destino = dadosDoVoo.destino;
+  
+              console.log("Origem:", origem);
+              console.log("Destino:", destino);
+  
+              // Busca tags no local de origem que estão alugadas
+              const idTagsTotal: any[] = [];
+              const tags = await this.http.post(
+                `http://localhost:4200/tags/filter`,
+                { local: origem, status: true }
+              ).toPromise();
+  
+              if (Array.isArray(tags)) {
+                tags.forEach(tag => tag._id && idTagsTotal.push(tag._id));
+              }
+  
+              const idTags = idTagsTotal.slice(0, qtdTags);
+              console.log("IDs das tags a serem finalizadas:", idTags);
+  
+              // Atualiza o local de todas as tags de uma vez
+              console.log('IDs DAS TAGS: ', idTags);
+              console.log('LOCAL: ', destino);
+              const responseUpdateLocal = await this.http
+                .patch(`http://localhost:4200/tags/updateLocal`, {
+                  idTag: idTags, // Envia array completo de IDs
+                  local: destino
+                })
+                .toPromise();
+              console.log("Resultado da atualização do local:", responseUpdateLocal);
+  
+              // Atualiza o status das tags para 'false'
+              await Promise.all(
+                idTags.map(tagId =>
+                  this.http.patch(`http://localhost:4200/tags/updateStatus`, { idTag: tagId, status: false }).toPromise()
+                )
+              );
+  
+              console.log("Status das tags atualizado para 'false'.");
+  
+              // Atualiza a condição no frontend
+              this.registroSelecionado.condicaoId = '673d46d835c68f866f8cdbed';
+              this.showModal = false;
+  
+            } catch (error) {
+              console.error('Erro durante a finalização:', error);
+              alert('Ocorreu um erro ao finalizar o voo.');
+            }
           },
           error: (err) => {
             console.error('Erro ao atualizar condição do registro:', err);

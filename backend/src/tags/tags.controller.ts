@@ -21,4 +21,9 @@ export class TagsController {
   async updateStatus(@Body() body: { idTag: string[], status: boolean }) {
     return this.tagsService.updateStatus(body.idTag, body.status);
   }
+
+  @Patch('updateLocal')
+  async updateLocal(@Body() body: { idTag: string[], local: string }) {
+    return this.tagsService.updateLocal(body.idTag, body.local);
+  } 
 }
