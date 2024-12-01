@@ -10,4 +10,14 @@ export class AeroportosController {
   async findAll(): Promise<Aeroportos[]> {
     return this.aeroportosService.findAll();
   }
+
+  @Get(':origem')
+  async findOne(@Param('origem') origem: string): Promise<Aeroportos | null> {
+    try {
+      return await this.aeroportosService.findOne(origem);
+    } catch (error) {
+      throw error;
+    }
+  }
+
 }

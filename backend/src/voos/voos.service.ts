@@ -10,7 +10,7 @@ export class VoosService {
   async findOne(numVoo: string): Promise<Voos | null> {
     console.log('Buscando voo com número:', numVoo);
     try {
-      const voo = await this.voosModel.findOne({ numVoo: numVoo }).exec();
+      const voo = await this.voosModel.findOne({ numvoo: numVoo }).exec();
       
       console.log('Resultado da busca:', voo);
       

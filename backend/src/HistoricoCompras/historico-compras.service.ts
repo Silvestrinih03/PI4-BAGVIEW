@@ -33,6 +33,15 @@ export class HistoricoComprasService {
     }
   }
 
+  async findByUserIdAndCondicao(userId: string, condicaoId: string): Promise<HistoricoCompras[]> {
+    try {
+      return this.historicoComprasModel.find({ userId, condicaoId }).exec();
+    } catch (error) {
+      console.error('Erro ao buscar histórico de compras por usuário e condição:', error);
+      throw error;
+    }
+  }
+
   async updateRegistro(id: string, registroAtualizado: any): Promise<HistoricoCompras> {
     return this.historicoComprasModel.findByIdAndUpdate(id, registroAtualizado, { new: true });
   }
