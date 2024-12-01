@@ -42,6 +42,8 @@ export class AlugarComponent implements OnInit {
   showModalCaucao: boolean = false;
   showModalCartao: boolean = false;
   showModalAluguelTemp: boolean = false;
+  historicoCompras: any[] = [];
+  userId: string | null = null;
 
   constructor(private router: Router, private http: HttpClient, private snackBar: MatSnackBar) {}
 
@@ -50,6 +52,8 @@ export class AlugarComponent implements OnInit {
     await this.carregarVoos();
     await this.carregarUsuario();
     this.setupFiltroVoos();
+    await this.verificarCompras();
+    console.log('Compras verificadas:', this.historicoCompras);
   }
 
   // Função para carregar lista de voos
@@ -89,6 +93,8 @@ export class AlugarComponent implements OnInit {
       if (!response.ok) throw new Error('Erro ao buscar dados do usuário');
 
       this.userData = await response.json();
+      this.userId = this.userData._id;
+      console.log('ID do usuário:', this.userId);
       console.log('Dados do usuário carregados:', this.userData);
     } catch (error) {
       console.error('Erro ao carregar dados do usuário:', error);
@@ -192,6 +198,43 @@ export class AlugarComponent implements OnInit {
     }
   }
 
+  async verificarCompras(): Promise<void> {
+    // Condição 1: Verifica se o userId está definido
+    if (!this.userId) {
+        console.log('ID do usuário não encontrado');
+        return;
+    }
+
+    const condicaoId = '673d46d835c68f866f8cdbec'; // EM USO
+    const condicaoId2 = '673d46d835c68f866f8cdbeb'; // PENDENTE
+
+    try {
+        // Testa a primeira condição
+        const response1 = await fetch(`http://localhost:4200/historicoCompras/${this.userId}/condicao/${condicaoId}`);
+        if (!response1.ok) {
+            console.error('Erro ao buscar histórico de compras para condicaoId:', response1.statusText);
+            throw new Error('Erro ao buscar histórico de compras para condicaoId');
+        }
+        const historicoCompras1 = await response1.json();
+        console.log('Histórico de compras para condicaoId:', historicoCompras1);
+
+        // Testa a segunda condição
+        const response2 = await fetch(`http://localhost:4200/historicoCompras/${this.userId}/condicao/${condicaoId2}`);
+        if (!response2.ok) {
+            console.error('Erro ao buscar histórico de compras para condicaoId2:', response2.statusText);
+            throw new Error('Erro ao buscar histórico de compras para condicaoId2');
+        }
+        const historicoCompras2 = await response2.json();
+        console.log('Histórico de compras para condicaoId2:', historicoCompras2);
+
+        // Você pode combinar os resultados ou armazená-los conforme necessário
+        this.historicoCompras = [...historicoCompras1, ...historicoCompras2];
+
+    } catch (error) {
+        console.error('Erro ao buscar histórico de compras:', error);
+    }
+  }
+
   // Fecha o modal e redireciona para o menu
   confirmarFinalizacao(): void {
     this.showModalFinalizacao = false; // Fecha o modal
@@ -232,6 +275,10 @@ export class AlugarComponent implements OnInit {
 
     const origem = vooSelecionado.origem;
 
+    if (this.historicoCompras.length > 0) {
+      alert('Você já possui uma compra em uso ou pendente!');
+      return;
+    }
     // Verifica a disponibilidade de tags
     const tagsDisponiveis = await this.verificarDisponibilidadeTags(origem, this.quantidadeTags);
     if (!tagsDisponiveis) {
