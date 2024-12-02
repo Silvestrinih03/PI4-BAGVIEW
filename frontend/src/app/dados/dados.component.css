@@ -1,9 +1,12 @@
-/* Reset de estilo */
+/* Importando a fonte do Google - Open Sans */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
+/* Estilo base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 /* Estilo principal */
@@ -44,7 +47,7 @@
 .banner h1:last-of-type {
   font-size: 1.3rem;
   font-weight: 400;
-  color: #27ae60;
+  color: #47b2e4;
   margin-top: 0.5rem;
 }
 
@@ -57,7 +60,9 @@ p {
 }
 
 /* Estilo dos campos de input */
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
   width: 100%;
   padding: 0.9rem;
   font-size: 1rem;
@@ -69,14 +74,17 @@ input[type="text"], input[type="email"], input[type="password"] {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
-  border-color: #27ae60;
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #47b2e4;
   box-shadow: 0 0 8px rgba(39, 174, 96, 0.3);
 }
 
 /* Estilo dos botões */
-button, .btn-acessar-menu {
-  background: linear-gradient(to right, #27ae60, #2ecc71);
+button,
+.btn-acessar-menu {
+  background: linear-gradient(to right, #47b2e4, #47b2e4);
   color: #ffffff;
   font-size: 1rem;
   font-weight: bold;
@@ -90,24 +98,28 @@ button, .btn-acessar-menu {
   display: inline-block;
 }
 
-button:hover, .btn-acessar-menu:hover {
-  background: linear-gradient(to right, #219150, #27ae60);
+button:hover,
+.btn-acessar-menu:hover {
+  background: linear-gradient(to right, #47b2e4, #47b2e4);
   transform: translateY(-3px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-button:active, .btn-acessar-menu:active {
-  background: linear-gradient(to right, #1e8449, #229954);
+button:active,
+.btn-acessar-menu:active {
+  background: linear-gradient(to right, ##47b2e4, #47b2e4);
   transform: translateY(1px);
 }
 
-button:focus, .btn-acessar-menu:focus {
+button:focus,
+.btn-acessar-menu:focus {
   outline: none;
   box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.3);
 }
 
 /* Alinhamento dos botões lado a lado */
-.container button, .container .btn-acessar-menu {
+.container button,
+.container .btn-acessar-menu {
   margin: 0.5rem;
 }
 
@@ -130,7 +142,7 @@ button:focus, .btn-acessar-menu:focus {
 }
 
 .plan-container:hover {
-  border-color: #27ae60;
+  border-color: ##47b2e4;
   box-shadow: 0 0 8px rgba(39, 174, 96, 0.15);
 }
 
@@ -141,7 +153,7 @@ button:focus, .btn-acessar-menu:focus {
 }
 
 .plan-container input[type="radio"] {
-  accent-color: #27ae60;
+  accent-color: #47b2e4;
   transform: scale(1.2);
 }
 
@@ -159,7 +171,8 @@ button:focus, .btn-acessar-menu:focus {
     padding: 1.5rem;
   }
 
-  button, .btn-acessar-menu {
+  button,
+  .btn-acessar-menu {
     font-size: 0.9rem;
     padding: 0.7rem 1.2rem;
   }
@@ -228,10 +241,10 @@ button:focus, .btn-acessar-menu:focus {
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  background-color: #2ecc71;
+  background-color: #47b2e4;
   color: #fff;
 }
 
 .modal-actions button:hover {
-  background-color: #27ae60;
+  background-color: #47b2e4;
 }

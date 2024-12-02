@@ -1,9 +1,12 @@
+/* Importando a fonte do Google - Open Sans */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
 /* Estilo base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .main {
@@ -50,14 +53,15 @@
   border: 1px solid #ddd; /* Adiciona borda à tabela */
 }
 
-.table th, .table td {
+.table th,
+.table td {
   padding: 0.8rem;
   text-align: center; /* Centraliza o texto */
   border: 1px solid #ddd; /* Adiciona borda ao cabeçalho e às células */
 }
 
 .table th {
-  background-color: #2ecc71;
+  background-color: #3498db;
   color: #ffffff;
   font-weight: bold;
 }
@@ -72,7 +76,7 @@
 
 /* Estilo do botão */
 button {
-  background-color: #2ecc71;
+  background-color: #3498db;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -83,11 +87,11 @@ button {
 }
 
 button:hover {
-  background-color: #27ae60;
+  background-color: #2980b9;
 }
 
 button:active {
-  background-color: #219150;
+  background-color: #2980b9;
 }
 
 .modal {
@@ -191,16 +195,16 @@ button:disabled {
 }
 
 .modal-actions button:first-child {
-  background-color: #2ecc71;
+  background-color: #3498db;
   color: #fff;
 }
 
 .modal-actions button:first-child:hover {
-  background-color: #27ae60;
+  background-color: #2980b9;
 }
 
 .modal-actions button:last-child {
-  background-color: #f5f5f5; /* Cinza claro */
+  background-color: #f5f5f5;
   color: #333;
 }
 

@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 // Módulos do Angular Material
 import { MatButtonModule } from '@angular/material/button';
@@ -30,6 +30,7 @@ import { AuthClientService } from '../services/auth-client.service';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    RouterModule,
   ],
   providers: [AuthClientService],
   templateUrl: './login.component.html',
@@ -48,7 +49,12 @@ export class LoginComponent {
   private router = inject(Router);
   userData: any = null;
 
+  hide: boolean = true; // Controle de visibilidade da senha
 
+  clickEvent(event: MouseEvent) {
+    event.preventDefault();
+    this.hide = !this.hide;
+  }
 
   /**
    * Método chamado ao submeter o formulário de login.
@@ -73,12 +79,14 @@ export class LoginComponent {
         await this.carregarUsuario();
         // Verifica se o plano é mensal e se não há cartão cadastrado
         if (
-          this.userData.idPlan === "6716a54052a0be5933feebc4" && !this.userData.card[0]?.num) {
+          this.userData.idPlan === '6716a54052a0be5933feebc4' &&
+          !this.userData.card[0]?.num
+        ) {
           console.log('Plano mensal sem cartão cadastrado');
           this.router.navigate(['/pagamento']);
-        } else
-          // Redireciona para a página de menu
-          this.router.navigate(['menu']);
+        }
+        // Redireciona para a página de menu
+        else this.router.navigate(['menu']);
       },
       error: (error) => {
         console.error('Erro no login:', error);

@@ -1,9 +1,12 @@
+/* Importando a fonte do Google - Open Sans */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
 /* Estilo base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .main {
@@ -14,16 +17,18 @@
   background-color: #f0f4f8; /* Fundo suave */
 }
 
-.container {
-  width: 95%; /* Maior largura disponível */
-  max-width: 1200px; /* Limitado a 1200px */
-  background-color: #ffffff; /* Fundo branco */
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra mais marcante */
-  animation: fadeIn 1s ease-in-out;
+.map {
+  position: absolute; /* Posicionamento absoluto para preencher a tela */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Largura total da viewport */
+  height: 100vh; /* Altura total da viewport */
+  background-color: #e8e8e8; /* Fundo cinza claro */
+  border-radius: 0; /* Remove bordas arredondadas */
+  border: none; /* Remove borda */
+  box-shadow: none; /* Remove sombra */
+  z-index: 0; /* Certifique-se de que está atrás do menu */
 }
-
 /* Banner */
 .banner {
   text-align: center;
@@ -79,16 +84,6 @@
   box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.5);
 }
 
-/* Mapa */
-#map {
-  margin-top: 2rem;
-  height: 400px;
-  background-color: #e8e8e8; /* Fundo cinza claro */
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 /* Animação */
 @keyframes fadeIn {
   from {
@@ -99,4 +94,88 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.menu-hamburguer {
+  position: absolute; /* Posicionamento absoluto */
+  left: 0; /* Alinhado à esquerda */
+  top: 20px; /* Distância do topo */
+  padding: 1rem;
+  background-color: #3498db; /* Cor de fundo */
+  color: #ffffff; /* Cor do texto */
+  border-radius: 0 8px 8px 0; /* Bordas arredondadas no lado direito */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra para dar destaque */
+  cursor: pointer;
+  z-index: 1000; /* Certifique-se de que está acima de outros elementos */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-hamburguer:hover {
+  background-color: #2980b9; /* Cor de fundo mais escura ao passar o mouse */
+}
+
+.menu-hamburguer svg {
+  width: 24px;
+  height: 24px;
+}
+
+.menu-content {
+  display: none; /* Esconde o menu por padrão */
+  position: absolute;
+  left: 0;
+  top: 60px; /* Ajuste conforme necessário */
+  background-color: #ffffff;
+  padding: 1rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-radius: 0 8px 8px 0; /* Bordas arredondadas no lado direito */
+}
+
+.menu-content.show {
+  display: block; /* Mostra o menu quando a classe 'show' é adicionada */
+}
+
+.menu-content button {
+  background-color: #3498db; /* Azul */
+  color: #ffffff; /* Texto branco */
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s;
+  margin-bottom: 0.5rem; /* Espaço entre os botões */
+  width: 100%; /* Ocupa toda a largura do container */
+}
+
+.menu-content button:hover {
+  background-color: #2980b9; /* Azul mais escuro */
+  transform: translateY(-2px);
+}
+
+.menu-content button:active {
+  background-color: #1f6391;
+  transform: translateY(2px);
+}
+
+.menu-content button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5);
+}
+
+#map {
+  position: absolute; /* Posicionamento absoluto para preencher a tela */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Largura total da viewport */
+  height: 100vh; /* Altura total da viewport */
+  background-color: #e8e8e8; /* Fundo cinza claro */
+  border-radius: 0; /* Remove bordas arredondadas */
+  border: none; /* Remove borda */
+  box-shadow: none; /* Remove sombra */
+  z-index: 0; /* Certifique-se de que está atrás do menu */
 }

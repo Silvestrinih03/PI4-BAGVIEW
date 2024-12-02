@@ -1,9 +1,12 @@
+/* Importando a fonte do Google - Open Sans */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
 /* Estilo base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .main {
@@ -71,7 +74,7 @@ input[type="password"]:focus,
 input[type="number"]:focus,
 input[type="month"]:focus,
 select:focus {
-  border-color: #2ecc71;
+  border-color: #47b2e4;
   outline: none;
   box-shadow: 0 0 5px rgba(46, 204, 113, 0.6);
 }
@@ -153,7 +156,7 @@ p {
 button[type="submit"],
 button[type="button"],
 button.btn-acessar-voltar {
-  background-color: #2ecc71;
+  background-color: #47b2e4;
   color: white;
   border: none;
   padding: 0.85rem 2rem; /* Ajuste o padding para um botão mais largo */
@@ -170,14 +173,14 @@ button.btn-acessar-voltar {
 button[type="submit"]:hover,
 button[type="button"]:hover,
 button.btn-acessar-voltar:hover {
-  background-color: #27ae60;
+  background-color: #47b2e4;
   transform: translateY(-2px);
 }
 
 button[type="submit"]:active,
 button[type="button"]:active,
 button.btn-acessar-voltar:active {
-  background-color: #219150;
+  background-color: #47b2e4;
   transform: translateY(2px);
 }
 

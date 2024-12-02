@@ -1,39 +1,47 @@
 <main class="main">
-    <div class="container">
-      <div class="banner">
-        <h1>BagView</h1>
-        <h1>Alterar dados pessoais</h1>
-      </div>
-      <div class="card-details" *ngIf="userData">
-        <p><strong>CPF:</strong> {{ userData.cpf }}</p>
-
-
-        <p><strong>Nome</strong></p>
-        <input type="text" [(ngModel)]="userData.fullName" required/>
-        <p><strong>Email</strong></p>
-        <input type="text" [(ngModel)]="userData.email"/>
-        <p><strong>Plano Selecionado</strong></p>
-        <div class="plan-container">
-          <label>
-            <input type="radio" [(ngModel)]="userData.idPlan" value="6716a54052a0be5933feebc4" />
-            <strong>Plano Mensal</strong> <br />
-            <span>R$85,90/mês</span>
-          </label>
-        </div>
-        <div class="plan-container">
-          <label>
-            <input type="radio" [(ngModel)]="userData.idPlan" value="6716a54052a0be5933feebc5" />
-            <strong>Plano Diário</strong> <br />
-            <span>R$40,00/viagem</span>
-          </label>
-        </div>
-      </div>
-      <div class="button-group">
-        <button (click)="onSubmit()">ALTERAR</button>
-        <button [routerLink]="['/configuracoes']" class="btn-acessar-voltar">VOLTAR</button>
-      </div>
-      <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  <div class="container">
+    <div class="banner">
+      <h1>Alterar dados pessoais</h1>
     </div>
+    <div class="card-details" *ngIf="userData">
+      <p><strong>CPF:</strong> {{ userData.cpf }}</p>
+
+      <p><strong>Nome</strong></p>
+      <input type="text" [(ngModel)]="userData.fullName" required />
+      <p><strong>Email</strong></p>
+      <input type="text" [(ngModel)]="userData.email" />
+      <p><strong>Plano Selecionado</strong></p>
+      <div class="plan-container">
+        <label>
+          <input
+            type="radio"
+            [(ngModel)]="userData.idPlan"
+            value="6716a54052a0be5933feebc4"
+          />
+          <strong>Plano Mensal</strong> <br />
+          <span>R$85,90/mês</span>
+        </label>
+      </div>
+      <div class="plan-container">
+        <label>
+          <input
+            type="radio"
+            [(ngModel)]="userData.idPlan"
+            value="6716a54052a0be5933feebc5"
+          />
+          <strong>Plano Diário</strong> <br />
+          <span>R$40,00/viagem</span>
+        </label>
+      </div>
+    </div>
+    <div class="button-group">
+      <button (click)="onSubmit()">ALTERAR</button>
+      <button [routerLink]="['/configuracoes']" class="btn-acessar-voltar">
+        VOLTAR
+      </button>
+    </div>
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
 </main>
 
 <!-- Modal de Sucesso -->

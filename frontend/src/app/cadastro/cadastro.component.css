@@ -22,7 +22,6 @@ body {
   background: linear-gradient(to bottom, #2d8bba 35%, #fff7f0 95%);
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
 /* Estilizações do Header */
@@ -172,6 +171,7 @@ select {
   border-radius: 4px;
   font-size: 16px;
   box-sizing: border-box;
+  transition: none;
 }
 
 /* Estilizações para o Botão de Envio */

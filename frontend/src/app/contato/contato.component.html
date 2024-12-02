@@ -1,1 +1,117 @@
-<p>contato works!</p>
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Metadados e links para fontes e estilos -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sobre Nós | BagView</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link href="contato.component.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Cabeçalho com navegação -->
+    <header class="header">
+      <nav class="navbar">
+        <!-- Logo da empresa com link para a homepage -->
+        <h2 class="logo">
+          <img
+            src="assets/img/BagView.png"
+            alt="logo"
+            routerLink="/homepage"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            id="logo"
+          />
+        </h2>
+        <!-- Menu de navegação responsivo -->
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" id="hamburger-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              d="M3 12h18M3 6h18M3 18h18"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </label>
+        <!-- Links de navegação -->
+        <ul class="links">
+          <li>
+            <a
+              routerLink="/homepage"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+              >Home</a
+            >
+          </li>
+          <li><a routerLink="/sobre-nos">Sobre Nós</a></li>
+          <li><a routerLink="/contato">Contato</a></li>
+        </ul>
+        <!-- Botões de login e cadastro -->
+        <div class="buttons">
+          <a
+            routerLink="/login"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            class="btn-login"
+            >Login</a
+          >
+          <a
+            routerLink="/cadastro"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            class="btn-cadastro"
+            >Cadastre-se</a
+          >
+        </div>
+      </nav>
+    </header>
+    <!-- Seção principal com mensagem de boas-vindas -->
+    <section class="hero-section">
+      <div class="hero">
+        <h2>Contato</h2>
+        <p>
+          Entre em contato conosco para saber mais sobre nossos serviços de
+          rastreamento de bagagens. Estamos aqui para ajudar e responder a todas
+          as suas dúvidas.
+        </p>
+        <p>
+          Você pode nos contatar pelo telefone: (11) 1234-5678 ou pelo email:
+          contato.bagviewgmail.com.
+        </p>
+        <p>
+          Nossa equipe está disponível de segunda a sexta, das 9h às 18h, para
+          atender suas necessidades e fornecer o suporte necessário.
+        </p>
+        <p>
+          Agradecemos seu interesse na BagView e estamos ansiosos para ajudá-lo
+          a ter uma experiência de viagem mais segura e tranquila.
+        </p>
+      </div>
+    </section>
+    <!-- Rodapé com informações de contato e direitos autorais -->
+    <footer class="footer">
+      <div class="footer-content">
+        <img src="assets/img/BagView.png" alt="logo" />
+        <p class="footer-description">
+          Rua do Projeto, 123 - Edifício do Futuro, 5º andar Centro - São
+          Paulo,<br />
+          SP - 01234-567 - CNPJ: 12.345.678/0001-90 <br />© 2024 BagView
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

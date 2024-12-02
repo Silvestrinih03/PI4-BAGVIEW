@@ -3,10 +3,10 @@
     <mat-card-title>Alugar Tag</mat-card-title>
     <mat-card-content>
       <form (ngSubmit)="onSubmit()">
-        <p> Selecione o número do voo </p>
-        <mat-form-field appearance="fill">
+        <p>Selecione o número do voo</p>
+        <mat-form-field appearance="outline">
           <mat-label>Número do Voo</mat-label>
-          <input 
+          <input
             matInput
             [(ngModel)]="numVoo"
             [matAutocomplete]="auto"
@@ -19,11 +19,10 @@
               {{ voo.numVoo }}
             </mat-option>
           </mat-autocomplete>
-        </mat-form-field> 
-               
+        </mat-form-field>
 
         <p>Quantas tags você deseja alugar?</p>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>Quantidade de Tags</mat-label>
           <input
             matInput
@@ -37,9 +36,13 @@
           />
         </mat-form-field>
 
-        <p style="text-align: center;">OBS: As tags só podem ser alugadas para voos com data de hoje.</p>
+        <p style="text-align: center">
+          OBS: As tags só podem ser alugadas para voos com data de hoje.
+        </p>
 
-        <button mat-raised-button color="primary" type="submit">Prosseguir</button>
+        <button mat-raised-button color="primary" type="submit">
+          Prosseguir
+        </button>
       </form>
     </mat-card-content>
   </mat-card>
@@ -49,12 +52,28 @@
 <div *ngIf="showModalCaucao" class="modal-overlay">
   <div class="modal">
     <h2>Atenção!</h2>
-    <p><strong>Ao confirmar o aluguel, será cobrada uma caução de R$50,00 por tag, totalizando R${{ quantidadeTags * 50 }}.</strong></p>
-    <p><br>Esse valor será reembolsado assim que você chegar ao aeroporto de destino e finalizar o aluguel da tag.</p>
-    <p><br>Lembre-se: o aluguel da tag não pode ultrapassar a duração do voo. Caso a locação não seja finalizada, o valor da caução não será reembolsado.</p>
+    <p>
+      <strong
+        >Ao confirmar o aluguel, será cobrada uma caução de R$50,00 por tag,
+        totalizando R${{ quantidadeTags * 50 }}.</strong
+      >
+    </p>
+    <p>
+      <br />Esse valor será reembolsado assim que você chegar ao aeroporto de
+      destino e finalizar o aluguel da tag.
+    </p>
+    <p>
+      <br />Lembre-se: o aluguel da tag não pode ultrapassar a duração do voo.
+      Caso a locação não seja finalizada, o valor da caução não será
+      reembolsado.
+    </p>
     <div class="modal-actions">
-      <button mat-button color="primary" (click)="confirmarAluguel()">Confirmar</button>
-      <button mat-button color="warn" (click)="cancelarModal()">Cancelar</button>
+      <button mat-button color="primary" (click)="confirmarAluguel()">
+        Confirmar
+      </button>
+      <button mat-button color="warn" (click)="cancelarModal()">
+        Cancelar
+      </button>
     </div>
   </div>
 </div>
@@ -63,12 +82,29 @@
 <div *ngIf="showModalAluguelTemp" class="modal-overlay">
   <div class="modal">
     <h2>Atenção!</h2>
-    <p><strong>O valor do aluguel para o plano temporário é de R$ 40,00. Além disso, será cobrada uma caução de R$ 50,00 por tag, totalizando R$ {{ quantidadeTags * 50 }}.</strong></p>
-    <p><br>A caução será reembolsada automaticamente assim que você finalizar o aluguel da tag no aeroporto de destino.</p>
-    <p><br>Lembre-se: o aluguel da tag não pode ultrapassar a duração do voo. Caso a locação não seja finalizada, o valor da caução não será reembolsado.</p>
+    <p>
+      <strong
+        >O valor do aluguel para o plano temporário é de R$ 40,00. Além disso,
+        será cobrada uma caução de R$ 50,00 por tag, totalizando R$
+        {{ quantidadeTags * 50 }}.</strong
+      >
+    </p>
+    <p>
+      <br />A caução será reembolsada automaticamente assim que você finalizar o
+      aluguel da tag no aeroporto de destino.
+    </p>
+    <p>
+      <br />Lembre-se: o aluguel da tag não pode ultrapassar a duração do voo.
+      Caso a locação não seja finalizada, o valor da caução não será
+      reembolsado.
+    </p>
     <div class="modal-actions">
-      <button mat-button color="primary" (click)="confirmarAluguel()">Confirmar</button>
-      <button mat-button color="warn" (click)="cancelarModal()">Cancelar</button>
+      <button mat-button color="primary" (click)="confirmarAluguel()">
+        Confirmar
+      </button>
+      <button mat-button color="warn" (click)="cancelarModal()">
+        Cancelar
+      </button>
     </div>
   </div>
 </div>
@@ -78,7 +114,9 @@
   <div class="modal">
     <h2>Aluguel Finalizado!</h2>
     <p>Você já pode retirar as tags no aeroporto!</p>
-    <p>IMPORTANTE: Após retirar a tag, ative-a no menu "Histórico de Compras".</p>
+    <p>
+      IMPORTANTE: Após retirar a tag, ative-a no menu "Histórico de Compras".
+    </p>
     <div class="modal-actions">
       <button mat-button (click)="confirmarFinalizacao()">Fechar</button>
     </div>
@@ -91,8 +129,12 @@
     <h2>Você ainda não possui um cartão cadastrado!</h2>
     <p>Deseja cadastrar um cartão para seguir com o aluguel?</p>
     <div class="modal-actions">
-      <button mat-button color="primary" (click)="confirmarCartao()">Cadastrar cartão</button>
-      <button mat-button color="warn" (click)="cancelarCartao()">Cancelar</button>
+      <button mat-button color="primary" (click)="confirmarCartao()">
+        Cadastrar cartão
+      </button>
+      <button mat-button color="warn" (click)="cancelarCartao()">
+        Cancelar
+      </button>
     </div>
   </div>
 </div>

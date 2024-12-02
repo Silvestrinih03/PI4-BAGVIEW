@@ -1,9 +1,12 @@
-/* Reset de estilo */
+/* Importando a fonte do Google - Open Sans */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
+/* Estilo base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 /* Estilo principal */
@@ -75,7 +78,8 @@ input[type="password"]:focus {
 }
 
 /* Estilo refinado para os botões */
-button, .btn-acessar-voltar {
+button,
+.btn-acessar-voltar {
   background: linear-gradient(to right, #27ae60, #2ecc71);
   color: #ffffff;
   font-size: 1rem;
@@ -92,18 +96,21 @@ button, .btn-acessar-voltar {
 }
 
 /* Efeitos de hover e foco */
-button:hover, .btn-acessar-voltar:hover {
+button:hover,
+.btn-acessar-voltar:hover {
   background: linear-gradient(to right, #219150, #27ae60);
   transform: translateY(-3px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-button:active, .btn-acessar-voltar:active {
+button:active,
+.btn-acessar-voltar:active {
   background: linear-gradient(to right, #1e8449, #229954);
   transform: translateY(1px);
 }
 
-button:focus, .btn-acessar-voltar:focus {
+button:focus,
+.btn-acessar-voltar:focus {
   outline: none;
   box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.3);
 }
@@ -121,21 +128,23 @@ button:focus, .btn-acessar-voltar:focus {
 /* Ajuste para telas menores */
 @media (max-width: 768px) {
   .container {
-      padding: 1.5rem;
+    padding: 1.5rem;
   }
 
-  button, .btn-acessar-voltar {
-      font-size: 0.9rem;
-      padding: 0.7rem 1.2rem;
+  button,
+  .btn-acessar-voltar {
+    font-size: 0.9rem;
+    padding: 0.7rem 1.2rem;
   }
 
   .button-group {
-      flex-direction: column; /* Empilha os botões verticalmente */
-      gap: 0.8rem; /* Reduz o espaço entre os botões */
+    flex-direction: column; /* Empilha os botões verticalmente */
+    gap: 0.8rem; /* Reduz o espaço entre os botões */
   }
 
-  button, .btn-acessar-voltar {
-      width: 100%; /* O botão ocupará toda a largura disponível */
+  button,
+  .btn-acessar-voltar {
+    width: 100%; /* O botão ocupará toda a largura disponível */
   }
 }
 
@@ -149,7 +158,7 @@ button:focus, .btn-acessar-voltar:focus {
 
 button {
   padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   cursor: pointer;
@@ -169,12 +178,12 @@ button:hover {
 /* Animação */
 @keyframes fadeIn {
   from {
-      opacity: 0;
-      transform: translateY(-10px);
+    opacity: 0;
+    transform: translateY(-10px);
   }
   to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -207,7 +216,7 @@ button:hover {
 
 button {
   padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   cursor: pointer;

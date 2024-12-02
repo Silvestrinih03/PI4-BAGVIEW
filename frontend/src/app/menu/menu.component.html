@@ -1,24 +1,38 @@
 <main class="main">
-    <div class="container">
-      <div class="banner">
-        <h1>BagView</h1>
-        <p>MENU DO USUÁRIO</p>
+  <div class="container">
+    <div class="menu-hamburguer" id="menuToggle">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        fill="#ffffff"
+      >
+        <path
+          d="M3 6h18M3 12h18M3 18h18"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+      <div class="menu-content" id="menuContent">
+        <button
+          [routerLink]="['/configuracoes']"
+          class="btn-acessar-configuracoes"
+        >
+          Acessar Configurações
+        </button>
+        <button [routerLink]="['/alugar']" class="btn-acessar-alugar">
+          Alugar Tag
+        </button>
+        <button
+          [routerLink]="['/historico-compras']"
+          class="btn-acessar-historicoCompras"
+        >
+          Histórico de Compras
+        </button>
       </div>
-
-      <div class="opcoes">
-        <button [routerLink]="['/configuracoes']" class="btn-acessar-configuracoes">Acessar Configurações</button>
-        <!-- REDIRECIONA PARA A PAGINA DE CONFIGURACOES-->
-
-        <button [routerLink]="['/alugar']" class="btn-acessar-alugar">Alugar Tag</button>
-        <!-- REDIRECIONA PARA A PAGINA DE ALUGUEL DE TAGS-->
-
-        <button [routerLink]="['/historico-compras']" class="btn-acessar-historicoCompras">Histórico de Compras</button>
-        <!-- REDIRECIONA PARA A PAGINA DE HISTORICO DE COMPRAS  -->
-
-      </div>
-      <div id="map"></div>
     </div>
-  </main>
-    
-    
-    
+  </div>
+  <div class="map" id="map"></div>
+</main>

@@ -1,0 +1,436 @@
+/* Importando a fonte do Google - Open Sans */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
+/* Reset de estilo e configuração de fonte padrão */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Estilo do corpo da página */
+body {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(to bottom, #2d8bba 35%, #2d8bba 95%);
+  background-repeat: no-repeat;
+  margin: 0;
+}
+
+/* Estilo do cabeçalho */
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 5em;
+  width: 100%;
+  transition: background-color 0.4s ease-in-out;
+}
+
+/* Estilos para o cabeçalho quando rolado */
+.header.scrolled .navbar .links a {
+  color: #5e5d5d;
+  transition: color 0.7s ease;
+}
+
+.header.scrolled .navbar .links a:hover {
+  color: #47b2e4;
+}
+
+.header.scrolled .navbar .buttons a {
+  color: #5e5e5e;
+}
+
+.header.scrolled .navbar .buttons a:hover {
+  color: #47b2e4;
+}
+
+.header.scrolled .navbar .buttons .btn-cadastro:hover {
+  background-color: #47b2e4;
+  color: #5e5d5d;
+}
+
+.header.scrolled .navbar .buttons .btn-cadastro {
+  border: 1px solid #5e5d5d;
+}
+
+.header.scrolled .navbar .logo img {
+  transition: transform 0.7s ease;
+}
+
+.header.scrolled .navbar {
+  background-color: #fff;
+  transition: background-color 0.7s ease;
+}
+
+/* Estilo da barra de navegação */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 5px 180px;
+  background-color: #2d8bba;
+  transition: background-color 0.7s ease;
+}
+
+.navbar .logo img {
+  cursor: pointer;
+}
+
+/* Estilo dos links de navegação */
+.navbar .links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 35px;
+}
+
+.navbar .links a {
+  font-weight: 500;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 0;
+  transition: 0.2s ease;
+}
+
+.navbar .links a:hover {
+  color: #47b2e4;
+}
+
+/* Estilo dos botões na barra de navegação */
+.navbar .buttons a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  padding: 15px 0;
+  transition: 0.2s ease;
+}
+
+.navbar .buttons a:not(:last-child) {
+  margin-right: 30px;
+}
+
+.navbar .buttons .btn-login:hover {
+  color: #47b2e4;
+}
+
+.navbar .buttons .btn-cadastro {
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  border-radius: 0.375rem;
+  text-align: center;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.navbar .buttons .btn-cadastro:hover {
+  background-color: #47b2e4;
+  color: #fff;
+  cursor: pointer;
+}
+
+.navbar .logo img {
+  width: 140px;
+}
+
+/* Estilo da seção hero */
+.hero-section {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 95vh;
+  padding: 0 15px;
+  max-width: 2500px;
+  margin: 0 auto;
+}
+
+.hero-section .hero {
+  max-width: 50%;
+  color: #fff;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #f1f1f1;
+}
+
+.hero-section .img img {
+  width: 517px;
+}
+
+.hero-section .buttons {
+  margin-top: 40px;
+}
+
+.hero-section .buttons a {
+  text-decoration: none;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: 0.2s ease;
+  display: inline-block;
+}
+
+.hero-section .buttons a:not(:last-child) {
+  margin-right: 15px;
+}
+
+.buttons .join {
+  background-color: #47b2e4;
+}
+
+.hero-section .buttons .learn {
+  border: 1px solid #fff;
+  border-radius: 0.375rem;
+}
+
+.hero-section .buttons a:hover {
+  background-color: #47b2e4;
+}
+
+/* Estilo do menu e botão de hambúrguer */
+#menu-toggle {
+  display: none;
+}
+
+#hamburger-btn {
+  font-size: 1.8rem;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  order: 1;
+}
+
+/* Estilo da seção de detalhes */
+.details-section {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 50px 180px;
+  margin-top: -50px;
+  background-color: #fff;
+}
+
+.details-section .details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.details .detail-item {
+  max-width: 25%;
+}
+
+.details h2 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  margin-left: -5px;
+}
+
+.details p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #5e5d5d;
+}
+
+.details .detail-item mat-icon {
+  margin-right: 5px;
+}
+
+/* Estilo da seção de perguntas */
+.questions-section {
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 50px 180px;
+  margin-top: 10;
+  background-color: #fff;
+}
+
+.questions-section .questions-title {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  margin-left: -5px;
+}
+
+.questions-section .questions-description {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #5e5d5d;
+}
+
+.questions-accordion {
+  margin-bottom: 15px;
+}
+
+.questions-accordion p {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #5e5d5d;
+}
+
+.questions-accordion .mat-expansion-panel-header {
+  font-size: 1rem;
+  color: #5e5d5d;
+}
+
+.questions-accordion .mat-expansion-panel {
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo do divisor de página */
+.page-divider {
+  border: 0;
+  height: 1px;
+  background: #e0e0e0;
+  width: 100%;
+  margin: auto;
+}
+
+/* Estilo do rodapé */
+.footer {
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 1px 180px;
+  background-color: #fff;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-description {
+  font-size: 0.6rem;
+  color: #5e5d5d;
+  line-height: 1.2;
+}
+
+.footer-content img {
+  width: 100px;
+}
+
+/* Estilos responsivos para telas menores */
+@media screen and (max-width: 1023px) {
+  .navbar .logo a {
+    font-size: 1.5rem;
+  }
+
+  .links {
+    position: fixed;
+    left: -100%;
+    top: 75px;
+    width: 100%;
+    height: 100vh;
+    padding-top: 50px;
+    background: #175d69;
+    flex-direction: column;
+    transition: 0.3s ease;
+  }
+
+  .navbar #menu-toggle:checked ~ .links {
+    left: 0;
+  }
+
+  .navbar #hamburger-btn {
+    display: block;
+  }
+
+  .header .buttons {
+    display: none;
+  }
+
+  .hero-section {
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+    height: auto;
+  }
+
+  .hero-section .hero {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .hero-section img {
+    width: 100%;
+    max-width: 300px;
+    margin: 20px 0;
+  }
+
+  .details-section {
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .details .detail-item {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .questions-section {
+    padding: 20px;
+  }
+
+  .footer {
+    padding: 20px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-content img {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 5px 20px;
+  }
+
+  .navbar .links {
+    gap: 20px;
+  }
+
+  .hero-section {
+    height: auto;
+    padding: 20px;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .details-section {
+    padding: 20px;
+  }
+
+  .questions-section {
+    padding: 20px;
+  }
+
+  .footer {
+    padding: 20px;
+  }
+}

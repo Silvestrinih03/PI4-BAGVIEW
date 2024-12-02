@@ -1,48 +1,117 @@
-<!-- Container principal para o formulário de login -->
-<div class="login-container">
-  <mat-card>
-    <mat-card-title>
-      <mat-icon>lock</mat-icon>
-      Login
-    </mat-card-title>
-
-    <!-- Conteúdo do cartão contendo o formulário -->
-    <mat-card-content>
-      <!-- Formulário de login com envio ao método onSubmit -->
-      <form (ngSubmit)="onSubmit()">
-        <!-- Campo de entrada para o email -->
-        <mat-form-field appearance="fill">
-          <mat-label>Email</mat-label>
-          <input
-            matInput
-            placeholder="Digite seu email"
-            type="email"
-            required
-            [(ngModel)]="email"
-            name="email"
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="./login.component.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <!-- Logo e navegação -->
+        <h2 class="logo">
+          <img
+            src="assets/img/BagView.png"
+            alt="logo"
+            routerLink="/homepage"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
           />
-        </mat-form-field>
-
-        <!-- Campo de entrada para a senha -->
-        <mat-form-field appearance="fill">
-          <mat-label>Senha</mat-label>
-          <input
-            matInput
-            placeholder="Digite sua senha"
-            type="password"
-            required
-            [(ngModel)]="senha"
-            name="senha"
-          />
-        </mat-form-field>
-
-        <!-- Botão para enviar o formulário -->
-        <button mat-raised-button color="primary" type="submit">Login</button>
-
-        <div *ngIf="errorMessage" class="error-message">
-          <mat-error>{{ errorMessage }}</mat-error>
+        </h2>
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" id="hamburger-btn">
+          <!-- Ícone do menu -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              d="M3 12h18M3 6h18M3 18h18"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </label>
+        <div class="buttons">
+          <a
+            routerLink="/cadastro"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            class="btn-login"
+            >Cadastre-se</a
+          >
         </div>
+      </nav>
+    </header>
+    <div class="form-container">
+      <h3>Login</h3>
+
+      <p style="text-align: left">
+        Se você ainda não possui uma conta com a gente, crie uma conta nova.
+        <a routerLink="/cadastro">Entre</a> aqui para criar uma conta nova.
+      </p>
+      <h6>Dados pessoais</h6>
+      <p style="text-align: left">Insira seus dados</p>
+
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-field">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="Digite seu email"
+              type="email"
+              name="email"
+              [(ngModel)]="email"
+              required
+            />
+          </mat-form-field>
+        </div>
+
+        <!-- Campo para Senha -->
+        <div class="form-field">
+          <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input
+              matInput
+              placeholder="Digite sua senha"
+              type="password"
+              required
+              [(ngModel)]="senha"
+              name="senha"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="clickEvent($event); $event.preventDefault()"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <!-- Botão de envio -->
+        <div class="form-field">
+          <button type="submit">Finalizar</button>
+        </div>
+
+        <!-- Mensagem de erro -->
+        <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
       </form>
-    </mat-card-content>
-  </mat-card>
-</div>
+    </div>
+  </body>
+</html>

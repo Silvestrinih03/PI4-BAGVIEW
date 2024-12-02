@@ -1,7 +1,6 @@
 <div class="main">
   <div class="container">
     <div class="banner">
-      <h1>BagView</h1>
       <p>HISTÓRICO DE COMPRAS</p>
     </div>
 
@@ -19,10 +18,10 @@
         <tr *ngFor="let registro of historicoCompras">
           <!-- Exibindo a data de retirada, formatada se houver, ou N/A -->
           <td>{{ registro.numVoo }}</td>
-          
+
           <!-- Exibindo a data de devolução, formatada se houver, ou N/A -->
-          <td>{{ registro.data }}</td>
-          
+          <td>{{ registro.data | date : "dd/MM/yyyy HH:mm" }}</td>
+
           <td>{{ registro.qtdTags }}</td>
 
           <!-- Exibindo a condição, ou N/A se não houver valor -->
@@ -30,13 +29,26 @@
 
           <td>
             <!-- Botão 'Ativar tags' -->
-            <button *ngIf="registro.condicaoId === '673d46d835c68f866f8cdbeb'" (click)="onAlterarCondicao(registro, 'confirmacao')">Ativar tags</button>
-            
+            <button
+              *ngIf="registro.condicaoId === '673d46d835c68f866f8cdbeb'"
+              (click)="onAlterarCondicao(registro, 'confirmacao')"
+            >
+              Ativar tags
+            </button>
+
             <!-- Botão 'Encerrar Aluguel' -->
-            <button *ngIf="registro.condicaoId === '673d46d835c68f866f8cdbec'" (click)="onAlterarCondicao(registro, 'encerramento')">Encerrar Aluguel</button>
-            
+            <button
+              *ngIf="registro.condicaoId === '673d46d835c68f866f8cdbec'"
+              (click)="onAlterarCondicao(registro, 'encerramento')"
+            >
+              Encerrar Aluguel
+            </button>
+
             <!-- Nenhum botão se a condição for '673d46d835c68f866f8cdbed' -->
-            <p *ngIf="registro.condicaoId === '673d46d835c68f866f8cdbed'" class="sem-acao-texto"></p>
+            <p
+              *ngIf="registro.condicaoId === '673d46d835c68f866f8cdbed'"
+              class="sem-acao-texto"
+            ></p>
           </td>
         </tr>
       </tbody>
@@ -59,7 +71,11 @@
 <div *ngIf="showModal && modalType === 'encerramento'" class="modal">
   <div class="modal-content">
     <h2>Você tem certeza de que deseja finalizar o aluguel?</h2>
-    <p>Ao confirmar, você declara que chegou ao seu destino final. <br><br> Esta ação é irreversível e, após a finalização, o valor do caução será devolvido automaticamente.</p>
+    <p>
+      Ao confirmar, você declara que chegou ao seu destino final. <br /><br />
+      Esta ação é irreversível e, após a finalização, o valor do caução será
+      devolvido automaticamente.
+    </p>
     <div class="modal-actions">
       <button (click)="onFinalizar()">Confirmar</button>
       <button (click)="onCancelar()">Cancelar</button>

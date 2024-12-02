@@ -1,1 +1,176 @@
-<p>sobre-nos works!</p>
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Metadados e links para fontes e estilos -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sobre Nós | BagView</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link href="sobre-nos.component.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Cabeçalho com navegação -->
+    <header class="header">
+      <nav class="navbar">
+        <!-- Logo da empresa com link para a homepage -->
+        <h2 class="logo">
+          <img
+            src="assets/img/BagView.png"
+            alt="logo"
+            routerLink="/homepage"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            id="logo"
+          />
+        </h2>
+        <!-- Menu de navegação responsivo -->
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" id="hamburger-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              d="M3 12h18M3 6h18M3 18h18"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </label>
+        <!-- Links de navegação -->
+        <ul class="links">
+          <li>
+            <a
+              routerLink="/homepage"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+              >Home</a
+            >
+          </li>
+          <li><a routerLink="/sobre-nos">Sobre Nós</a></li>
+          <li><a routerLink="/contato">Contato</a></li>
+        </ul>
+        <!-- Botões de login e cadastro -->
+        <div class="buttons">
+          <a
+            routerLink="/login"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            class="btn-login"
+            >Login</a
+          >
+          <a
+            routerLink="/cadastro"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            class="btn-cadastro"
+            >Cadastre-se</a
+          >
+        </div>
+      </nav>
+    </header>
+    <!-- Seção principal com mensagem de boas-vindas -->
+    <section class="hero-section">
+      <div class="hero">
+        <h2>Sobre Nós</h2>
+        <p>
+          Somos uma solução inovadora e acessível para o rastreamento de
+          bagagens em tempo real. Nosso objetivo é proporcionar tranquilidade e
+          segurança aos nossos usuários durante suas viagens, permitindo que
+          monitorem suas malas em tempo real.
+        </p>
+        <p>
+          Com a BagView, você pode acompanhar a localização de suas bagagens a
+          qualquer momento, receber notificações instantâneas e garantir que
+          suas malas estejam sempre sob controle. Nossa tecnologia utiliza tags
+          inteligentes que se comunicam com nosso sistema, fornecendo
+          atualizações precisas e confiáveis.
+        </p>
+        <p>
+          Nossa missão é tornar suas viagens mais seguras e sem preocupações.
+          Acreditamos que todos merecem uma experiência de viagem tranquila,
+          sabendo que suas bagagens estão seguras e monitoradas.
+        </p>
+        <p>
+          Junte-se a nós e descubra como a BagView pode transformar a maneira
+          como você viaja. Estamos aqui para ajudar você a ter uma experiência
+          de viagem mais segura e agradável.
+        </p>
+      </div>
+    </section>
+    <!-- Divisor de página -->
+    <hr class="page-divider" style="height: 1px; width: 85%" />
+    <!-- Seção de perguntas frequentes -->
+    <section class="questions-section">
+      <div class="questions">
+        <h2 class="questions-title">Perguntas Frequentes</h2>
+        <!-- Acordeão de perguntas e respostas -->
+        <div class="questions-accordion">
+          <mat-expansion-panel [(expanded)]="panel1Open">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Como a BagView protege minha bagagem?
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>
+              A BagView protege sua bagagem de várias maneiras, incluindo a
+              identificação e rastreamento em tempo real, notificações de
+              movimentação e alertas de proximidade.
+            </p>
+          </mat-expansion-panel>
+        </div>
+        <div class="questions-accordion">
+          <mat-expansion-panel [(expanded)]="panel2Open">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Quais são as vantagens de usar a BagView?
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>
+              Além da segurança de sua bagagem, a BagView oferece uma série de
+              vantagens, como assistência em caso de emergência, suporte 24/7 e
+              a conveniência de gerenciar sua bagagem de qualquer lugar.
+            </p>
+          </mat-expansion-panel>
+        </div>
+        <div class="questions-accordion">
+          <mat-expansion-panel [(expanded)]="panel3Open">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Como a BagView me ajuda a viajar com mais tranquilidade?
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>
+              A BagView oferece a tranquilidade de saber que sua bagagem está
+              segura e protegida, permitindo que você se concentre em desfrutar
+              de sua viagem.
+            </p>
+          </mat-expansion-panel>
+        </div>
+      </div>
+    </section>
+    <!-- Divisor de página -->
+    <hr class="page-divider" style="height: 1px; width: 85%" />
+    <!-- Rodapé com informações de contato e direitos autorais -->
+    <footer class="footer">
+      <div class="footer-content">
+        <img src="assets/img/BagView.png" alt="logo" />
+        <p class="footer-description">
+          Rua do Projeto, 123 - Edifício do Futuro, 5º andar Centro - São
+          Paulo,<br />
+          SP - 01234-567 - CNPJ: 12.345.678/0001-90 <br />© 2024 BagView
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

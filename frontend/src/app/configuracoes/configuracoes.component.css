@@ -1,9 +1,12 @@
+/* Importando a fonte do Google - Open Sans */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
 /* Estilo base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', Arial, sans-serif;
+  font-family: "Open Sans", Arial, sans-serif;
 }
 
 .main {
@@ -19,7 +22,6 @@
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  max-width: 700px;
   width: 95%;
   animation: fadeIn 1s ease-in-out;
 }
@@ -39,7 +41,7 @@
 .banner h1:last-of-type {
   font-size: 1.8rem;
   font-weight: 500;
-  color: #27ae60;
+  color: #3498db;
   margin-top: 0.5rem;
 }
 
@@ -59,7 +61,7 @@ p {
 
 p::before {
   content: "• ";
-  color: #27ae60;
+  color: #3498db;
   font-size: 1.2rem;
   font-weight: bold;
 }
@@ -78,24 +80,25 @@ p::before {
 
 .table td:first-child {
   font-weight: bold;
-  color: #27ae60;
+  color: #3498db;
 }
 
 /* Estilo para os dados do cartão */
 .card-container {
   background-color: #f7f9fa;
   padding: 1.5rem;
-  border: 2px solid #27ae60;
+  border: 2px solid #3498db;
   border-radius: 10px;
   margin-top: 2rem;
+  max-width: 600px;
 }
 
 .card-container h2 {
   font-size: 1.4rem;
   margin-bottom: 1.2rem;
-  color: #27ae60;
+  color: #3498db;
   font-weight: bold;
-  border-bottom: 2px solid #27ae60;
+  border-bottom: 2px solid #3498db;
   padding-bottom: 0.5rem;
 }
 
@@ -108,7 +111,7 @@ p::before {
 
 /* Botões */
 button {
-  background-color: #27ae60; /* Cor verde */
+  background-color: #3498db; /* Cor verde */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -126,12 +129,12 @@ button {
 }
 
 button:hover {
-  background-color: #1e874b;
+  background-color: #2980b9;
   transform: translateY(-3px);
 }
 
 button:active {
-  background-color: #16643c;
+  background-color: #2980b9;
   transform: translateY(2px);
 }
 
@@ -142,21 +145,20 @@ button:focus {
 
 /* Botão específico para diferentes ações */
 .btn-acessar-edicaoUser {
-  background-color: #2ecc71;
+  background-color: #3498db;
 }
 
 .btn-acessar-edicaoUser:hover {
-  background-color: #27ae60;
+  background-color: #2980b9;
 }
 
 .btn-acessar-pagamento {
-  background-color: #2ecc71;
+  background-color: #3498db;
 }
 
 .btn-acessar-pagamento:hover {
-  background-color: #27ae60;
+  background-color: ;
 }
-
 
 .button-group {
   display: flex;
