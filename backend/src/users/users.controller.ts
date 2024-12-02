@@ -21,9 +21,4 @@ export class UsersController {
     return this.usersService.findOne(email);
   }
 
-  @Patch('adicionarvoo')
-  async addFlightToUser(@Body() body: { email: string; numVoo: string }) {
-    return this.usersService.addFlightToUser(body.email, body.numVoo);
-  }
-
 }

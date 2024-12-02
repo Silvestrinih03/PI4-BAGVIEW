@@ -6,7 +6,6 @@ import { CadastroModule } from './cadastro/cadastro.module';
 import { PagamentoModule } from './pagamento/pagamento.module';
 import { VoosModule } from './voos/voos.module';
 import { DadosModule } from './dados/dados.module';
-import { AlugarModule } from './alugar/alugar.module';
 import { TagsModule } from './tags/tags.module';
 import { HistoricoComprasModule } from './historicoCompras/historico-compras.module';
 import { CondicoesModule } from './Condicoes/condicoes.module'
@@ -21,7 +20,6 @@ import { AeroportosModule } from './aeroportos/aeroportos.module';
     PagamentoModule,
     VoosModule,
     DadosModule,
-    AlugarModule,
     TagsModule,
     HistoricoComprasModule,
     CondicoesModule,

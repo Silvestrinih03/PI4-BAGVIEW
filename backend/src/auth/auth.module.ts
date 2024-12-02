@@ -8,7 +8,7 @@ import { AuthController } from './auth.controller';
   imports: [
     UsersModule,
     JwtModule.register({
-      secret: '123456qwerty', // Use uma variável de ambiente para isso em produção
+      secret: '123456qwerty',
       signOptions: { expiresIn: '60m' },
     }),
   ],

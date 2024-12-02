@@ -9,12 +9,5 @@ export class CadastroDto {
       nome: string;
       val: string;
     }[];
-    idFlights: {
-      objectId: string;
-    }[];
-    userTags: {
-      objectId: string;
-    }[];
-    inactiveTags: number;
 }
   

@@ -47,18 +47,7 @@ export class CadastroComponent {
         nome: '',
         val: '',
       },
-    ],
-    idFlights: [
-      {
-        objectId: '',
-      },
-    ],
-    userTags: [
-      {
-        objectId: '',
-      },
-    ],
-    inactiveTags: 0,
+    ]
   };
 
   confirmaSenha: string = ''; // Armazena a confirmação da senha
@@ -141,7 +130,7 @@ export class CadastroComponent {
   private onSuccessfulRegistration(response: any) {
     console.log('Cadastro realizado com sucesso:', response);
 
-    // Armazena o email do usuário para futuras referências
+    // Armazena o email do usuário no localStorage
     localStorage.setItem('userEmail', this.usuario.email);
 
     // Redireciona com base no plano selecionado

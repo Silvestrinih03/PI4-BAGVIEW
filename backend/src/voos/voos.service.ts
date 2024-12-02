@@ -7,6 +7,7 @@ import { Voos, VoosDocument } from './voos.schema';
 export class VoosService {
   constructor(@InjectModel(Voos.name) private voosModel: Model<VoosDocument>) {}
 
+  // Funcao de busca de um voo pelo seu numero
   async findOne(numVoo: string): Promise<Voos | null> {
     console.log('Buscando voo com número:', numVoo);
     try {
@@ -28,6 +29,7 @@ export class VoosService {
     }
   }
 
+  // Funcao de busca de todos os voos
   async findAll(): Promise<Voos[]> {
     console.log('Buscando todos os voos');
     try {

@@ -35,31 +35,6 @@ export class User extends Document {
     nome: string;
     val: string;
   }[];
-
-
-@Prop({
-  type: [{
-    objectId: { type: String }
-  }]
-})
-idFlights: {
-  objectId: string;
-}[];
-
-@Prop({
-  type: [{
-    objectId: { type: String }
-  }]
-})
-userTags: {
-  objectId: string;
-}[];
-
-@Prop()
-  inactiveTags: number;
-
+  
 }
-
-
-
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -6,6 +6,7 @@ import { CadastroDto } from './cadastroDto';
 export class CadastroService {
   constructor(private usersService: UsersService) {}
 
+  // Funcao de cadastro de usuario
   async cadastrar(cadastroDto: CadastroDto) {
     
     console.log('Iniciando processo de registro');

@@ -10,6 +10,7 @@ export class AuthService {
     private jwtService: JwtService
   ) {}
 
+  // Funcao de login de usuario
   async login(loginDto: { email: string; password: string }) {
     console.log('Iniciando processo de login');
     console.log('Dados recebidos:', JSON.stringify(loginDto));
@@ -18,11 +19,13 @@ export class AuthService {
       const user = await this.usersService.findOne(loginDto.email);
       console.log('Resultado da busca do usuário:', JSON.stringify(user, null, 2));
 
+      // Verifica se o usuario existe
       if (!user) {
         console.log('Usuário não encontrado');
         throw new UnauthorizedException('Credenciais inválidas');
       }
 
+      // Verifica se a senha do usuario é igual a senha recebida
       if (user.password !== loginDto.password) {
         console.log('Senhas não correspondem');
         throw new UnauthorizedException('Credenciais inválidas');

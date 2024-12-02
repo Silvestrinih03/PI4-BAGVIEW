@@ -22,9 +22,6 @@ export class CadastroClientService {
       nome: string;
       val: string;
     }[];
-    idFlights: {
-      objectId: string;
-    }[];
   }): Observable<any> {
     console.log('Dados do usuário para cadastro:', usuario);
     return this.http.post(this.apiUrl, usuario);
