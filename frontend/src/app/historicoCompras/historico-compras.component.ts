@@ -122,16 +122,7 @@ export class HistoricoComprasComponent implements OnInit {
         .subscribe({
           next: async () => {
             const qtdTags = this.registroSelecionado.qtdTags;
-            // FAZ ANTES
-            //console.log("Registro selecionado: ", this.registroSelecionado)
-            //const numeroDoVoo = this.registroSelecionado.numVoo;
-            //const condicaoId = this.registroSelecionado.condicaoId;
-            //console.log("Numero do voo: ", numeroDoVoo)
-            //const response = await fetch(`http://localhost:4200/historicoCompras/${this.idUser}/voo/${numeroDoVoo}/condicao/${condicaoId}`);
-            //if (!response.ok) {
-            //    console.error('Erro ao buscar compra para o usuário, condicaoId e Voo:', response.statusText);
-            //    throw new Error('Erro ao buscar compra para o usuário,condicaoId e Voo');
-            //}
+            
             const response = await fetch(`http://localhost:4200/voos/${this.registroSelecionado.numVoo}`);
             if (!response.ok) {
                 console.error('Erro ao buscar voo:', response.statusText);
@@ -175,7 +166,7 @@ export class HistoricoComprasComponent implements OnInit {
             // Atualiza a condição no frontend
             this.registroSelecionado.condicaoId = '673d46d835c68f866f8cdbec';
             this.showModal = false;
-            // aqui -- pega o numero do voo
+            
             
 
           },
